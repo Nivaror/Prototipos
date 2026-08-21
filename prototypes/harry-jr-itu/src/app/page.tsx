@@ -1,5 +1,7 @@
 import styles from "./page.module.css";
 import { OpenTicket, HoursList } from "./OpenStatus";
+import { Reservation } from "./Reservation";
+import { PizzaMark } from "./PizzaMark";
 
 const SERVICE_TAGS = [
   "Delivery a domicilio",
@@ -10,18 +12,77 @@ const SERVICE_TAGS = [
   "Tarjetas y pagos por NFC",
 ];
 
+const MENU_CATEGORIES = [
+  {
+    label: "Pizzas",
+    note: "El fuerte de la casa — la especialidad con la que abren cada noche.",
+  },
+  {
+    label: "Aperitivos",
+    note: "Para arrancar mientras llega el resto de la mesa.",
+  },
+  {
+    label: "Bocadillos",
+    note: "Opciones más chicas, para picar o para llevar.",
+  },
+];
+
 export default function Home() {
   return (
     <main>
       <section className={styles.hero}>
         <div className={styles.heroGlow} aria-hidden="true" />
+        <PizzaMark className={styles.pizzaMark} />
         <p className={styles.eyebrow}>Pizzería · Ituzaingó, Corrientes</p>
         <h1 className={styles.title}>HARRY JR.</h1>
         <p className={styles.subtitle}>
           Pizzas a la noche, todos los días de la semana.
         </p>
         <OpenTicket />
-        <p className={styles.scrollCue}>Bajá para ver más ↓</p>
+        <div className={styles.quickActions}>
+          <a href="#menu" className={styles.quickBtn}>
+            Ver el menú
+          </a>
+          <a href="#reservar" className={styles.quickBtnPrimary}>
+            Reservar mesa
+          </a>
+        </div>
+      </section>
+
+      <section id="menu" className={styles.section}>
+        <p className={styles.sectionEyebrow}>Menú</p>
+        <h2 className={styles.sectionTitle}>Qué vas a encontrar</h2>
+        <p className={styles.lede}>
+          El menú completo (con precios y variedades) todavía no está
+          publicado online — lo compartimos por Instagram. Estas son las
+          categorías confirmadas de la casa:
+        </p>
+        <div className={styles.menuGrid}>
+          {MENU_CATEGORIES.map((cat) => (
+            <div key={cat.label} className={styles.menuCard}>
+              <span className={styles.menuLabel}>{cat.label}</span>
+              <span className={styles.menuNote}>{cat.note}</span>
+            </div>
+          ))}
+        </div>
+        <a
+          className={styles.cta}
+          href="https://instagram.com/harryjr._itu"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver menú completo en Instagram →
+        </a>
+      </section>
+
+      <section id="reservar" className={styles.section}>
+        <p className={styles.sectionEyebrow}>Mesas al aire libre</p>
+        <h2 className={styles.sectionTitle}>Reservá tu mesa</h2>
+        <p className={styles.lede}>
+          Ideal para juntadas con amigos o salidas en grupo. Dejá tus datos y
+          coordinamos tu mesa afuera.
+        </p>
+        <Reservation />
       </section>
 
       <section className={styles.section}>

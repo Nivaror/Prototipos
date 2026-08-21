@@ -21,6 +21,12 @@
   pointer-events: none;
 }
 
+.pizzaMark {
+  position: relative;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 6px 18px rgba(232, 93, 44, 0.35));
+}
+
 .eyebrow {
   position: relative;
   font-family: var(--font-mono), monospace;
@@ -98,14 +104,43 @@
   color: var(--semolina);
 }
 
-.scrollCue {
-  position: absolute;
-  bottom: 2rem;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--semolina-dim);
+.quickActions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 2.5rem;
+}
+
+.quickBtn,
+.quickBtnPrimary {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  padding: 0.8rem 1.6rem;
+  border-radius: 2px;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.quickBtn {
+  border: 1px solid var(--hairline);
+  color: var(--semolina);
+}
+
+.quickBtn:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+.quickBtnPrimary {
+  background: var(--ember);
+  color: var(--char);
+}
+
+.quickBtnPrimary:hover {
+  background: #ff7440;
+  transform: translateY(-1px);
 }
 
 .section {
@@ -165,6 +200,148 @@
   border: 1px solid var(--hairline);
   border-radius: 999px;
   padding: 0.5rem 1rem;
+}
+
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0 2rem;
+}
+
+.menuCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem;
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--crust);
+  background: var(--char-2);
+}
+
+.menuLabel {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.4rem;
+  color: var(--semolina);
+}
+
+.menuNote {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--semolina-dim);
+}
+
+.reserveForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 32rem;
+  margin-top: 1.75rem;
+}
+
+.fieldRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.fieldRow .field {
+  flex: 1;
+  min-width: 8rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fieldLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--semolina-dim);
+}
+
+.input {
+  background: var(--char-2);
+  border: 1px solid var(--hairline);
+  color: var(--semolina);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.95rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 2px;
+  color-scheme: dark;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 2px;
+}
+
+.submitBtn {
+  align-self: flex-start;
+  background: var(--ember);
+  color: var(--char);
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.8rem;
+  border-radius: 2px;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.submitBtn:hover {
+  background: #ff7440;
+  transform: translateY(-1px);
+}
+
+.secondaryBtn {
+  align-self: flex-start;
+  border: 1px solid var(--hairline);
+  color: var(--semolina);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 2px;
+}
+
+.secondaryBtn:hover {
+  border-color: var(--ember);
+  color: var(--ember);
+}
+
+.formNote {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--semolina-dim);
+  opacity: 0.85;
+  max-width: 34ch;
+}
+
+.confirmBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 1.75rem;
+  padding: 1.75rem;
+  max-width: 32rem;
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--oregano);
+  background: var(--char-2);
+}
+
+.confirmTitle {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.6rem;
+}
+
+.confirmDetail {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.9rem;
+  color: var(--semolina-dim);
 }
 
 .hoursList {
