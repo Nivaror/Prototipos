@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./page.module.css";
 import { OpenTicket, HoursList } from "./OpenStatus";
 import { Reservation } from "./Reservation";
@@ -16,14 +17,17 @@ const MENU_CATEGORIES = [
   {
     label: "Pizzas",
     note: "El fuerte de la casa — la especialidad con la que abren cada noche.",
+    image: "/images/menu-pizzas.png",
   },
   {
     label: "Aperitivos",
     note: "Para arrancar mientras llega el resto de la mesa.",
+    image: "/images/menu-aperitivos.png",
   },
   {
     label: "Bocadillos",
     note: "Opciones más chicas, para picar o para llevar.",
+    image: "/images/menu-bocadillos.png",
   },
 ];
 
@@ -31,26 +35,35 @@ export default function Home() {
   return (
     <main>
       <section className={styles.hero}>
-        <div className={styles.heroGlow} aria-hidden="true" />
-        <PizzaMark className={styles.pizzaMark} />
-        <p className={styles.eyebrow}>Pizzería · Ituzaingó, Corrientes</p>
-        <h1 className={styles.title}>HARRY JR.</h1>
-        <p className={styles.subtitle}>
-          Pizzas a la noche, todos los días de la semana.
-        </p>
-        <OpenTicket />
-        <div className={styles.quickActions}>
-          <a href="#menu" className={styles.quickBtn}>
-            Ver el menú
-          </a>
-          <a href="#reservar" className={styles.quickBtnPrimary}>
-            Reservar mesa
-          </a>
+        <Image
+          src="/images/hero-pizzeria.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className={styles.heroImage}
+        />
+        <div className={styles.heroScrim} aria-hidden="true" />
+        <div className={styles.heroContent}>
+          <PizzaMark className={styles.pizzaMark} />
+          <h1 className={styles.title}>HARRY JR.</h1>
+          <p className={styles.subtitle}>
+            Pizzería a la noche en Ituzaingó, Corrientes — pizzas todos los
+            días de la semana.
+          </p>
+          <OpenTicket />
+          <div className={styles.quickActions}>
+            <a href="#menu" className={styles.quickBtn}>
+              Ver el menú
+            </a>
+            <a href="#reservar" className={styles.quickBtnPrimary}>
+              Reservar mesa
+            </a>
+          </div>
         </div>
       </section>
 
-      <section id="menu" className={styles.section}>
-        <p className={styles.sectionEyebrow}>Menú</p>
+      <section id="menu" className={styles.menuSection}>
         <h2 className={styles.sectionTitle}>Qué vas a encontrar</h2>
         <p className={styles.lede}>
           El menú completo (con precios y variedades) todavía no está
@@ -60,8 +73,18 @@ export default function Home() {
         <div className={styles.menuGrid}>
           {MENU_CATEGORIES.map((cat) => (
             <div key={cat.label} className={styles.menuCard}>
-              <span className={styles.menuLabel}>{cat.label}</span>
-              <span className={styles.menuNote}>{cat.note}</span>
+              <div className={styles.menuCardImage}>
+                <Image
+                  src={cat.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+              <div className={styles.menuCardBody}>
+                <span className={styles.menuLabel}>{cat.label}</span>
+                <span className={styles.menuNote}>{cat.note}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -76,7 +99,6 @@ export default function Home() {
       </section>
 
       <section id="reservar" className={styles.section}>
-        <p className={styles.sectionEyebrow}>Mesas al aire libre</p>
         <h2 className={styles.sectionTitle}>Reservá tu mesa</h2>
         <p className={styles.lede}>
           Ideal para juntadas con amigos o salidas en grupo. Dejá tus datos y
@@ -85,35 +107,41 @@ export default function Home() {
         <Reservation />
       </section>
 
-      <section className={styles.section}>
-        <p className={styles.sectionEyebrow}>Así es Harry Jr.</p>
-        <h2 className={styles.sectionTitle}>
-          Un clásico nocturno de Ituzaingó
-        </h2>
-        <p className={styles.lede}>
-          Un lugar informal y con buena onda, pensado para juntadas con
-          amigos, salidas en grupo y visitas de fin de semana. Tiene mesas al
-          aire libre y es un buen punto de encuentro para estudiantes,
-          grupos y turistas de paso por la ciudad.
-        </p>
-        <span className={styles.rating}>★ 4.8 en Google · 51 reseñas</span>
-      </section>
-
-      <section className={styles.section}>
-        <p className={styles.sectionEyebrow}>Servicios</p>
-        <h2 className={styles.sectionTitle}>Cómo pedir y disfrutar</h2>
-        <div className={styles.tags}>
-          {SERVICE_TAGS.map((tag) => (
-            <span key={tag} className={styles.tag}>
-              {tag}
-            </span>
-          ))}
+      <section className={styles.splitSection}>
+        <div className={styles.splitImage}>
+          <Image
+            src="/images/outdoor-seating.png"
+            alt=""
+            fill
+            sizes="(max-width: 900px) 100vw, 50vw"
+          />
+        </div>
+        <div className={styles.splitContent}>
+          <h2 className={styles.sectionTitle}>
+            Un clásico nocturno de Ituzaingó
+          </h2>
+          <p className={styles.lede}>
+            Un lugar informal y con buena onda, pensado para juntadas con
+            amigos, salidas en grupo y visitas de fin de semana. Tiene mesas
+            al aire libre y es un buen punto de encuentro para estudiantes,
+            grupos y turistas de paso por la ciudad.
+          </p>
+          <span className={styles.rating}>★ 4.8 en Google · 51 reseñas</span>
+          <div className={styles.tags}>
+            {SERVICE_TAGS.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className={styles.section}>
-        <p className={styles.sectionEyebrow}>Horarios</p>
         <h2 className={styles.sectionTitle}>Cuándo pasar</h2>
+        <p className={styles.lede}>
+          Cocina abierta solo de noche — no hay servicio de almuerzo.
+        </p>
         <HoursList />
       </section>
 
@@ -136,7 +164,9 @@ export default function Home() {
           </p>
           <p className={styles.disclaimer}>
             Prototipo de demostración creado por Nivaror a partir de datos
-            públicos de Google Maps. No es el sitio oficial de Harry Jr.
+            públicos de Google Maps. No es el sitio oficial de Harry Jr. Las
+            fotos de este sitio son imágenes ambientales generadas por IA, no
+            fotografías reales del local ni de sus platos.
           </p>
         </div>
       </footer>
