@@ -1,69 +1,84 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import { OpenTicket, HoursList } from "./OpenStatus";
+
+const SERVICE_TAGS = [
+  "Delivery a domicilio",
+  "Para llevar",
+  "Mesas al aire libre",
+  "Apto para chicos",
+  "Estacionamiento gratuito en la calle",
+  "Tarjetas y pagos por NFC",
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      <section className={styles.hero}>
+        <div className={styles.heroGlow} aria-hidden="true" />
+        <p className={styles.eyebrow}>Pizzería · Ituzaingó, Corrientes</p>
+        <h1 className={styles.title}>HARRY JR.</h1>
+        <p className={styles.subtitle}>
+          Pizzas a la noche, todos los días de la semana.
+        </p>
+        <OpenTicket />
+        <p className={styles.scrollCue}>Bajá para ver más ↓</p>
+      </section>
+
+      <section className={styles.section}>
+        <p className={styles.sectionEyebrow}>Así es Harry Jr.</p>
+        <h2 className={styles.sectionTitle}>
+          Un clásico nocturno de Ituzaingó
+        </h2>
+        <p className={styles.lede}>
+          Un lugar informal y con buena onda, pensado para juntadas con
+          amigos, salidas en grupo y visitas de fin de semana. Tiene mesas al
+          aire libre y es un buen punto de encuentro para estudiantes,
+          grupos y turistas de paso por la ciudad.
+        </p>
+        <span className={styles.rating}>★ 4.8 en Google · 51 reseñas</span>
+      </section>
+
+      <section className={styles.section}>
+        <p className={styles.sectionEyebrow}>Servicios</p>
+        <h2 className={styles.sectionTitle}>Cómo pedir y disfrutar</h2>
+        <div className={styles.tags}>
+          {SERVICE_TAGS.map((tag) => (
+            <span key={tag} className={styles.tag}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <p className={styles.sectionEyebrow}>Horarios</p>
+        <h2 className={styles.sectionTitle}>Cuándo pasar</h2>
+        <HoursList />
+      </section>
+
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <p className={styles.footerTitle}>¿Se te antojó?</p>
+          <p className={styles.address}>
+            Francisco López y Belgrano, Ituzaingó, Corrientes
+          </p>
+          <a
+            className={styles.cta}
+            href="https://instagram.com/harryjr._itu"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Seguinos en Instagram →
+          </a>
+          <p className={styles.meta}>
+            Ticket estimado (Google): $10.000 – $20.000
+          </p>
+          <p className={styles.disclaimer}>
+            Prototipo de demostración creado por Nivaror a partir de datos
+            públicos de Google Maps. No es el sitio oficial de Harry Jr.
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
