@@ -1,0 +1,16 @@
+# Dependencies and build output, per prototype. The monorepo tracks source only.
+node_modules/
+.next/
+out/
+build/
+
+# Vercel link metadata is per-machine.
+.vercel/
+
+# Local env files.
+.env*.local
+
+# OS noise
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
