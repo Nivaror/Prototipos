@@ -9,12 +9,12 @@ import {
   formatISO,
   todayISOInArgentina,
   weekdayOfISO,
-} from "./clinic";
+} from "./hours";
 import styles from "./page.module.css";
 
 type Turno = { name: string; reason: string; date: string; time: string };
 
-export function Appointment() {
+export function Reservation() {
   const [turno, setTurno] = useState<Turno | null>(null);
   const [dateError, setDateError] = useState<string | null>(null);
   const [sending, setSending] = useState(false);

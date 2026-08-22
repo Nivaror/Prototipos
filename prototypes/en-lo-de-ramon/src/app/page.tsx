@@ -13,7 +13,7 @@ import {
   Wheelchair,
   WifiHigh,
 } from "@phosphor-icons/react/dist/ssr";
-import { DayBand } from "./Clock";
+import { DayBand } from "./OpenStatus";
 import { Reservation } from "./Reservation";
 import { Reveal } from "./Reveal";
 import { MAPS_URL } from "./hours";

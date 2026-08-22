@@ -7,9 +7,9 @@ import {
   Question,
   Star,
 } from "@phosphor-icons/react/dist/ssr";
-import { Appointment } from "./Appointment";
+import { Reservation } from "./Reservation";
 import { Reveal } from "./Reveal";
-import { MAPS_URL, OPENS_AT } from "./clinic";
+import { MAPS_URL, OPENS_AT } from "./hours";
 import hero from "../../public/images/hero-consultorio.jpg";
 import recepcion from "../../public/images/recepcion.jpg";
 import atencion from "../../public/images/atencion.jpg";
@@ -160,7 +160,7 @@ export default function Home() {
                   El paciente carga día, hora y motivo. El consultorio lo ve en su agenda, sin
                   turnos superpuestos y con el recordatorio automático que evita ausencias.
                 </p>
-                <Appointment />
+                <Reservation />
               </div>
               <div className={styles.reserveImage}>
                 <Image
