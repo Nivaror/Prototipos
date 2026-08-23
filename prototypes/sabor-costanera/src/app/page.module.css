@@ -1,150 +1,216 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  min-height: 100dvh;
+  align-items: stretch;
+}
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+.heroText {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  gap: 1.25rem;
+  padding: 6rem 3.5rem 3rem clamp(1.5rem, 6vw, 5rem);
+  max-width: 640px;
 }
 
-.main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
-}
-
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
+.title {
+  font-family: var(--font-display);
   font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
+.subtitle {
+  font-size: 1.125rem;
+  line-height: 1.5;
   color: var(--text-secondary);
+  max-width: 42ch;
 }
 
-.intro a {
-  font-weight: 500;
+.heroCta {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+}
+
+.heroCta:hover {
+  background: var(--accent-strong);
+}
+
+.heroCta:active {
+  transform: scale(0.98);
+}
+
+.heroImage {
+  position: relative;
+  min-height: 320px;
+}
+
+.heroImageEl {
+  object-fit: cover;
+}
+
+.section {
+  padding: 5rem clamp(1.5rem, 6vw, 5rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  max-width: 20ch;
+}
+
+.lede {
+  margin-top: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.weekSection {
+  padding: 4rem clamp(1.5rem, 6vw, 5rem) 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.banner {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bannerImage {
+  object-fit: cover;
+}
+
+.bannerScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 14, 24, 0.92) 0%,
+    rgba(10, 14, 24, 0.45) 55%,
+    rgba(10, 14, 24, 0.05) 100%
+  );
+}
+
+.bannerContent {
+  position: relative;
+  z-index: 1;
+  padding: 3rem clamp(1.5rem, 6vw, 5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 640px;
+}
+
+.rating {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-strong);
+}
+
+.bannerText {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  color: var(--text-primary);
+  max-width: 34ch;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+}
+
+.footer {
+  padding: 4rem clamp(1.5rem, 6vw, 5rem) 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.footerInner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footerTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
   color: var(--text-primary);
 }
 
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+.address {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+.disclaimer {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  max-width: 70ch;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+  .heroText {
+    padding: 5rem 1.5rem 2.5rem;
+    max-width: 100%;
   }
 
-  .intro {
-    gap: 16px;
+  .heroImage {
+    min-height: 60vh;
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .section {
+    padding: 3.5rem 1.5rem;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .weekSection {
+    padding: 3rem 1.5rem 3.5rem;
   }
-}
 
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
+  .banner {
+    min-height: 50vh;
+  }
+
+  .bannerContent {
+    padding: 2rem 1.5rem;
+  }
 }

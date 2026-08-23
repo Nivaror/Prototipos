@@ -1,0 +1,231 @@
+.orderLayout {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.menuColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.menuGroup {
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+}
+
+.menuGroupLabel {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.menuRows {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.menuRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.menuRowText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.menuRowName {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.menuRowNote {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.stepperButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.15s ease;
+}
+
+.stepperButton:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.stepperButton:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.stepperButton:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.stepperValue {
+  font-family: var(--font-mono);
+  min-width: 1.2rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.ticketColumn {
+  position: sticky;
+  top: 2rem;
+}
+
+.ticket {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ticketTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.ticketEmpty {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.ticketList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.ticketLine {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-primary);
+}
+
+.ticketQty {
+  color: var(--accent-strong);
+}
+
+.primaryButton {
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s ease;
+}
+
+.primaryButton:hover:not(:disabled) {
+  background: var(--accent-strong);
+}
+
+.primaryButton:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.primaryButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.secondaryButton {
+  align-self: flex-start;
+  padding: 0.7rem 1.3rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.confirmCard {
+  margin-top: 2.5rem;
+  max-width: 480px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.confirmEyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-strong);
+}
+
+.confirmList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.confirmList li {
+  display: flex;
+  gap: 0.6rem;
+  color: var(--text-primary);
+}
+
+.confirmQty {
+  font-family: var(--font-mono);
+  color: var(--accent-strong);
+}
+
+.confirmNote {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .orderLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .ticketColumn {
+    position: static;
+  }
+}
