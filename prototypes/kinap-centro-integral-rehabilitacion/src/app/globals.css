@@ -1,17 +1,47 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Slate-indigo + warm amber. Calm and clinical without being sterile;
+     the amber keeps nine services from reading like a cold directory. */
+  --paper: #f5f4f1;
+  --paper-2: #eae8e2;
+  --panel: #ffffff;
+  --ink: #1c2024;
+  --ink-soft: #5b6167;
+  --support: #3d4566;
+  --support-deep: #2a3049;
+  --accent: #b9812f;
+  --accent-deep: #966924;
+  --on-accent: #fbf6ec;
+  --hairline: rgba(28, 32, 36, 0.14);
+  --hairline-soft: rgba(28, 32, 36, 0.08);
+  --shadow: 0 16px 36px rgba(28, 32, 36, 0.12);
+  --r: 14px;
+  --r-sm: 8px;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --paper: #14161a;
+    --paper-2: #1c1f25;
+    --panel: #1a1d22;
+    --ink: #e8e7e3;
+    --ink-soft: #a2a8ad;
+    --support: #8891bb;
+    --support-deep: #aab1d6;
+    --accent: #d9a24f;
+    --accent-deep: #e8b463;
+    --on-accent: #201603;
+    --hairline: rgba(232, 231, 227, 0.14);
+    --hairline-soft: rgba(232, 231, 227, 0.08);
+    --shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
   }
 }
 
-html {
-  height: 100%;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html,
@@ -22,19 +52,11 @@ body {
 
 body {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 a {
@@ -42,8 +64,18 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
 }
