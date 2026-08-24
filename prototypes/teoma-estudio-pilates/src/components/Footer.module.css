@@ -1,0 +1,48 @@
+.footer {
+  background: var(--ink);
+  color: var(--ivory);
+  padding: 64px 32px 40px;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.brandName {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.tagline {
+  color: color-mix(in srgb, var(--ivory) 65%, transparent);
+  font-size: 0.95rem;
+  max-width: 42ch;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--ivory) 65%, transparent);
+}
+
+.disclaimer {
+  border-top: 1px solid color-mix(in srgb, var(--ivory) 18%, transparent);
+  padding-top: 24px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--ivory) 55%, transparent);
+  max-width: 62ch;
+}

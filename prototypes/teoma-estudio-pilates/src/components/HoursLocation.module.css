@@ -1,0 +1,99 @@
+.section {
+  padding: 96px 32px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+}
+
+.heading {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin-bottom: 28px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--sage-deep);
+  margin-bottom: 20px;
+}
+
+.dotOpen,
+.dotClosed {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.dotOpen {
+  background: var(--sage);
+}
+
+.dotClosed {
+  background: color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.hours {
+  border-top: 1px solid var(--sage-line);
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--sage-line);
+  font-family: var(--font-display), sans-serif;
+}
+
+.hoursRow span:last-child {
+  font-variant-numeric: tabular-nums;
+  color: var(--sage-deep);
+}
+
+.locationCard {
+  background: var(--sage-pale);
+  border: 1px solid var(--sage-line);
+  border-radius: 20px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-self: start;
+}
+
+.address {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.mapCta {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--ivory);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.mapCta:hover {
+  background: var(--sage-deep);
+}
+
+.mapCta:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 900px) {
+  .section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
