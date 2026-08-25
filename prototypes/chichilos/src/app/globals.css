@@ -1,0 +1,109 @@
+:root {
+  --cream: #fbf2df;
+  --cream-alt: #f4e7c9;
+  --paper: #fffaf0;
+  --ink: #2c2118;
+  --ink-soft: #6b5a48;
+  --ink-faint: #a3937d;
+  --tomato: #bf3b2e;
+  --tomato-deep: #8f2a20;
+  --tomato-soft: #e7cabf;
+  --oregano: #6c7a3f;
+  --oregano-deep: #4c5a29;
+  --line: rgba(44, 33, 24, 0.14);
+  --radius: 10px;
+  --container: 1120px;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body), Karla, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), "Bricolage Grotesque", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.eyebrow {
+  font-family: var(--font-display), "Bricolage Grotesque", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--oregano-deep);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--tomato);
+  color: var(--paper);
+}
+
+.btn-primary:hover {
+  background: var(--tomato-deep);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+}

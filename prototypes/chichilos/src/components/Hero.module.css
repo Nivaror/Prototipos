@@ -1,0 +1,110 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+}
+
+.photoBand {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  min-height: 340px;
+  max-height: 560px;
+}
+
+.photoBand img {
+  object-fit: cover;
+}
+
+.contentBand {
+  background: var(--tomato);
+  color: var(--paper);
+  padding: 3rem 1.5rem 3.25rem;
+}
+
+.inner {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.72rem;
+  color: var(--tomato-soft);
+  margin-bottom: 0.9rem;
+  display: block;
+}
+
+.headline {
+  font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+  line-height: 1.05;
+  max-width: 18ch;
+  margin-bottom: 1rem;
+}
+
+.subtext {
+  font-size: 1.05rem;
+  max-width: 52ch;
+  color: var(--tomato-soft);
+  margin-bottom: 1.75rem;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.ctaRow .btnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid var(--paper);
+  color: var(--paper);
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ctaRow .btnGhost:hover {
+  background: var(--paper);
+  color: var(--tomato-deep);
+}
+
+.ctaRow .btnSolid {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid var(--paper);
+  background: var(--paper);
+  color: var(--tomato-deep);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.ctaRow .btnSolid:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .photoBand {
+    height: 42vh;
+    min-height: 240px;
+  }
+
+  .contentBand {
+    padding: 2.25rem 1.25rem 2.5rem;
+  }
+}

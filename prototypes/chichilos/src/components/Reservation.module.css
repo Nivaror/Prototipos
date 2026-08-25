@@ -1,0 +1,99 @@
+.section {
+  padding: 3.5rem 1.5rem;
+  background: var(--cream);
+}
+
+.inner {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+  margin-bottom: 0.35rem;
+}
+
+.deck {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  max-width: 60ch;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.9rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1 1 150px;
+  min-width: 130px;
+}
+
+.field label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.field input {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+.field input:focus {
+  outline: 2px solid var(--oregano);
+  outline-offset: 1px;
+}
+
+.error {
+  color: var(--tomato-deep);
+  font-size: 0.72rem;
+}
+
+.submit {
+  flex: 0 0 auto;
+}
+
+.note {
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+
+.confirm {
+  background: var(--oregano);
+  color: var(--paper);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.confirmTitle {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.confirmBody {
+  font-size: 0.9rem;
+  color: #e6ecd8;
+}
