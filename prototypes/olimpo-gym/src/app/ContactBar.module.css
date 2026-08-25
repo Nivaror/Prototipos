@@ -1,0 +1,103 @@
+.section {
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 56px 24px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  margin-bottom: 24px;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--accent-ink) 85%, transparent);
+}
+
+.field input,
+.field select {
+  height: 48px;
+  padding: 0 14px;
+  border-radius: var(--radius-input);
+  border: 1px solid color-mix(in srgb, var(--accent-ink) 30%, transparent);
+  background: color-mix(in srgb, var(--accent-ink) 12%, transparent);
+  color: var(--accent-ink);
+  font-size: 15px;
+}
+
+.field input::placeholder {
+  color: color-mix(in srgb, var(--accent-ink) 70%, transparent);
+}
+
+.field select option {
+  color: var(--text);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+
+.submit {
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--radius-btn);
+  background: var(--accent-ink);
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.submit:active {
+  transform: scale(0.98);
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 0;
+}
+
+.error {
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffe3d6;
+}
+
+@media (min-width: 768px) {
+  .bar {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .submit {
+    flex-shrink: 0;
+  }
+}

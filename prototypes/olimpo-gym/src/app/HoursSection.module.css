@@ -1,0 +1,77 @@
+.section {
+  background: var(--surface);
+  padding: 64px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 28px;
+}
+
+.ledger {
+  max-width: 640px;
+  border-top: 1px solid var(--line);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rowToday {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  margin: 0 -16px;
+  padding: 16px;
+  border-radius: 12px;
+  border-bottom-color: transparent;
+}
+
+.day {
+  font-weight: 600;
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.shifts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: 1;
+}
+
+.chip {
+  font-size: 13.5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.closed {
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.status {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.statusOpen {
+  color: var(--accent);
+}
+
+.statusClosed {
+  color: var(--text-muted);
+}

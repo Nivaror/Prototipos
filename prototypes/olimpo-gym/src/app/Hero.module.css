@@ -1,0 +1,81 @@
+.hero {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.imageBand {
+  position: relative;
+  height: 44vh;
+  min-height: 280px;
+  max-height: 440px;
+  margin-left: max(24px, calc((100vw - 1180px) / 2 + 24px));
+  border-radius: 20px 0 0 20px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.textZone {
+  max-width: 620px;
+  padding-top: 32px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 4.4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.subtext {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+.ctas {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 22px;
+  border-radius: var(--radius-btn);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.primary:active,
+.secondary:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 640px) {
+  .imageBand {
+    height: 32vh;
+    min-height: 200px;
+    margin-left: 24px;
+    border-radius: 16px 0 0 16px;
+  }
+}
