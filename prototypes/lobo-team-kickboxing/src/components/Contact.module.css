@@ -1,0 +1,100 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.formCard {
+  padding: 32px 28px;
+  border-top: 3px solid var(--accent);
+}
+
+.title {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  color: var(--fg-soft);
+}
+
+.field input,
+.field textarea {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 11px 14px;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--fg-faint);
+}
+
+.error {
+  color: #ff8c80;
+  font-size: 0.85rem;
+}
+
+.success {
+  color: var(--fg-soft);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 8px 4px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--fg-soft);
+  font-size: 0.95rem;
+}
+
+.infoRow svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.note {
+  color: var(--fg-faint);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  max-width: 44ch;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+  }
+}

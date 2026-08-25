@@ -1,0 +1,36 @@
+.title {
+  font-size: clamp(1.7rem, 3.5vw, 2.3rem);
+  margin-bottom: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.card {
+  padding: 28px 24px;
+}
+
+.icon {
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.name {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.body {
+  color: var(--fg-soft);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

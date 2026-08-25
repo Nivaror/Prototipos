@@ -1,0 +1,27 @@
+.wrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.block {
+  max-width: 480px;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent);
+}
+
+.title {
+  font-size: clamp(1.4rem, 2.6vw, 1.8rem);
+  margin-bottom: 12px;
+}
+
+.body {
+  color: var(--fg-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    justify-content: flex-end;
+  }
+}
