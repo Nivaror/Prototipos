@@ -9,9 +9,9 @@ const items = [
 export function InfoStrip() {
   return (
     <section className="border-y border-line bg-panel">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 sm:px-6 md:grid-cols-4 md:gap-4">
+      <div className="mx-auto flex max-w-3xl flex-wrap items-start justify-center gap-x-10 gap-y-6 px-4 py-8 text-center sm:px-6">
         {items.map(({ icon: Icon, label }) => (
-          <div key={label} className="flex flex-col items-start gap-2 md:items-center md:text-center">
+          <div key={label} className="flex w-40 flex-col items-center gap-2 sm:w-44">
             <Icon size={22} weight="regular" className="text-accent" />
             <span className="text-xs leading-snug text-ink-soft md:text-sm">
               {label}
