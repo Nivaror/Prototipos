@@ -1,7 +1,6 @@
-import { Rainbow, GenderFemale, WifiHigh, Coffee } from "@phosphor-icons/react/dist/ssr";
+import { GenderFemale, WifiHigh, Coffee } from "@phosphor-icons/react/dist/ssr";
 
 const items = [
-  { icon: Rainbow, label: "Espacio seguro, LGBTQ+ friendly" },
   { icon: GenderFemale, label: "Emprendimiento liderado por mujeres" },
   { icon: WifiHigh, label: "Wi-Fi gratis para clientas" },
   { icon: Coffee, label: "Patio al aire libre con café" },
