@@ -1,0 +1,31 @@
+.section {
+  background: var(--day-bg);
+  padding-bottom: 44px;
+}
+
+.scroller {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.pill {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  background: var(--day-bg-alt);
+  color: var(--day-text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(29, 36, 48, 0.08);
+}

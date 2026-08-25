@@ -1,0 +1,52 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(250, 246, 237, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(29, 36, 48, 0.08);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.links a {
+  opacity: 0.8;
+  transition: opacity 0.15s ease;
+}
+
+.links a:hover {
+  opacity: 1;
+}
+
+.instagram {
+  color: var(--accent-strong);
+  opacity: 1;
+}
+
+@media (max-width: 560px) {
+  .links {
+    gap: 14px;
+    font-size: 0.85rem;
+  }
+}

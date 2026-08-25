@@ -1,0 +1,107 @@
+.hero {
+  background: var(--day-bg);
+  padding: 40px 0 56px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.photoCell {
+  position: relative;
+  grid-row: 1 / span 2;
+  min-height: 420px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--day-bg-alt);
+}
+
+.photo {
+  object-fit: cover;
+}
+
+.rating {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: rgba(250, 246, 237, 0.92);
+  color: var(--day-text);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 9px 16px;
+  border-radius: 999px;
+}
+
+.copyCell {
+  background: var(--day-bg-alt);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.headline {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  max-width: 14ch;
+}
+
+.subtext {
+  font-size: 1.05rem;
+  color: var(--day-text-soft);
+  max-width: 40ch;
+  line-height: 1.5;
+}
+
+.chipsCell {
+  background: var(--day-bg-alt);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--day-bg);
+  transition: background 0.15s ease;
+}
+
+.chip:hover {
+  background: rgba(232, 163, 60, 0.16);
+}
+
+.chipLabel {
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.chipHours {
+  font-size: 0.78rem;
+  color: var(--day-text-soft);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .photoCell {
+    grid-row: auto;
+    min-height: 260px;
+  }
+
+  .chipsCell {
+    grid-template-columns: 1fr;
+  }
+}

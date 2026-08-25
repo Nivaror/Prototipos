@@ -1,0 +1,218 @@
+.section {
+  background: var(--dusk-bg);
+  color: var(--dusk-text);
+  padding: 72px 0;
+}
+
+.heading {
+  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+}
+
+.subtext {
+  color: var(--dusk-text-soft);
+  margin-top: 10px;
+  max-width: 46ch;
+  line-height: 1.5;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.tab {
+  background: var(--dusk-bg-alt);
+  color: var(--dusk-text-soft);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 14px 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--dusk-text);
+}
+
+.tabActive {
+  border-color: var(--accent);
+  color: var(--dusk-text);
+}
+
+.panel {
+  background: var(--dusk-bg-alt);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-top: 16px;
+}
+
+.panelDescription {
+  color: var(--dusk-text);
+  line-height: 1.5;
+  max-width: 56ch;
+}
+
+.panelNote {
+  margin-top: 10px;
+  font-size: 0.88rem;
+  color: var(--accent);
+}
+
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.slot {
+  background: var(--dusk-bg);
+  color: var(--dusk-text);
+  border: 1.5px solid rgba(245, 241, 230, 0.16);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.slot:hover {
+  border-color: var(--accent);
+}
+
+.slot:active {
+  transform: scale(0.97);
+}
+
+.slotActive {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  margin-top: 28px;
+  align-items: end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dusk-text-soft);
+}
+
+.field input {
+  background: var(--dusk-bg);
+  border: 1.5px solid rgba(245, 241, 230, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  color: var(--dusk-text);
+  font-size: 0.95rem;
+}
+
+.field input::placeholder {
+  color: var(--dusk-text-soft);
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--dusk-bg);
+  border: 1.5px solid rgba(245, 241, 230, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  width: fit-content;
+}
+
+.stepper button {
+  background: none;
+  border: none;
+  color: var(--dusk-text);
+  font-size: 1.15rem;
+  width: 22px;
+  cursor: pointer;
+}
+
+.stepper span {
+  min-width: 1.4ch;
+  text-align: center;
+  font-weight: 700;
+}
+
+.error {
+  color: #ffb4b4;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.submit {
+  margin-top: 24px;
+}
+
+.confirmation {
+  padding: 8px 0 4px;
+}
+
+.confirmationTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.confirmationDetail {
+  margin-top: 10px;
+  color: var(--dusk-text);
+}
+
+.confirmationNote {
+  margin-top: 14px;
+  color: var(--dusk-text-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.confirmationNote a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.again {
+  margin-top: 20px;
+  background: transparent;
+  border: 1.5px solid rgba(245, 241, 230, 0.3);
+  color: var(--dusk-text);
+  border-radius: 999px;
+  padding: 11px 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}
