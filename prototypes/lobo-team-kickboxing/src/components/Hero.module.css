@@ -59,7 +59,7 @@
 .imageCard {
   position: relative;
   margin-top: 28px;
-  width: 220px;
+  width: min(320px, 78%);
   border-radius: var(--radius);
   overflow: hidden;
   background: #efece6;
@@ -105,6 +105,6 @@
     padding: 88px 0 80px;
   }
   .imageCard {
-    width: 260px;
+    width: 380px;
   }
 }
