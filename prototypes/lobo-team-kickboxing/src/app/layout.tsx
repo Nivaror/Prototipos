@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Rajdhani, Barlow } from "next/font/google";
+import { Teko, Inter } from "next/font/google";
 import "./globals.css";
 
-const rajdhani = Rajdhani({
+const teko = Teko({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
 
-const barlow = Barlow({
+const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${rajdhani.variable} ${barlow.variable}`}>
+    <html lang="es" className={`${teko.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   );

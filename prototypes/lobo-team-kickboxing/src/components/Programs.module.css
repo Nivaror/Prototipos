@@ -1,36 +1,69 @@
 .title {
   font-size: clamp(1.7rem, 3.5vw, 2.3rem);
-  margin-bottom: 32px;
+  margin-bottom: 44px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
+.ladder {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.card {
-  padding: 28px 24px;
+.rung {
+  display: flex;
+  gap: 24px;
 }
 
-.icon {
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
   color: var(--accent);
-  margin-bottom: 16px;
+  font-family: var(--font-display), Teko, sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.connector {
+  width: 2px;
+  flex: 1;
+  min-height: 40px;
+  background: var(--line);
+  margin: 4px 0;
+}
+
+.copy {
+  padding-bottom: 40px;
+  padding-top: 8px;
 }
 
 .name {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 8px;
 }
 
 .body {
   color: var(--fg-soft);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  max-width: 52ch;
 }
 
 @media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
+  .rung {
+    align-items: flex-start;
+  }
+
+  .copy {
+    padding-top: 10px;
   }
 }

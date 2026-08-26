@@ -1,12 +1,15 @@
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+.section {
+  padding-bottom: 88px;
 }
 
-.formCard {
+.card {
+  max-width: 640px;
+  margin: -64px auto 0;
   padding: 32px 28px;
   border-top: 3px solid var(--accent);
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 5;
 }
 
 .title {
@@ -17,6 +20,12 @@
 .form {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
@@ -68,33 +77,32 @@
 .info {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  padding: 8px 4px;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
 }
 
-.infoRow {
+.infoItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: var(--fg-soft);
-  font-size: 0.95rem;
+  gap: 10px;
+  color: var(--fg-faint);
+  font-size: 0.88rem;
 }
 
-.infoRow svg {
+.infoItem svg {
   flex-shrink: 0;
   color: var(--accent);
 }
 
-.note {
-  color: var(--fg-faint);
-  font-size: 0.85rem;
-  line-height: 1.55;
-  max-width: 44ch;
-}
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 1fr 1fr;
+  }
 
-@media (min-width: 900px) {
-  .grid {
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 40px;
+  .info {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

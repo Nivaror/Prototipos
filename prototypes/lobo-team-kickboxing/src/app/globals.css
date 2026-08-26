@@ -1,12 +1,12 @@
 :root {
-  --bg: #0c0c0d;
-  --bg-alt: #17161a;
-  --bg-card: #1c1b1f;
+  --bg: #0a0a0d;
+  --bg-alt: #15151b;
+  --bg-card: #1a1a22;
   --fg: #f3f1ec;
-  --fg-soft: #a9a6a4;
-  --fg-faint: #706d6d;
-  --accent: #e0362a;
-  --accent-dim: #7a231d;
+  --fg-soft: #a6a7ac;
+  --fg-faint: #6c6d73;
+  --accent: #3b5bfd;
+  --accent-dim: #1c2a75;
   --line: rgba(255, 255, 255, 0.1);
   --radius: 3px;
   --container: 1100px;
@@ -27,7 +27,7 @@ body {
   min-height: 100%;
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-body), Barlow, Arial, sans-serif;
+  font-family: var(--font-body), Inter, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +53,7 @@ img {
 h1,
 h2,
 h3 {
-  font-family: var(--font-display), Rajdhani, sans-serif;
+  font-family: var(--font-display), Teko, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.01em;
@@ -80,7 +80,7 @@ h3 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-display), Rajdhani, sans-serif;
+  font-family: var(--font-display), Teko, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -103,7 +103,7 @@ h3 {
 }
 
 .btn-primary:hover {
-  background: #f04234;
+  background: #5878ff;
 }
 
 .btn-ghost {

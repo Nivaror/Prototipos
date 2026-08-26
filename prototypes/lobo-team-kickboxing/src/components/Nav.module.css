@@ -5,7 +5,7 @@
   height: 68px;
   display: flex;
   align-items: center;
-  background: rgba(12, 12, 13, 0.88);
+  background: rgba(10, 10, 13, 0.88);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -18,7 +18,7 @@
 }
 
 .wordmark {
-  font-family: var(--font-display), Rajdhani, sans-serif;
+  font-family: var(--font-display), Teko, sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
   letter-spacing: 0.04em;

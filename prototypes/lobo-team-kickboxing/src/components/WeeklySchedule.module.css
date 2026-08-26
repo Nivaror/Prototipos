@@ -13,92 +13,150 @@
   margin-bottom: 40px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px;
-  background: var(--line);
+.panel {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
 }
 
-.day {
+.tabs {
+  display: flex;
+  overflow-x: auto;
   background: var(--bg-card);
-  padding: 18px 20px;
+}
+
+.tab {
+  position: relative;
+  flex: 1 0 auto;
+  min-width: 56px;
+  padding: 14px 10px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--line);
+  color: var(--fg-faint);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tab:last-child {
+  border-right: none;
+}
+
+.tab:hover {
+  color: var(--fg-soft);
+}
+
+.tabActive {
+  background: var(--accent);
+  color: #fff;
+}
+
+.tabLabel {
+  font-family: var(--font-display), Teko, sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tabDot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.tabActive .tabDot {
+  background: #fff;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px 24px;
+  min-height: 160px;
+}
+
+.detailDay {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  transition: background 0.15s ease;
-}
-
-.today {
-  background: #241412;
-  box-shadow: inset 3px 0 0 var(--accent);
-}
-
-.dayLabel {
-  font-family: var(--font-display), Rajdhani, sans-serif;
+  font-family: var(--font-display), Teko, sans-serif;
   font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.03em;
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  min-width: 90px;
+}
+
+.todayFlag {
+  font-family: var(--font-body), Inter, sans-serif;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--accent);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: var(--radius);
 }
 
 .blocks {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
+  gap: 10px;
 }
 
 .block {
-  font-family: var(--font-display), Rajdhani, sans-serif;
-  font-size: 0.92rem;
+  font-family: var(--font-display), Teko, sans-serif;
+  font-size: 1.1rem;
   font-weight: 600;
-  background: rgba(224, 54, 42, 0.14);
-  color: #ff8c80;
-  padding: 5px 12px;
+  background: var(--accent-dim);
+  color: #cfe0ff;
+  padding: 8px 16px;
   border-radius: var(--radius);
   white-space: nowrap;
 }
 
 .note {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--fg-faint);
-  font-style: normal;
-  text-align: right;
 }
 
 .closed {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--fg-faint);
 }
 
 @media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(7, 1fr);
+  .panel {
+    flex-direction: row;
   }
 
-  .day {
+  .tabs {
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 132px;
-    gap: 10px;
+    overflow-x: visible;
+    flex: 0 0 140px;
+    border-right: 1px solid var(--line);
   }
 
-  .blocks {
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .note,
-  .closed {
+  .tab {
+    flex: none;
     text-align: left;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tab:last-child {
+    border-bottom: none;
+  }
+
+  .detail {
+    flex: 1;
   }
 }
