@@ -1,0 +1,48 @@
+.footer {
+  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.25rem, 6vw, 4rem) 2rem;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  .top {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.address {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.disclaimer {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  border-top: 1px solid var(--line);
+  padding-top: 1.25rem;
+  max-width: 60ch;
+}

@@ -1,0 +1,73 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.9rem;
+  padding: clamp(3.5rem, 8vw, 6rem) 1.5rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  background: radial-gradient(
+    circle at 50% 30%,
+    var(--bg-elevated) 0%,
+    var(--bg) 75%
+  );
+  box-shadow: 0 0 0 1px transparent, var(--shadow-card);
+}
+
+.rating {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+  color: var(--accent);
+}
+
+.count {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-top: 0.5rem;
+}
+
+.copy {
+  max-width: 40ch;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.link:hover {
+  border-color: var(--accent-strong);
+}
