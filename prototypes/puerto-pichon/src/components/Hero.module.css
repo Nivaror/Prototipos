@@ -1,0 +1,88 @@
+.hero {
+  padding-top: 56px;
+  padding-bottom: 72px;
+  background: var(--bg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 56px;
+}
+
+.copy {
+  max-width: 46ch;
+}
+
+.headline {
+  font-size: clamp(2.1rem, 4vw, 3.3rem);
+  margin-bottom: 20px;
+}
+
+.subtext {
+  font-size: 1.08rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+  margin-bottom: 32px;
+  max-width: 40ch;
+}
+
+.ctas {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Offset shadow-box frame: a solid accent rectangle sits behind the photo,
+   revealed at the bottom-left, instead of a full-bleed or bento treatment. */
+.frameWrap {
+  position: relative;
+  aspect-ratio: 4 / 3.4;
+}
+
+.frameOffset {
+  position: absolute;
+  inset: 18px -18px -18px 18px;
+  background: var(--accent);
+  border-radius: var(--radius-sharp);
+}
+
+.frame {
+  position: absolute;
+  inset: 0 18px 18px 0;
+  overflow: hidden;
+  border-radius: var(--radius-sharp);
+  border: 1px solid var(--hairline);
+}
+
+.frameImg {
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .copy {
+    max-width: none;
+  }
+
+  .subtext {
+    max-width: none;
+  }
+
+  .frameWrap {
+    aspect-ratio: 4 / 3;
+  }
+
+  .frameOffset {
+    inset: 12px -12px -12px 12px;
+  }
+
+  .frame {
+    inset: 0 12px 12px 0;
+  }
+}
