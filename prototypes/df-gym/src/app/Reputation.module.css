@@ -1,0 +1,80 @@
+.section {
+  background: var(--accent);
+  color: #fff;
+}
+
+.inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 64px 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+}
+
+.statBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.rating {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 5vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.starsAndCount {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+  color: #ffd76b;
+}
+
+.count {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.82);
+  white-space: nowrap;
+}
+
+.copy {
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 40ch;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 860px) {
+  .inner {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 20px;
+  }
+}

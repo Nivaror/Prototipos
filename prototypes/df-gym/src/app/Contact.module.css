@@ -1,0 +1,139 @@
+.section {
+  background: var(--panel-dark);
+  padding: 96px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--bg-raised);
+  border-radius: var(--radius-lg);
+  clip-path: polygon(
+    32px 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 32px
+  );
+  padding: 40px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.subtext {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.fbRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field input,
+.field select {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.field input::placeholder {
+  color: var(--ink-soft);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #c23a3a;
+  font-weight: 600;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.submit:hover {
+  background: var(--accent-ink);
+}
+
+.submit:active {
+  transform: scale(0.98);
+}
+
+.success {
+  background: #e3f5e9;
+  color: #1b7a3f;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .card {
+    padding: 32px 24px 28px;
+    clip-path: polygon(20px 0, 100% 0, 100% 100%, 0 100%, 0 20px);
+  }
+}

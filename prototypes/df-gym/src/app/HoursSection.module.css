@@ -1,0 +1,137 @@
+.section {
+  background: var(--bg-raised);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.grid {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 80px 24px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.callout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.calloutIcon {
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.calloutBig {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  max-width: 17ch;
+}
+
+.calloutSub {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 34ch;
+  line-height: 1.5;
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rows {
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg);
+}
+
+.row:not(:last-child) {
+  border-bottom: 1px solid var(--line);
+}
+
+.rowLabel {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.rowValue {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.rowValueClosed {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.status,
+.statusPlaceholder {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.statusPlaceholder {
+  background: var(--line);
+  width: 200px;
+  height: 34px;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.statusOpen {
+  background: #e3f5e9;
+  color: #1b7a3f;
+}
+
+.statusOpen .statusDot {
+  background: #22a854;
+}
+
+.statusClosed {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.statusClosed .statusDot {
+  background: var(--accent);
+}
+
+@media (max-width: 780px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 56px 24px;
+  }
+}
