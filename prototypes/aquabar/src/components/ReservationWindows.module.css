@@ -1,0 +1,156 @@
+.section {
+  padding: 96px 0;
+  background: var(--bg);
+}
+
+.heading {
+  max-width: 640px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.heading h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  color: var(--ink);
+}
+
+.heading p {
+  margin-top: 12px;
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 32px;
+  box-shadow: 0 20px 40px hsl(var(--shadow-color) / 0.06);
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cardHead h3 {
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+
+.cardHead span {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field input,
+.field select {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-input);
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--bg-raised);
+  font-family: var(--font-body), sans-serif;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.slot {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: transparent;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.slot:hover {
+  border-color: var(--gold);
+}
+
+.slotActive {
+  background: var(--teal-deep);
+  border-color: var(--teal-deep);
+  color: var(--on-teal);
+}
+
+.submit {
+  margin-top: 20px;
+  width: 100%;
+  padding: 13px;
+  border-radius: var(--radius-pill);
+  background: var(--teal-deep);
+  color: var(--on-teal);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.25s ease, transform 0.15s ease, opacity 0.2s ease;
+}
+
+.submit:hover {
+  background: var(--teal-deep-raised);
+}
+
+.submit:active {
+  transform: scale(0.98);
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #a3372b;
+}
+
+.success {
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius-input);
+  background: color-mix(in srgb, var(--gold) 16%, transparent);
+  color: var(--ink);
+  font-size: 0.9rem;
+}
