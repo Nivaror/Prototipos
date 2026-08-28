@@ -1,17 +1,28 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #170f10;
+  --bg-elevated: #241618;
+  --bg-elevated-2: #2e1c1e;
+  --text: #f4ead9;
+  --text-muted: #cbb6a3;
+  --accent: #d1a53d;
+  --accent-strong: #e8c15e;
+  --line: rgba(244, 234, 217, 0.14);
+  --status-open: #7fbf6a;
+  --status-closed: #c9584a;
+  --radius: 10px;
+  --radius-pill: 999px;
+  --max-width: 1200px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 html {
   height: 100%;
+  color-scheme: dark;
 }
 
 html,
@@ -22,19 +33,12 @@ body {
 
 body {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  line-height: 1.5;
 }
 
 a {
@@ -42,8 +46,597 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding-inline: 2.5rem;
   }
+}
+
+/* Subtle paper-grain texture, fixed so it never repaints on scroll. */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 1.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition:
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #1c1210;
+}
+
+.btn-primary:hover {
+  background: var(--accent-strong);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.status-pill__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.status-pill--open .status-pill__dot {
+  background: var(--status-open);
+}
+
+.status-pill--open {
+  color: var(--status-open);
+}
+
+.status-pill--closed .status-pill__dot {
+  background: var(--status-closed);
+}
+
+.status-pill--closed {
+  color: var(--status-closed);
+}
+
+.status-pill__hours {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(23, 15, 16, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  height: 68px;
+}
+
+.nav__logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.nav__links {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .nav__links {
+    display: flex;
+  }
+}
+
+.nav__link {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover {
+  color: var(--accent-strong);
+}
+
+.nav__cta {
+  padding: 0.6rem 1.4rem;
+  font-size: 0.88rem;
+  flex-shrink: 0;
+}
+
+/* Hero: editorial-manifesto composition, deliberately no photo or split -
+   the fourth hero family for this sector, after casablanca's full-bleed
+   photo panel, mapu's bento photo card, and puerto-pichon's asymmetric
+   split with a framed photo. Type and texture carry the section instead. */
+.hero {
+  padding-block: 5rem 6rem;
+  max-width: 100%;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  max-width: 46rem;
+}
+
+.hero__headline {
+  font-size: 2.5rem;
+  line-height: 1.12;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .hero__headline {
+    font-size: 3.4rem;
+  }
+}
+
+.hero__subtext {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 38rem;
+}
+
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.hero__rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+}
+
+/* InfoBand: an icon-led horizontal band, not a bordered grid (casablanca),
+   a hairline-divided row (puerto-pichon), or an editorial number column
+   (restaurantes' escauriza). */
+.info-band {
+  background: var(--bg-elevated);
+  padding-block: 1.75rem;
+}
+
+.info-band__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 2.5rem;
+}
+
+.info-band__item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.info-band__item svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Agenda: the centerpiece. A two-column photo + vertical timeline, unclaimed
+   territory in this sector (no sibling has an events/agenda section) - not a
+   booking flow, so no tabs/accordion/card-stack pattern to avoid colliding
+   with mapu/puerto-pichon/escauriza's reservation-window centerpieces. */
+.agenda {
+  padding-block: 5rem;
+}
+
+.agenda__inner {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .agenda__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.agenda__photo {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.agenda__photo img {
+  width: 100%;
+  height: auto;
+}
+
+.agenda__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+}
+
+.agenda__lead {
+  color: var(--text-muted);
+  max-width: 34rem;
+  margin-bottom: 1.75rem;
+}
+
+.agenda__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.agenda__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.agenda__row:last-child {
+  border-bottom: none;
+}
+
+.agenda__row svg {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.agenda__row--musica svg {
+  color: var(--accent-strong);
+}
+
+.agenda__day {
+  display: block;
+  font-weight: 700;
+  font-size: 1.02rem;
+}
+
+.agenda__detail {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-top: 0.2rem;
+}
+
+/* Reservation: a single compact dinner-only flow, deliberately secondary to
+   the agenda centerpiece above (this lead has one booking need, not three
+   windows, so no tabs/accordion here). */
+.reservation {
+  padding-block: 5rem;
+  background: var(--bg-elevated);
+}
+
+.reservation__inner {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .reservation__inner {
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: start;
+  }
+}
+
+.reservation__intro h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+}
+
+.reservation__intro p {
+  color: var(--text-muted);
+  max-width: 28rem;
+}
+
+.reservation__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.field input,
+.field select {
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.7rem 0.85rem;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.field input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  width: fit-content;
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.5rem;
+}
+
+.stepper button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.stepper button:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.stepper span {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.field-error {
+  color: var(--status-closed);
+  font-size: 0.88rem;
+}
+
+.reservation__submit {
+  margin-top: 0.25rem;
+  width: 100%;
+}
+
+.reservation__confirm {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.reservation__confirm svg {
+  color: var(--status-open);
+}
+
+.reservation__confirm h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.reservation__confirm p {
+  color: var(--text-muted);
+  max-width: 30rem;
+}
+
+/* Reputation: a single big-number spotlight, staying inside the page's one
+   dark theme (no light-panel flip) - distinct from casablanca's 3-cell
+   grid, puerto-pichon's hairline row, and restaurantes' editorial columns. */
+.reputation {
+  padding-block: 5rem;
+  text-align: center;
+}
+
+.reputation__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.reputation__number {
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1;
+}
+
+.reputation__number svg {
+  color: var(--accent);
+}
+
+.reputation__text {
+  color: var(--text-muted);
+  max-width: 26rem;
+  font-size: 1.05rem;
+}
+
+.nosotros {
+  padding-block: 5rem;
+  background: var(--bg-elevated);
+}
+
+.nosotros__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .nosotros__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.nosotros h2 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+}
+
+.nosotros p {
+  color: var(--text-muted);
+  max-width: 34rem;
+}
+
+.nosotros__cta {
+  flex-shrink: 0;
+}
+
+.footer {
+  padding-block: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.footer__logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.footer__address,
+.footer__hours {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.footer__disclaimer {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  max-width: 26rem;
 }
