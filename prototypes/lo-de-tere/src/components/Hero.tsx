@@ -27,7 +27,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 px-6 pb-14 pt-8 md:min-h-[100dvh] md:px-0">
-        <div className="mx-auto max-w-7xl md:relative md:h-full">
+        <div className="mx-auto max-w-7xl md:relative md:h-[100dvh]">
           <p className="font-display text-sm font-semibold tracking-wide text-[var(--accent-soft)] md:absolute md:left-0 md:top-10">
             Lo de Tere
           </p>
