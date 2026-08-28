@@ -1,17 +1,35 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Off-white + flame-red palette: a sixth hue family for this sector
+     (dein-ziel: near-black + lime; qualis: cool-grey + amber;
+     olimpo: warm off-white + forest-green; cein: dark blue-slate + orange;
+     df-gym: cold-white + cobalt). Red reads athletic/energetic without
+     tipping into AI-purple or the banned beige+brass premium palette. */
+  --bg: #f7f6f4;
+  --bg-raised: #ffffff;
+  --ink: #1c1b1a;
+  --ink-soft: #5c5955;
+  --accent: #d1332b;
+  --accent-ink: #7a1712;
+  --accent-soft: #fbe4e2;
+  --panel-dark: #201b1a;
+  --panel-dark-ink: #f7f6f4;
+  --line: #e6e2dd;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Sharp-cornered inputs, softly rounded cards, pill buttons: a sixth
+     distinct radius system (dein-ziel: pills everywhere; qualis: 10-14px;
+     olimpo: 8-20px; cein: 4/8/24px; df-gym: 2/6/16px). */
+  --radius-sm: 6px;
+  --radius-md: 18px;
+  --radius-pill: 999px;
+
+  --container: 1180px;
+  --font-display: var(--font-league-spartan), Arial, Helvetica, sans-serif;
+  --font-body: var(--font-karla), Arial, Helvetica, sans-serif;
 }
 
 html {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -22,11 +40,9 @@ body {
 
 body {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,8 +58,23 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    color-scheme: dark;
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

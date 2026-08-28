@@ -1,0 +1,170 @@
+/* The page's one text/text split section (info panel / form panel), the
+   only left-right split on the page, so it does not chain into a zigzag
+   with the hero's mosaic (no split) or the highlights row (no split). */
+.section {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.info {
+  position: relative;
+  min-height: 380px;
+  padding: 32px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  overflow: hidden;
+}
+
+.infoPhoto {
+  object-fit: cover;
+  z-index: 0;
+}
+
+.infoScrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(32, 27, 26, 0.15) 0%,
+    rgba(32, 27, 26, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+.infoContent {
+  position: relative;
+  z-index: 2;
+  color: var(--panel-dark-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.infoLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: rgba(247, 246, 244, 0.9);
+}
+
+.formPanel {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-left: none;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.sub {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  max-width: 40ch;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.field input::placeholder {
+  color: #8a8681;
+}
+
+.error {
+  font-size: 0.82rem;
+  color: var(--accent-ink);
+}
+
+.submit {
+  margin-top: 4px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease;
+}
+
+.submit:active {
+  transform: scale(0.98);
+}
+
+.success {
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+@media (max-width: 820px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+
+  .info {
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+  }
+
+  .formPanel {
+    border-left: 1px solid var(--line);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+}

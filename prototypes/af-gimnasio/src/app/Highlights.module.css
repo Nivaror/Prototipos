@@ -1,0 +1,50 @@
+/* Plain icon + label row, no cards, no photos, no split: the leanest
+   composition in this section family, deliberately different from every
+   sibling's card-grid / stack / scroll-row treatment of services. */
+.section {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 8px 24px 56px;
+}
+
+.row {
+  display: flex;
+  gap: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex: 1 1 220px;
+  min-width: 220px;
+}
+
+.icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.detail {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .row {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

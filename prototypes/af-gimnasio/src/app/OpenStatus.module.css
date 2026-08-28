@@ -1,0 +1,29 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9a9691;
+}
+
+.badge[data-open="true"] .dot {
+  background: var(--accent);
+}
+
+.label {
+  font-weight: 700;
+}
+
+.detail {
+  color: var(--ink-soft);
+}

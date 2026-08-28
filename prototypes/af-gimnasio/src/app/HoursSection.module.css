@@ -1,0 +1,93 @@
+.section {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  max-width: 20ch;
+}
+
+/* Grouped by shared schedule, not one cell per weekday: four unequal-width
+   cards (two weekday groups, Saturday, Sunday) rather than a 7-cell strip
+   (qualis), a single-column ledger (olimpo), a 5-cell weekday grid + banner
+   (cein), or a collapsed 3-row schedule (df-gym). */
+.groups {
+  display: grid;
+  grid-template-columns: 1.3fr 1.1fr 0.75fr 0.75fr;
+  gap: 16px;
+}
+
+.group {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.group[data-closed="true"] {
+  background: var(--panel-dark);
+  color: var(--panel-dark-ink);
+  border-color: var(--panel-dark);
+}
+
+.groupTitle {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.group[data-closed="true"] .groupTitle {
+  color: rgba(247, 246, 244, 0.6);
+}
+
+.groupDays {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.groupHours {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-top: 6px;
+}
+
+.groupNote {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.group[data-closed="true"] .groupNote {
+  color: rgba(247, 246, 244, 0.72);
+}
+
+@media (max-width: 900px) {
+  .groups {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .groups {
+    grid-template-columns: 1fr;
+  }
+}
