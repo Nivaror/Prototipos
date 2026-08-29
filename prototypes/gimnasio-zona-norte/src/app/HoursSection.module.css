@@ -1,0 +1,103 @@
+.section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.heading {
+  font-size: 28px;
+}
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 78px 1fr 108px;
+  align-items: center;
+  gap: 12px;
+}
+
+.day {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.track {
+  position: relative;
+  height: 22px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--ink);
+}
+
+.barAccent {
+  background: var(--accent);
+}
+
+.closedLabel {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.peerMarker {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 0;
+  border-left: 2px dashed var(--ink-soft);
+}
+
+.hoursText {
+  font-size: 13px;
+  color: var(--ink-soft);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.noteMark {
+  flex: none;
+  width: 12px;
+  height: 0;
+  margin-top: 8px;
+  border-top: 2px dashed var(--ink-soft);
+}
+
+@media (min-width: 700px) {
+  .row {
+    grid-template-columns: 110px 1fr 130px;
+  }
+}

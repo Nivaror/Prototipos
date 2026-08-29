@@ -1,0 +1,176 @@
+.section {
+  padding: 56px 0 72px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.ticket {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.notch {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+}
+
+.notchTop {
+  top: -11px;
+}
+
+.notchBottom {
+  bottom: -11px;
+}
+
+.info,
+.formSide {
+  padding: 32px 28px;
+}
+
+.heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.infoList dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.infoList dd {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.igLink {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+.divider {
+  border-top: 1px dashed var(--line);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.field input::placeholder {
+  color: var(--ink-soft);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.error {
+  font-size: 13px;
+  color: #a3372c;
+}
+
+.submit {
+  height: 46px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.submit:active {
+  transform: translateY(1px);
+}
+
+.success {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@media (min-width: 700px) {
+  .ticket {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .notch {
+    display: block;
+    top: 50%;
+    left: auto;
+    right: -11px;
+    transform: translateY(-50%);
+  }
+
+  .notchTop {
+    top: -11px;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .notchBottom {
+    bottom: -11px;
+    top: auto;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .divider {
+    border-top: none;
+    border-left: 1px dashed var(--line);
+  }
+}

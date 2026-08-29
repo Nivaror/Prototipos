@@ -1,0 +1,44 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mark {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.links {
+  display: none;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.links a {
+  opacity: 0.75;
+  transition: opacity 0.15s ease;
+}
+
+.links a:hover {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .links {
+    display: flex;
+    align-items: center;
+  }
+}

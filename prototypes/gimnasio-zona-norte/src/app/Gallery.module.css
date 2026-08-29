@@ -1,0 +1,75 @@
+.section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.heading {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.strip {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 24px;
+}
+
+.stripInner {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+}
+
+.frame {
+  scroll-snap-align: start;
+  width: 78vw;
+  max-width: 360px;
+  flex: none;
+}
+
+.imgWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+}
+
+.img {
+  object-fit: cover;
+}
+
+.caption {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.igFrame {
+  scroll-snap-align: start;
+  flex: none;
+  width: 78vw;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 20px;
+  background: var(--ink);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.igArrow {
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  .strip {
+    padding: 0 40px;
+  }
+}
