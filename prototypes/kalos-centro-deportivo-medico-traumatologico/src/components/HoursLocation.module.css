@@ -1,0 +1,134 @@
+.section {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 40px 24px 120px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.timelineCol {
+  padding-top: 8px;
+}
+
+.heading {
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
+  color: var(--teal-deep);
+  margin-bottom: 28px;
+}
+
+.week {
+  display: flex;
+  gap: 8px;
+}
+
+.day {
+  flex: 1;
+  border-radius: 12px;
+  padding: 16px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.dayOpen {
+  background: var(--teal);
+}
+
+.dayOpen .dayLabel,
+.dayOpen .dayState {
+  color: var(--white);
+}
+
+.dayClosed {
+  background: var(--bg-panel);
+}
+
+.dayClosed .dayLabel,
+.dayClosed .dayState {
+  color: var(--ink-soft);
+}
+
+.dayLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.dayState {
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.addressCard {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.thumb {
+  position: relative;
+  height: 140px;
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.addressBody {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.addressText {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.addressText svg {
+  color: var(--coral);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.mapsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal);
+  width: fit-content;
+}
+
+.mapsLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+  .section {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 80px;
+  }
+
+  .week {
+    flex-wrap: wrap;
+  }
+
+  .day {
+    flex: 1 1 30%;
+  }
+}

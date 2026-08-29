@@ -1,0 +1,73 @@
+.section {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+
+.heading {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--teal-deep);
+  max-width: 20ch;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.revealCell {
+  height: 100%;
+}
+
+.card {
+  height: 100%;
+  border-radius: var(--radius-card);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card svg {
+  color: var(--teal);
+}
+
+.plain svg {
+  color: var(--teal);
+}
+
+.coral svg {
+  color: var(--coral);
+}
+
+.cardTitle {
+  font-size: 1.35rem;
+  color: var(--ink);
+}
+
+.cardBody {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.teal {
+  background: linear-gradient(160deg, #e4f0ec 0%, var(--bg-panel) 100%);
+}
+
+.coral {
+  background: linear-gradient(160deg, var(--coral-soft) 0%, #fdf2ec 100%);
+}
+
+.plain {
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

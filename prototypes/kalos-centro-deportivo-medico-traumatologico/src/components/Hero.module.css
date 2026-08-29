@@ -1,0 +1,105 @@
+.hero {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  min-height: calc(100dvh - 68px);
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.panel {
+  background: linear-gradient(165deg, var(--teal-deep) 0%, var(--teal) 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 5vw;
+}
+
+.panelInner {
+  max-width: 480px;
+  padding-top: 24px;
+}
+
+.headline {
+  color: var(--white);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.subtext {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 17px;
+  line-height: 1.6;
+  max-width: 42ch;
+  margin-bottom: 32px;
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: var(--radius-pill);
+  background: var(--coral);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.primaryCta:hover {
+  background: var(--coral-hover);
+}
+
+.primaryCta:active {
+  transform: scale(0.98);
+}
+
+.ratingChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.92;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .photo {
+    height: 44vh;
+  }
+
+  .panel {
+    padding: 40px 24px 48px;
+  }
+
+  .panelInner {
+    max-width: none;
+    padding-top: 0;
+  }
+
+  .headline {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+}
