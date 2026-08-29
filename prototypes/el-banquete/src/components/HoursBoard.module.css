@@ -1,0 +1,144 @@
+.section {
+  padding: 64px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.title {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.sub {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  max-width: 46ch;
+}
+
+.board {
+  background: var(--board);
+  border-radius: 18px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 44px 110px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--board-line);
+  font-family: var(--font-board), monospace;
+  animation: flipIn 0.5s ease both;
+  animation-delay: calc(var(--i) * 60ms);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.dayCode {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+.dayLabel {
+  color: var(--paper);
+  font-size: 0.85rem;
+  opacity: 0.7;
+  font-family: var(--font-body), sans-serif;
+}
+
+.periods {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  color: var(--paper);
+  background: var(--board-line);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.rowToday .chip {
+  color: var(--board);
+  background: var(--accent);
+}
+
+.closedTag {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+}
+
+.rowClosed .dayCode {
+  color: var(--ink-soft);
+  opacity: 0.5;
+}
+
+.todayTag {
+  justify-self: end;
+  color: var(--board);
+  background: var(--accent);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+@keyframes flipIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: 36px 1fr;
+    row-gap: 8px;
+  }
+
+  .dayLabel {
+    display: none;
+  }
+
+  .periods {
+    grid-column: 1 / -1;
+  }
+
+  .closedTag {
+    grid-column: 2;
+  }
+
+  .todayTag {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}

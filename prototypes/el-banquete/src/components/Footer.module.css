@@ -1,0 +1,40 @@
+.footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 40px 20px;
+  margin-top: 32px;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wordmark {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.address {
+  color: var(--paper);
+  opacity: 0.65;
+  font-size: 0.88rem;
+}
+
+.disclaimer {
+  font-size: 0.78rem;
+  color: var(--paper);
+  opacity: 0.45;
+  border-top: 1px solid rgba(241, 239, 231, 0.15);
+  padding-top: 16px;
+}
