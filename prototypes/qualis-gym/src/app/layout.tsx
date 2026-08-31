@@ -30,13 +30,18 @@ const SITE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 // Open Graph: sin esto WhatsApp/Instagram no arman la tarjeta de preview, y en
 // Android el link llega como texto plano que no se puede tocar.
+//
+// Deliberadamente SIN `og:url`. Meta cachea la tarjeta por URL canónica, y si
+// hay `og:url` esa es la clave: todas las variantes de la misma página colapsan
+// en el mismo objeto cacheado. Sin `og:url` la clave pasa a ser la URL tal cual
+// se compartió, así que agregarle `?v=2` fuerza un scrape nuevo sin necesidad
+// del Sharing Debugger de Facebook. Ver insights/canales-de-outreach.md.
 export const metadata: Metadata = {
   ...baseMetadata,
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: SITE_URL,
     siteName: baseMetadata.title as string,
     title: baseMetadata.title as string,
     description: baseMetadata.description as string,
