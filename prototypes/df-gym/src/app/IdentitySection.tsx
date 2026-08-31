@@ -1,6 +1,7 @@
 import {
   MapPinLine,
   FacebookLogo,
+  InstagramLogo,
   LinkSimple,
   Star,
 } from "@phosphor-icons/react/dist/ssr";
@@ -13,7 +14,7 @@ export default function IdentitySection() {
         <h2 className={styles.headline}>Un mismo gimnasio, dos nombres</h2>
         <p className={styles.body}>
           En Maps buscás &ldquo;DF-Centro de entrenamiento&rdquo;. En
-          Facebook, el mismo gimnasio se llama &ldquo;Distrito
+          Instagram y en Facebook, el mismo gimnasio se llama &ldquo;Distrito
           Fuerza&rdquo;.
         </p>
       </div>
@@ -44,22 +45,34 @@ export default function IdentitySection() {
 
         <article className={styles.card}>
           <span className={styles.cardLabel}>
-            <FacebookLogo size={16} weight="fill" />
-            Así aparecemos en Facebook
+            <InstagramLogo size={16} weight="fill" />
+            Así aparecemos en las redes
           </span>
           <h3 className={styles.cardTitle}>Distrito Fuerza</h3>
           <p className={styles.cardDetail}>
-            La única presencia online del gimnasio, hasta ahora.
+            El mismo gimnasio, con el nombre de la marca en Instagram y en
+            Facebook.
           </p>
-          <a
-            className={styles.cardLink}
-            href="https://facebook.com/distritofuerza"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ver la página en Facebook
-            <LinkSimple size={13} weight="bold" />
-          </a>
+          <div className={styles.channels}>
+            <a
+              className={styles.cardLink}
+              href="https://instagram.com/distritofuerza"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <InstagramLogo size={15} weight="fill" />
+              @distritofuerza en Instagram
+            </a>
+            <a
+              className={styles.cardLink}
+              href="https://facebook.com/distritofuerza"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FacebookLogo size={15} weight="fill" />
+              Distrito Fuerza en Facebook
+            </a>
+          </div>
         </article>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { FacebookLogo } from "@phosphor-icons/react/dist/ssr";
+import { FacebookLogo, InstagramLogo } from "@phosphor-icons/react/dist/ssr";
 import styles from "./Nav.module.css";
 
 export default function Nav() {
@@ -16,10 +16,21 @@ export default function Nav() {
         </nav>
         <div className={styles.actions}>
           <a
-            className={styles.fbLink}
+            className={styles.socialLink}
+            href="https://instagram.com/distritofuerza"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram: @distritofuerza"
+          >
+            <InstagramLogo size={18} weight="fill" />
+            <span>Instagram</span>
+          </a>
+          <a
+            className={styles.socialLink}
             href="https://facebook.com/distritofuerza"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook: Distrito Fuerza"
           >
             <FacebookLogo size={18} weight="fill" />
             <span>Facebook</span>

@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { FacebookLogo, PaperPlaneTilt } from "@phosphor-icons/react/dist/ssr";
+import {
+  FacebookLogo,
+  InstagramLogo,
+  PaperPlaneTilt,
+} from "@phosphor-icons/react/dist/ssr";
 import styles from "./Contact.module.css";
 
 export default function Contact() {
@@ -30,15 +34,30 @@ export default function Contact() {
           </p>
         </div>
 
-        <a
-          className={styles.fbRow}
-          href="https://facebook.com/distritofuerza"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FacebookLogo size={18} weight="fill" />
-          También podés escribirnos por Facebook (Distrito Fuerza)
-        </a>
+        <p className={styles.socialIntro}>
+          También podés escribirnos por nuestras redes, donde estamos como{" "}
+          <strong>Distrito Fuerza</strong>:
+        </p>
+        <div className={styles.socialRows}>
+          <a
+            className={styles.socialRow}
+            href="https://instagram.com/distritofuerza"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <InstagramLogo size={18} weight="fill" />
+            @distritofuerza
+          </a>
+          <a
+            className={styles.socialRow}
+            href="https://facebook.com/distritofuerza"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FacebookLogo size={18} weight="fill" />
+            Distrito Fuerza
+          </a>
+        </div>
 
         {sent ? (
           <div className={styles.success} role="status">

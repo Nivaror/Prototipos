@@ -37,7 +37,8 @@ export default function Hero() {
         <MapPinLine size={20} weight="fill" className={styles.plaqueIcon} />
         <p>
           En Maps figuramos como <strong>DF-Centro de entrenamiento</strong>.
-          En Facebook nos vas a encontrar como <strong>Distrito Fuerza</strong>.
+          En Instagram y Facebook nos vas a encontrar como{" "}
+          <strong>Distrito Fuerza</strong>.
         </p>
         <a href="#nombres" className={styles.plaqueLink}>
           Es el mismo lugar

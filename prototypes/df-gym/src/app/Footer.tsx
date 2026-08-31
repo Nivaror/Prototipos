@@ -1,4 +1,9 @@
-import { MapPinLine, FacebookLogo, Wheelchair } from "@phosphor-icons/react/dist/ssr";
+import {
+  MapPinLine,
+  FacebookLogo,
+  InstagramLogo,
+  Wheelchair,
+} from "@phosphor-icons/react/dist/ssr";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -19,6 +24,15 @@ export default function Footer() {
             <Wheelchair size={16} weight="fill" />
             <span>Entrada accesible en silla de ruedas</span>
           </div>
+          <a
+            className={styles.col}
+            href="https://instagram.com/distritofuerza"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <InstagramLogo size={16} weight="fill" />
+            <span>instagram.com/distritofuerza</span>
+          </a>
           <a
             className={styles.col}
             href="https://facebook.com/distritofuerza"

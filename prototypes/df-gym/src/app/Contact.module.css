@@ -43,9 +43,28 @@
   line-height: 1.5;
 }
 
-.fbRow {
+.socialIntro {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.socialIntro strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.socialRows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.socialRow {
+  flex: 1 1 180px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -53,6 +72,12 @@
   background: var(--accent-soft);
   padding: 10px 14px;
   border-radius: var(--radius-sm);
+  transition: background 0.15s ease;
+}
+
+.socialRow:hover {
+  background: var(--accent);
+  color: #fff;
 }
 
 .form {

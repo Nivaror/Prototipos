@@ -71,13 +71,18 @@
   flex-shrink: 0;
 }
 
-.fbLink {
+.socialLink {
   display: flex;
   align-items: center;
   gap: 6px;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--ink-soft);
+  transition: color 0.15s ease;
+}
+
+.socialLink:hover {
+  color: var(--accent);
 }
 
 .cta {
@@ -98,11 +103,17 @@
   transform: scale(0.98);
 }
 
+@media (max-width: 1040px) {
+  .socialLink span {
+    display: none;
+  }
+}
+
 @media (max-width: 860px) {
   .links {
     display: none;
   }
-  .fbLink span {
+  .socialLink span {
     display: none;
   }
 }
@@ -111,7 +122,7 @@
   .brandText {
     display: none;
   }
-  .fbLink {
+  .socialLink {
     display: none;
   }
 }
