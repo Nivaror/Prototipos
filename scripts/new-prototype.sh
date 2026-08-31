@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 # Scaffolds a new client prototype inside this monorepo, creates its Vercel
-# project (scoped to the `nivaror` team) with the right Root Directory, wires
-# it to auto-deploy on push, and commits/pushes the initial scaffold.
+# project (scoped to the `nivaror` team) with the right Root Directory,
+# deploys it once explicitly, and commits/pushes the initial scaffold to
+# GitHub for version history only — NOT for auto-deploy.
 #
-# Every project also gets a vercel.json with an `ignoreCommand`, so a push to
-# main only rebuilds THIS project when its own folder actually changed —
-# without it, every push rebuilds every project in the team (found 2026-08-24
-# after this drained the whole free-tier daily deployment quota off ~5
-# prototypes' worth of pushes; see core/prototype-workflow.md).
+# Deliberately does NOT run `vercel git connect`. Every project in the
+# `nivaror` team shares one GitHub repo, and Vercel's native Git integration
+# creates a deployment record for EVERY connected project on EVERY push to
+# main, not just the one whose folder changed. An `ignoreCommand` (tried
+# 2026-08-24) makes the other projects cancel almost instantly instead of
+# fully building, but each cancellation still consumes one unit of the
+# shared free-tier 100/day deployment quota — with ~14 projects on the team,
+# a single push was still costing ~14 quota units, and the cap kept getting
+# hit repeatedly even with ignoreCommand in place (found and fixed
+# 2026-08-25: disconnected Git integration on every existing project). Going
+# forward, deploys are explicit only: `vercel --prod` from the monorepo
+# root, once per project, when you actually mean to deploy — see
+# core/prototype-workflow.md's deploy step.
 #
 # Usage: scripts/new-prototype.sh <slug> [template]
 #   slug      required, lowercase kebab-case (e.g. consultorios-kem)
@@ -44,16 +53,6 @@ echo "==> Scaffolding $PROTO_DIR from _templates/$TEMPLATE"
 cp -R "$TEMPLATE_DIR" "$PROTO_DIR"
 rm -rf "$PROTO_DIR/.git" "$PROTO_DIR/node_modules" "$PROTO_DIR/.next" "$PROTO_DIR/.vercel"
 
-if [[ ! -f "$PROTO_DIR/vercel.json" ]]; then
-  echo "==> Writing vercel.json (ignoreCommand, so this project only rebuilds when its own folder changes)"
-  cat > "$PROTO_DIR/vercel.json" <<'EOF'
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- ."
-}
-EOF
-fi
-
 if [[ -f "$PROTO_DIR/package.json" ]] && command -v node >/dev/null; then
   node -e "
     const fs = require('fs');
@@ -84,17 +83,18 @@ curl -s -X PATCH "https://api.vercel.com/v9/projects/$PROJECT_ID?teamId=$ORG_ID"
   -H "Content-Type: application/json" \
   -d "{\"rootDirectory\":\"prototypes/$SLUG\"}" >/dev/null
 
-echo "==> Connecting Vercel project to GitHub (auto-deploy on push)"
-(cd "$REPO_ROOT" && VERCEL_ORG_ID="$ORG_ID" VERCEL_PROJECT_ID="$PROJECT_ID" vercel git connect --yes)
+echo "==> Deploying initial production build (must run from the monorepo root, not the subfolder, or it 404s on Root Directory)"
+(cd "$REPO_ROOT" && VERCEL_ORG_ID="$ORG_ID" VERCEL_PROJECT_ID="$PROJECT_ID" vercel --prod --yes)
 
-echo "==> Committing and pushing scaffold"
+echo "==> Committing and pushing scaffold (version history only — no Vercel project auto-deploys on push)"
 cd "$REPO_ROOT"
 git add "prototypes/$SLUG"
 git commit -m "Scaffold prototype: $SLUG"
 git push
 
 echo
-echo "Done. $SLUG will deploy automatically on every push to main that touches prototypes/$SLUG."
-echo "Production URL: https://$PROJECT_NAME.vercel.app (live after the first deploy finishes)"
+echo "Done. Production URL: https://$PROJECT_NAME.vercel.app"
+echo "Pushing to main will NOT redeploy $SLUG (or any other project) — deploy explicitly with:"
+echo "  cd \"$REPO_ROOT\" && VERCEL_ORG_ID=\"$ORG_ID\" VERCEL_PROJECT_ID=\"$PROJECT_ID\" vercel --prod --yes"
 echo
 echo "Next: record it in the vault at Nivaror Vault/prototypes/$SLUG.md (type, stack, deploy_url, status, used_by)."
