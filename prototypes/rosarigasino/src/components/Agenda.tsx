@@ -16,10 +16,10 @@ export default function Agenda() {
       <div className="wrap agenda__inner">
         <div className="agenda__photo">
           <Image
-            src="/images/agenda-musica-vivo.jpg"
-            alt="Música en vivo en el salón de Rosarigasino"
-            width={2048}
-            height={1152}
+            src="/images/agenda-salon-ambiente.jpg"
+            alt="Salón de Rosarigasino, ambientado para las noches de música en vivo"
+            width={1400}
+            height={1400}
             sizes="(min-width: 1024px) 50vw, 100vw"
           />
         </div>

@@ -11,8 +11,7 @@ export default function Nosotros() {
           <p>
             Rosarigasino combina ambiente clásico, buena mesa y una agenda que no
             se detiene: cena todos los días, música en vivo los fines de semana y
-            fútbol en pantalla los domingos. También ofrecen delivery, coordinado
-            por Facebook.
+            fútbol en pantalla los domingos.
           </p>
         </div>
         <a

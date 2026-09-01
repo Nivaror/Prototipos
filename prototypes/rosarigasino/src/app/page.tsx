@@ -5,6 +5,7 @@ import Agenda from "@/components/Agenda";
 import ReservationSection from "@/components/ReservationSection";
 import Reputation from "@/components/Reputation";
 import Nosotros from "@/components/Nosotros";
+import DeliverySection from "@/components/DeliverySection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <ReservationSection />
         <Reputation />
         <Nosotros />
+        <DeliverySection />
       </main>
       <Footer />
     </>

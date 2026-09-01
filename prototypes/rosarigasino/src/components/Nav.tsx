@@ -4,6 +4,7 @@ const LINKS = [
   { href: "#agenda", label: "Agenda" },
   { href: "#reservas", label: "Reservas" },
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#delivery", label: "Delivery" },
 ];
 
 export default function Nav() {
