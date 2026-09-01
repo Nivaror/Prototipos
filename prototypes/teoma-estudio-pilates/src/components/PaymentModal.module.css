@@ -1,0 +1,143 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 50;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--ivory);
+  border-radius: 20px;
+  padding: 36px 32px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: none;
+  background: var(--sage-pale);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-right: 24px;
+}
+
+.title {
+  font-size: 1.15rem;
+}
+
+.summary {
+  font-size: 0.9rem;
+  color: var(--sage-deep);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: var(--sage-deep);
+}
+
+.field input {
+  width: 100%;
+  min-width: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--sage-line);
+  background: #fff;
+}
+
+.field input:focus {
+  outline: 2px solid var(--sage);
+  outline-offset: 1px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.payCta {
+  margin-top: 4px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: none;
+  background: var(--ink);
+  color: var(--ivory);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.payCta:hover {
+  background: var(--sage-deep);
+}
+
+.payCta:active {
+  transform: scale(0.98);
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: var(--sage-deep);
+  text-align: center;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 20px 8px 8px;
+}
+
+.successIcon {
+  color: var(--sage);
+  margin-bottom: 4px;
+}
+
+.successTitle {
+  font-size: 1.3rem;
+}
+
+.successBody {
+  font-size: 0.95rem;
+  color: var(--sage-deep);
+  line-height: 1.5;
+}

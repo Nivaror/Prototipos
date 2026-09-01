@@ -11,6 +11,7 @@ export default function Nav() {
       <nav className={styles.links}>
         <a href="#disciplinas">Disciplinas</a>
         <a href="#filosofia">Filosofía</a>
+        <a href="#planes">Planes</a>
         <a href="#horarios">Horarios</a>
       </nav>
       <a className={styles.cta} href="#horarios">

@@ -1,0 +1,152 @@
+.section {
+  padding: 96px 32px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin-bottom: 10px;
+}
+
+.subheading {
+  color: var(--sage-deep);
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin-bottom: 48px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.card {
+  border-radius: 20px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.light {
+  background: var(--sage-pale);
+  color: var(--ink);
+  border: 1px solid var(--sage-line);
+}
+
+.dark {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.featured {
+  border: 1px solid var(--sage-deep);
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+}
+
+.cardBody {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.light .cardBody {
+  color: var(--sage-deep);
+}
+
+.dark .cardBody {
+  color: color-mix(in srgb, var(--ivory) 78%, transparent);
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.price {
+  font-family: var(--font-display), sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.period {
+  font-size: 0.85rem;
+}
+
+.light .period {
+  color: var(--sage-deep);
+}
+
+.dark .period {
+  color: color-mix(in srgb, var(--ivory) 78%, transparent);
+}
+
+.features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.features li {
+  padding-left: 18px;
+  position: relative;
+}
+
+.features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.cta {
+  margin-top: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.light .cta {
+  background: var(--ink);
+  color: var(--ivory);
+}
+
+.light .cta:hover {
+  background: var(--sage-deep);
+}
+
+.dark .cta {
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.dark .cta:hover {
+  background: var(--sage-pale);
+}
+
+.cta:active {
+  transform: scale(0.98);
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
