@@ -4,8 +4,9 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
         <p className="max-w-[60ch] text-xs leading-relaxed text-ink-soft">
           Este sitio es una demo de reserva online creada por Nivaror para
-          Rebecca Beauty &amp; Nail Bar, sucursal Fisherton. No es el sitio
-          oficial del salón ni está afiliado a Rebecca Beauty &amp; Nail Bar.
+          Rebecca Beauty &amp; Nail Bar (sucursales Casa Central y Fisherton).
+          No es el sitio oficial del salón ni está afiliado a Rebecca Beauty
+          &amp; Nail Bar.
           Los turnos de esta demo no se confirman ni se procesan de verdad.
           Para reservar de verdad, visitá{" "}
           <a

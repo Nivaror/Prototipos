@@ -2,18 +2,20 @@
 
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { CheckCircle, CaretLeft } from "@phosphor-icons/react";
+import { CheckCircle, CaretLeft, MapPin } from "@phosphor-icons/react";
 import {
   services,
+  locations,
   formatARS,
   minutesToLabel,
   nextOpenDays,
   slotsForDay,
   formatDayLabel,
   type Service,
+  type Location,
 } from "@/lib/booking";
 
-const steps = ["Servicio", "Horario", "Confirmar"];
+const steps = ["Sucursal", "Servicio", "Horario", "Confirmar"];
 
 function StepHeader({ current }: { current: number }) {
   return (
@@ -55,6 +57,7 @@ function StepHeader({ current }: { current: number }) {
 export function BookingFlow() {
   const reduceMotion = useReducedMotion();
   const [step, setStep] = useState(1);
+  const [locationId, setLocationId] = useState<string | null>(null);
   const [serviceId, setServiceId] = useState<string | null>(null);
   const [dateIndex, setDateIndex] = useState(0);
   const [time, setTime] = useState<number | null>(null);
@@ -62,18 +65,26 @@ export function BookingFlow() {
   const [email, setEmail] = useState("");
   const [confirmed, setConfirmed] = useState<{
     code: string;
+    location: Location;
     service: Service;
     date: Date;
     time: number;
   } | null>(null);
 
   const days = useMemo(() => nextOpenDays(8), []);
+  const location = locations.find((l) => l.id === locationId) ?? null;
   const service = services.find((s) => s.id === serviceId) ?? null;
   const selectedDate = days[dateIndex];
   const slots = useMemo(
-    () => (service ? slotsForDay(selectedDate, service) : []),
-    [service, selectedDate],
+    () =>
+      service && location ? slotsForDay(selectedDate, service, location) : [],
+    [service, location, selectedDate],
   );
+
+  function pickLocation(l: Location) {
+    setLocationId(l.id);
+    setTime(null);
+  }
 
   function pickService(s: Service) {
     setServiceId(s.id);
@@ -86,14 +97,15 @@ export function BookingFlow() {
   }
 
   function confirm() {
-    if (!service || time === null) return;
-    const code = `RB-${selectedDate.getDate()}${selectedDate.getMonth() + 1}-${time}`;
-    setConfirmed({ code, service, date: selectedDate, time });
-    setStep(4);
+    if (!location || !service || time === null) return;
+    const code = `RB-${location.id.slice(0, 3).toUpperCase()}-${selectedDate.getDate()}${selectedDate.getMonth() + 1}-${time}`;
+    setConfirmed({ code, location, service, date: selectedDate, time });
+    setStep(5);
   }
 
   function resetAll() {
     setStep(1);
+    setLocationId(null);
     setServiceId(null);
     setDateIndex(0);
     setTime(null);
@@ -113,19 +125,61 @@ export function BookingFlow() {
   return (
     <section id="reservar" className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
       <h2 className="font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-        Reservá en 3 pasos
+        Reservá en 4 pasos
       </h2>
       <p className="mt-3 max-w-[52ch] text-ink-soft">
-        Así se sentiría reservar sin salir de rebeccanailbar.com.ar.
+        Elegís sucursal, servicio y horario, todo sin salir de
+        rebeccanailbar.com.ar.
       </p>
 
       <div className="mt-10 rounded-2xl border border-line bg-panel p-5 sm:p-8">
-        {step < 4 && <StepHeader current={step} />}
+        {step < 5 && <StepHeader current={step} />}
 
         <AnimatePresence mode="wait">
           {step === 1 && (
+            <motion.div key="s0" {...variants} transition={{ duration: 0.25 }} className="mt-8">
+              <p className="text-sm font-medium text-ink-soft">
+                ¿En qué sucursal te queda mejor?
+              </p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                {locations.map((l) => (
+                  <button
+                    key={l.id}
+                    type="button"
+                    onClick={() => pickLocation(l)}
+                    className={`rounded-xl border p-4 text-left transition-colors ${
+                      locationId === l.id
+                        ? "border-accent bg-accent/10"
+                        : "border-line hover:border-ink/30"
+                    }`}
+                  >
+                    <span className="flex items-center gap-2 font-semibold text-ink">
+                      <MapPin size={16} className="shrink-0 text-accent" />
+                      {l.name}
+                    </span>
+                    <span className="mt-1 block text-xs text-ink-soft">
+                      {l.address}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <button
+                type="button"
+                disabled={!location}
+                onClick={() => setStep(2)}
+                className="mt-6 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-ink transition-transform disabled:cursor-not-allowed disabled:opacity-40 enabled:active:scale-[0.98]"
+              >
+                Continuar
+              </button>
+            </motion.div>
+          )}
+
+          {step === 2 && location && (
             <motion.div key="s1" {...variants} transition={{ duration: 0.25 }} className="mt-8">
-              <div className="grid gap-3 sm:grid-cols-2">
+              <p className="text-sm font-medium text-ink-soft">
+                Servicios en {location.name}
+              </p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 {services.map((s) => (
                   <button
                     key={s.id}
@@ -149,18 +203,27 @@ export function BookingFlow() {
                   </button>
                 ))}
               </div>
-              <button
-                type="button"
-                disabled={!service}
-                onClick={() => setStep(2)}
-                className="mt-6 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-ink transition-transform disabled:cursor-not-allowed disabled:opacity-40 enabled:active:scale-[0.98]"
-              >
-                Continuar
-              </button>
+              <div className="mt-6 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="flex items-center gap-1 rounded-full border border-line px-5 py-3 text-sm font-semibold text-ink hover:border-ink/30"
+                >
+                  <CaretLeft size={16} /> Atrás
+                </button>
+                <button
+                  type="button"
+                  disabled={!service}
+                  onClick={() => setStep(3)}
+                  className="rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-ink transition-transform disabled:cursor-not-allowed disabled:opacity-40 enabled:active:scale-[0.98]"
+                >
+                  Continuar
+                </button>
+              </div>
             </motion.div>
           )}
 
-          {step === 2 && service && (
+          {step === 3 && location && service && (
             <motion.div key="s2" {...variants} transition={{ duration: 0.25 }} className="mt-8">
               <p className="text-sm font-medium text-ink-soft">Elegí un día</p>
               <div className="mt-3 flex gap-2 overflow-x-auto pb-2">
@@ -181,7 +244,8 @@ export function BookingFlow() {
               </div>
 
               <p className="mt-6 text-sm font-medium text-ink-soft">
-                Horarios disponibles para {service.name.toLowerCase()}
+                Horarios disponibles en {location.name} para{" "}
+                {service.name.toLowerCase()}
               </p>
               <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4">
                 {slots.map((slot) => (
@@ -204,7 +268,7 @@ export function BookingFlow() {
               <div className="mt-6 flex items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => setStep(1)}
+                  onClick={() => setStep(2)}
                   className="flex items-center gap-1 rounded-full border border-line px-5 py-3 text-sm font-semibold text-ink hover:border-ink/30"
                 >
                   <CaretLeft size={16} /> Atrás
@@ -212,7 +276,7 @@ export function BookingFlow() {
                 <button
                   type="button"
                   disabled={time === null}
-                  onClick={() => setStep(3)}
+                  onClick={() => setStep(4)}
                   className="rounded-full bg-accent px-7 py-3 text-sm font-semibold text-accent-ink transition-transform disabled:cursor-not-allowed disabled:opacity-40 enabled:active:scale-[0.98]"
                 >
                   Continuar
@@ -221,10 +285,14 @@ export function BookingFlow() {
             </motion.div>
           )}
 
-          {step === 3 && service && time !== null && (
+          {step === 4 && location && service && time !== null && (
             <motion.div key="s3" {...variants} transition={{ duration: 0.25 }} className="mt-8">
               <div className="rounded-xl border border-line bg-bg p-4 text-sm text-ink-soft">
                 <p className="font-semibold text-ink">{service.name}</p>
+                <p className="mt-1 flex items-start gap-1.5">
+                  <MapPin size={16} className="mt-0.5 shrink-0 text-accent" />
+                  {location.name} — {location.address}
+                </p>
                 <p className="mt-1">
                   <span className="capitalize">{formatDayLabel(selectedDate)}</span>{" "}
                   a las {minutesToLabel(time)}
@@ -257,7 +325,7 @@ export function BookingFlow() {
               <div className="mt-6 flex items-center gap-3">
                 <button
                   type="button"
-                  onClick={() => setStep(2)}
+                  onClick={() => setStep(3)}
                   className="flex items-center gap-1 rounded-full border border-line px-5 py-3 text-sm font-semibold text-ink hover:border-ink/30"
                 >
                   <CaretLeft size={16} /> Atrás
@@ -274,7 +342,7 @@ export function BookingFlow() {
             </motion.div>
           )}
 
-          {step === 4 && confirmed && (
+          {step === 5 && confirmed && (
             <motion.div
               key="s4"
               initial={reduceMotion ? false : { opacity: 0, scale: 0.97 }}
@@ -288,8 +356,12 @@ export function BookingFlow() {
                   Turno reservado, {name.split(" ")[0]}.
                 </p>
                 <p className="mt-1 text-sm text-ink-soft">
-                  {confirmed.service.name}, {formatDayLabel(confirmed.date)} a
-                  las {minutesToLabel(confirmed.time)}. Código {confirmed.code}.
+                  {confirmed.service.name} en {confirmed.location.name},{" "}
+                  {formatDayLabel(confirmed.date)} a las{" "}
+                  {minutesToLabel(confirmed.time)}. Código {confirmed.code}.
+                </p>
+                <p className="mt-1 text-sm text-ink-soft">
+                  {confirmed.location.address}
                 </p>
               </div>
               <button

@@ -10,6 +10,11 @@ const swatches = [
   "#e9dcc4",
 ];
 
+const ratings = [
+  { value: "4.9", reviews: "91 reseñas", branch: "Fisherton" },
+  { value: "4.4", reviews: "558 reseñas", branch: "Casa Central" },
+];
+
 export function Hero() {
   return (
     <section className="mx-auto grid max-w-7xl gap-12 px-4 pt-12 pb-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pt-16">
@@ -18,8 +23,8 @@ export function Hero() {
           Reservá tu turno, sin salir de tu sitio.
         </h1>
         <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-ink-soft md:text-lg">
-          Un flujo de reservas pensado para Rebecca Fisherton: elegís
-          servicio, horario y confirmás, todo con la misma calidez de
+          Un flujo de reservas pensado para Rebecca: elegís sucursal,
+          servicio y horario, y confirmás, todo con la misma calidez de
           siempre.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -51,15 +56,19 @@ export function Hero() {
             />
           ))}
         </div>
-        <div className="absolute -bottom-5 -left-5 flex items-center gap-3 rounded-2xl border border-line bg-panel px-5 py-3 shadow-[0_12px_30px_-18px_rgba(33,29,25,0.35)]">
-          <span className="font-display text-2xl font-bold text-ink">
-            4.9
-          </span>
-          <span className="text-xs leading-tight text-ink-soft">
-            91 reseñas
-            <br />
-            en Google
-          </span>
+        <div className="absolute -bottom-5 -left-3 flex items-center gap-4 rounded-2xl border border-line bg-panel px-5 py-3 shadow-[0_12px_30px_-18px_rgba(33,29,25,0.35)] sm:-left-5 sm:gap-5">
+          {ratings.map((r) => (
+            <div key={r.branch} className="flex items-center gap-2">
+              <span className="font-display text-2xl font-bold text-ink">
+                {r.value}
+              </span>
+              <span className="text-[11px] leading-tight text-ink-soft">
+                {r.reviews}
+                <br />
+                {r.branch}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

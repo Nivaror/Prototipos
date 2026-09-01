@@ -1,7 +1,7 @@
 const links = [
   { href: "#servicios", label: "Servicios" },
   { href: "#reservar", label: "Reservar" },
-  { href: "#ubicacion", label: "Ubicación" },
+  { href: "#ubicacion", label: "Sucursales" },
 ];
 
 export function SiteNav() {

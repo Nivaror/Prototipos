@@ -15,9 +15,9 @@ const manrope = Manrope({
 });
 
 const baseMetadata: Metadata = {
-  title: "Reservá tu turno | Rebecca Beauty & Nail Bar Fisherton",
+  title: "Reservá tu turno | Rebecca Beauty & Nail Bar",
   description:
-    "Demo de reserva online para Rebecca Beauty & Nail Bar, sucursal Fisherton, Rosario. Prototipo de Nivaror, no es el sitio oficial del salón.",
+    "Demo de reserva online para Rebecca Beauty & Nail Bar, sucursales Casa Central y Fisherton, Rosario. Prototipo de Nivaror, no es el sitio oficial del salón.",
   robots: {
     index: false,
     follow: false,

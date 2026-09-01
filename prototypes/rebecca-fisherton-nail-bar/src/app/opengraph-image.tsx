@@ -5,7 +5,7 @@ import { ImageResponse } from "next/og";
 // vez de mandar un preview sin imagen.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Rebecca Fisherton Nail Bar";
+export const alt = "Rebecca Beauty & Nail Bar";
 
 export default function Image() {
   return new ImageResponse(
@@ -32,7 +32,7 @@ export default function Image() {
               fontWeight: 700,
             }}
           >
-            Rebecca Fisherton Nail Bar
+            Rebecca Beauty &amp; Nail Bar
           </div>
           <div style={{ marginTop: 24, fontSize: 34, color: "#b4693f" }}>Turnos online</div>
         </div>

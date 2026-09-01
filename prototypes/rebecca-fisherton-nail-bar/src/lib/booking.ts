@@ -1,3 +1,33 @@
+export type Location = {
+  id: string;
+  name: string;
+  area: string;
+  address: string;
+  mapsUrl: string;
+  blurb: string;
+};
+
+export const locations: Location[] = [
+  {
+    id: "centro",
+    name: "Casa Central",
+    area: "Centro",
+    address: "España 202, S2000 Rosario, Santa Fe",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Rebecca+Casa+Central+Nail+Bar+Espa%C3%B1a+202+Rosario",
+    blurb: "A pasos del centro, entre España y Salta.",
+  },
+  {
+    id: "fisherton",
+    name: "Fisherton",
+    area: "Fisherton",
+    address: "Schweitzer 8883, S2000 Rosario, Santa Fe",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Schweitzer+8883+Rosario+Santa+Fe",
+    blurb: "El salón de Fisherton, con patio al aire libre.",
+  },
+];
+
 export type Service = {
   id: string;
   name: string;
@@ -78,13 +108,18 @@ function pseudoRandom(seed: string) {
   return h % 5;
 }
 
-export function slotsForDay(date: Date, service: Service) {
+export function slotsForDay(
+  date: Date,
+  service: Service,
+  location: Location,
+) {
   const hours = HOURS[date.getDay()];
   if (!hours) return [];
   const dateKey = date.toISOString().slice(0, 10);
   const slots: { time: number; available: boolean }[] = [];
   for (let t = hours.open; t + service.duration <= hours.close; t += 30) {
-    const taken = pseudoRandom(`${dateKey}-${t}-${service.id}`) === 0;
+    const taken =
+      pseudoRandom(`${location.id}-${dateKey}-${t}-${service.id}`) === 0;
     slots.push({ time: t, available: !taken });
   }
   return slots;
