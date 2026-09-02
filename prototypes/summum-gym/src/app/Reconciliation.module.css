@@ -1,0 +1,126 @@
+.section {
+  padding: clamp(4rem, 8vw, 6rem) clamp(1.25rem, 4vw, 3rem);
+  background: var(--surface);
+}
+
+.inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.intro {
+  margin-top: 0.9rem;
+  font-size: 1rem;
+  color: var(--ink-muted);
+  max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sources {
+  margin-top: 2.75rem;
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  flex-wrap: wrap;
+}
+
+.sourceChip {
+  flex: 1 1 220px;
+  max-width: 260px;
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  text-align: left;
+  opacity: 0.62;
+}
+
+.sourceChipLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.sourceChipText {
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.connector {
+  width: 1px;
+  height: 2.5rem;
+  margin: 0 auto;
+  background: repeating-linear-gradient(to bottom, var(--line) 0 6px, transparent 6px 12px);
+}
+
+.confirmed {
+  border: 2px solid var(--accent);
+  background: var(--surface);
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  text-align: left;
+}
+
+.confirmedLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-ink);
+}
+
+.confirmedRows {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.confirmedRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: var(--ink);
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 0.6rem;
+}
+
+.confirmedNote {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.statusRow {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+@media (max-width: 560px) {
+  .sourceChip {
+    text-align: center;
+  }
+  .confirmed {
+    text-align: center;
+  }
+  .confirmedRow {
+    flex-direction: column;
+    gap: 0.15rem;
+    align-items: center;
+  }
+}
