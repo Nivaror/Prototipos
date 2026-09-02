@@ -15,7 +15,7 @@ const mono = JetBrains_Mono({
 });
 
 const baseMetadata: Metadata = {
-  title: "Euro Gym RED — Muestra Nivaror",
+  title: "Euro Gym RED - Muestra Nivaror",
   description:
     "Horarios claros y clase de prueba sin pasar por Instagram. Muestra hecha por Nivaror para Euro Gym RED, La Florida, Rosario.",
   robots: { index: false, follow: false },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Euro Gym RED",
     title: baseMetadata.title as string,
     description: baseMetadata.description as string,
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Euro Gym RED — muestra Nivaror" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Euro Gym RED, muestra Nivaror" }],
   },
   twitter: {
     card: "summary_large_image",
