@@ -1,0 +1,48 @@
+.section {
+  padding: clamp(40px, 6vh, 64px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: clamp(28px, 4vw, 48px);
+  animation: scroll 34s linear infinite;
+}
+
+.track:hover {
+  animation-play-state: paused;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-hanken);
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 30px);
+  color: var(--ink-dim);
+  white-space: nowrap;
+}
+
+.item svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

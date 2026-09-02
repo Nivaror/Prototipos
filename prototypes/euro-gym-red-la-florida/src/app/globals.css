@@ -1,17 +1,20 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg: #0c0c0f;
+  --surface: #17171c;
+  --surface-raised: #1f1f26;
+  --ink: #f4f2f0;
+  --ink-dim: #a9a7ad;
+  --accent: #ef2f78;
+  --accent-ink: #fff0f5;
+  --line: #2a2a31;
+  --radius-sm: 3px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
 }
 
 html {
   height: 100%;
+  color-scheme: dark;
 }
 
 html,
@@ -24,9 +27,8 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,8 +44,20 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
