@@ -1,150 +1,107 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+.page { min-height: 100dvh; overflow: hidden; background: var(--background); }
+.nav { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; min-height: 72px; padding: 0 5vw; border-bottom: 1px solid var(--line); background: rgba(23, 25, 26, .94); backdrop-filter: blur(14px); }
+.nav nav { display: flex; align-items: center; gap: 2rem; color: var(--muted); font-size: .86rem; }
+.nav nav a { transition: color .2s ease, transform .2s ease; }
+.nav nav a:hover { color: var(--foreground); transform: translateY(-1px); }
+.wordmark { color: var(--foreground); font-family: var(--font-display), sans-serif; font-size: 1.25rem; letter-spacing: .05em; font-weight: 700; }
+.wordmark span { color: var(--accent); }
+.navCta { padding: .7rem 1rem; color: var(--background) !important; background: var(--accent); font-weight: 700; }
+.hero { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr); gap: 5vw; align-items: center; min-height: calc(100dvh - 72px); max-width: 1400px; margin: 0 auto; padding: 5rem 5vw 6rem; }
+.heroCopy { position: relative; z-index: 2; max-width: 610px; }
+.kicker, .miniLabel { margin-bottom: 1rem; color: var(--accent); font-family: var(--font-mono), monospace; font-size: .72rem; letter-spacing: .16em; line-height: 1.4; text-transform: uppercase; }
+.hero h1 { max-width: 13ch; margin-bottom: 1.25rem; font-family: var(--font-display), sans-serif; font-size: clamp(3.7rem, 7vw, 7rem); font-weight: 700; letter-spacing: -.04em; line-height: .88; }
+.heroText { max-width: 30rem; margin-bottom: 2rem; color: var(--muted); font-size: 1.08rem; line-height: 1.55; }
+.primaryButton, .outlineButton, .textButton { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.25rem; border: 0; cursor: pointer; font-weight: 700; transition: transform .2s ease, background .2s ease, color .2s ease; }
+.primaryButton { color: #211815; background: var(--accent); }
+.primaryButton:hover, .outlineButton:hover, .textButton:hover { transform: translateY(-2px); }
+.heroVisual { position: relative; min-height: min(590px, 64dvh); overflow: hidden; border-radius: 3rem 0 3rem 0; }
+.heroVisual::after { position: absolute; inset: 0; content: ""; background: linear-gradient(180deg, transparent 55%, rgba(18, 20, 20, .78)); }
+.heroVisual img, .trainingVisuals img { object-fit: cover; }
+.imageCaption { position: absolute; z-index: 1; right: 1.25rem; bottom: 1.25rem; color: var(--foreground); font-size: .77rem; }
+.heroStamp { position: absolute; z-index: 3; right: 34%; bottom: 4.4rem; display: grid; gap: .2rem; width: 138px; padding: 1rem; color: var(--background); background: var(--accent); transform: rotate(-5deg); }
+.heroStamp strong { font-family: var(--font-display), sans-serif; font-size: 2.4rem; line-height: .9; }
+.heroStamp span { font-size: .72rem; line-height: 1.2; }
+.solutionSection { padding: 0 5vw 7rem; }
+.scheduleCard { max-width: 1060px; margin: -4rem auto 0; padding: clamp(1.5rem, 4vw, 3rem); position: relative; z-index: 4; background: var(--surface); border: 1px solid var(--line); box-shadow: 18px 18px 0 var(--accent); }
+.scheduleHeader { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; }
+.scheduleCard h2, .sectionLead h2, .proofSection h2, .contactSection h2 { margin-bottom: 1rem; font-family: var(--font-display), sans-serif; font-size: clamp(2.6rem, 5vw, 5rem); letter-spacing: -.035em; line-height: .92; }
+.scheduleIntro { max-width: 40rem; margin-bottom: 1.5rem; color: var(--muted); line-height: 1.5; }
+.statusOpen, .statusClosed { display: inline-flex; align-items: center; gap: .45rem; white-space: nowrap; font-family: var(--font-mono), monospace; font-size: .75rem; }
+.statusOpen span, .statusClosed span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.statusClosed span { background: var(--muted); }
+.sourceTabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+.sourceButton, .sourceActive { padding: .6rem .85rem; border: 1px solid var(--line); cursor: pointer; color: var(--muted); background: transparent; font-size: .8rem; }
+.sourceActive { color: var(--background); border-color: var(--accent); background: var(--accent); }
+.weekGrid { display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.day { min-height: 92px; padding: .8rem .65rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.day span { display: block; margin-bottom: 1.2rem; color: var(--muted); font-family: var(--font-mono), monospace; font-size: .7rem; }
+.day strong { display: block; font-size: .78rem; line-height: 1.25; }
+.scheduleNote { margin-top: 1rem; color: var(--muted); font-size: .77rem; }
+.trainingSection { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; align-items: center; max-width: 1260px; margin: 0 auto; padding: 4rem 5vw 9rem; }
+.sectionLead { max-width: 390px; }
+.sectionLead > p:last-child, .proofSection p, .contactSection p { color: var(--muted); line-height: 1.55; }
+.trainingVisuals { position: relative; min-height: 530px; }
+.trainingVisuals figure { position: absolute; overflow: hidden; margin: 0; }
+.trainingVisuals figcaption { position: absolute; right: 1rem; bottom: 1rem; color: var(--foreground); font-size: .8rem; }
+.trainingImageLarge { inset: 0 13% 10% 0; border-radius: 0 2.5rem 0 2.5rem; }
+.trainingImageSmall { right: 0; bottom: 0; width: 42%; height: 48%; border: 8px solid var(--background); border-radius: 2rem 0 2rem 0; }
+.proofSection { display: grid; grid-template-columns: 1fr 1.7fr auto; gap: 4vw; align-items: center; padding: 6rem 10vw; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.proofNumber { color: var(--accent); font-family: var(--font-display), sans-serif; font-size: clamp(7rem, 17vw, 15rem); font-weight: 700; letter-spacing: -.08em; line-height: .7; }
+.outlineButton { color: var(--foreground); border: 1px solid var(--foreground); background: transparent; white-space: nowrap; }
+.contactSection { display: grid; grid-template-columns: .9fr 1.1fr; gap: 8vw; align-items: center; max-width: 1180px; margin: 0 auto; padding: 9rem 5vw; }
+.contactCopy { max-width: 400px; }
+.form { display: grid; gap: .55rem; padding: 2rem; background: var(--surface); border: 1px solid var(--line); }
+.form label { margin-top: .65rem; color: var(--foreground); font-size: .85rem; font-weight: 700; }
+.form input, .form select { min-height: 48px; padding: 0 .8rem; border: 1px solid var(--line); outline: 0; color: var(--foreground); background: var(--surface-soft); }
+.form input:focus, .form select:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(226, 107, 67, .28); }
+.form select { cursor: pointer; }
+.formError { margin: .5rem 0 0; color: #ffb7a0; font-size: .82rem; }
+.formSuccess { display: grid; gap: .75rem; padding: 2rem; border: 1px solid var(--accent); background: var(--surface); }
+.formSuccess h3 { font-family: var(--font-display), sans-serif; font-size: 2.4rem; }
+.formSuccess p { color: var(--muted); }
+.successMark { display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; color: var(--background); background: var(--accent); font-family: var(--font-mono), monospace; font-size: .65rem; font-weight: 700; }
+.textButton { justify-self: start; min-height: auto; padding: .25rem 0; color: var(--accent); background: transparent; }
+.footer { display: grid; grid-template-columns: 1.2fr 1.5fr .6fr 1fr; gap: 1rem; padding: 2rem 5vw; border-top: 1px solid var(--line); color: var(--muted); font-size: .76rem; }
+.footer span:first-child { color: var(--foreground); font-weight: 700; }
+.footer a { color: var(--foreground); }
+.footer small { text-align: right; }
 
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+@media (max-width: 767px) {
+  .nav { min-height: 64px; padding: 0 1rem; }
+  .nav nav a:not(.navCta) { display: none; }
+  .nav nav { gap: 0; font-size: .78rem; }
+  .navCta { padding: .6rem .7rem; }
+  .hero { display: flex; flex-direction: column; align-items: stretch; min-height: auto; gap: 2rem; padding: 4rem 1rem 4rem; }
+  .hero h1 { font-size: clamp(4.1rem, 20vw, 6.5rem); }
+  .heroText { max-width: 21rem; font-size: 1rem; }
+  .heroVisual { min-height: 330px; border-radius: 2rem 0 2rem 0; }
+  .heroStamp { right: 1rem; bottom: 1rem; }
+  .solutionSection { padding: 0 1rem 5rem; }
+  .scheduleCard { margin-top: 0; box-shadow: 8px 8px 0 var(--accent); }
+  .scheduleHeader { display: block; }
+  .scheduleHeader h2 { max-width: 8ch; }
+  .statusOpen, .statusClosed { margin-bottom: 1.5rem; }
+  .weekGrid { grid-template-columns: repeat(2, 1fr); }
+  .day { min-height: 80px; }
+  .day span { margin-bottom: .7rem; }
+  .trainingSection, .contactSection { display: flex; flex-direction: column; align-items: stretch; gap: 3rem; padding: 4rem 1rem 6rem; }
+  .trainingVisuals { min-height: 430px; }
+  .trainingImageLarge { inset: 0 8% 12% 0; }
+  .trainingImageSmall { width: 48%; height: 42%; }
+  .proofSection { display: block; padding: 5rem 1rem; }
+  .proofNumber { margin-bottom: 2rem; font-size: 9rem; }
+  .outlineButton { margin-top: 2rem; }
+  .footer { grid-template-columns: 1fr 1fr; padding: 2rem 1rem; }
+  .footer small { grid-column: 1 / -1; text-align: left; }
 }
 
-.main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+@media (prefers-reduced-motion: reduce) {
+  .nav nav a, .primaryButton, .outlineButton, .textButton { transition: none; }
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
-}
-
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes riseIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .heroCopy { animation: riseIn .7s cubic-bezier(.16, 1, .3, 1) both; }
+  .heroVisual { animation: riseIn .8s .08s cubic-bezier(.16, 1, .3, 1) both; }
+  .scheduleCard { animation: riseIn .8s .18s cubic-bezier(.16, 1, .3, 1) both; }
 }

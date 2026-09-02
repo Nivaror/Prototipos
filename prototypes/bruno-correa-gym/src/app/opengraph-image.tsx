@@ -6,7 +6,7 @@ import { ImageResponse } from "next/og";
 // prototipo tenga fotos propias (ver el comentario en layout.tsx) y borrá este archivo.
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Muestra Nivaror";
+export const alt = "Bruno Correa GYM. Muestra Nivaror";
 
 // TODO: ajustar a la paleta del prototipo.
 const BG = "#101112";
@@ -42,7 +42,7 @@ export default function Image() {
           </div>
         </div>
         <div style={{ display: "flex", fontSize: 24, color: INK, opacity: 0.55 }}>
-          Muestra hecha por Nivaror — no es el sitio oficial
+          Muestra hecha por Nivaror. No es el sitio oficial.
         </div>
       </div>
     ),
