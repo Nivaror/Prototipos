@@ -1,0 +1,57 @@
+.footer {
+  background: #120910;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 4vw, 3rem) 1.75rem;
+}
+
+.top {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #f3e9e0;
+}
+
+.address {
+  font-size: 0.85rem;
+  color: rgba(243, 233, 224, 0.55);
+  margin-top: 0.2rem;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #d99a4e;
+}
+
+.social {
+  display: flex;
+  gap: 0.9rem;
+  color: rgba(243, 233, 224, 0.75);
+}
+
+.social a {
+  transition: color 0.2s ease;
+}
+
+.social a:hover {
+  color: #d99a4e;
+}
+
+.disclaimer {
+  max-width: 1240px;
+  margin: 1.1rem auto 0;
+  font-size: 0.75rem;
+  color: rgba(243, 233, 224, 0.4);
+}

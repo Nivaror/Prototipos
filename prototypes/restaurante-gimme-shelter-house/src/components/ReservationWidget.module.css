@@ -1,0 +1,204 @@
+.card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 420px;
+  padding: 1.75rem;
+  border-radius: 20px;
+  background: rgba(38, 18, 27, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 70px rgba(10, 3, 6, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 999px;
+}
+
+.tab {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(243, 233, 224, 0.6);
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tabActive {
+  background: #d99a4e;
+  color: #1a0d12;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.78rem;
+  color: rgba(243, 233, 224, 0.6);
+}
+
+.dateScroller {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+  min-width: 0;
+}
+
+.dateScroller::-webkit-scrollbar {
+  display: none;
+}
+
+.dateChip {
+  flex: 0 0 auto;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  color: #f3e9e0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.dateChip:disabled {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+
+.dateChipActive {
+  background: #d99a4e;
+  border-color: #d99a4e;
+  color: #1a0d12;
+  font-weight: 600;
+}
+
+.blockRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.blockChip {
+  flex: 1;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+  color: #f3e9e0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.blockChipActive {
+  background: rgba(217, 154, 78, 0.22);
+  border-color: #d99a4e;
+  color: #f0c896;
+  font-weight: 600;
+}
+
+.select,
+.input {
+  padding: 0.7rem 0.85rem;
+  font-size: 0.9rem;
+  color: #f3e9e0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+}
+
+.select option {
+  color: #1a0d12;
+}
+
+.input::placeholder {
+  color: rgba(243, 233, 224, 0.4);
+}
+
+.helper {
+  font-size: 0.78rem;
+  color: rgba(240, 200, 150, 0.85);
+}
+
+.submitBtn {
+  margin-top: 0.25rem;
+  padding: 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a0d12;
+  background: #d99a4e;
+  border-radius: 12px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #e5ac66;
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.confirmed {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0.25rem;
+}
+
+.confirmedBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1a0d12;
+  background: #d99a4e;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+.confirmedTitle {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: #f3e9e0;
+}
+
+.confirmedMeta {
+  font-size: 0.9rem;
+  color: rgba(243, 233, 224, 0.7);
+}
+
+.confirmedNote {
+  font-size: 0.82rem;
+  color: rgba(243, 233, 224, 0.55);
+  line-height: 1.5;
+}
+
+.secondaryBtn {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(243, 233, 224, 0.75);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%;
+    padding: 1.4rem;
+  }
+}
