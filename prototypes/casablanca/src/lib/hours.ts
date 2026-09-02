@@ -1,8 +1,8 @@
-const TIMEZONE = "America/Argentina/Buenos_Aires";
-const OPEN_MIN = 8 * 60;
-const CLOSE_MIN = 1 * 60;
+export const TIMEZONE = "America/Argentina/Buenos_Aires";
+export const OPEN_MIN = 8 * 60;
+export const CLOSE_MIN = 1 * 60;
 
-function minutesOf(date: Date): number {
+export function minutesOf(date: Date): number {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: TIMEZONE,
     hour: "numeric",

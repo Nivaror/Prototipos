@@ -1,20 +1,29 @@
 import { WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import styles from "./WhatsAppButton.module.css";
 
-const WHATSAPP_URL =
-  "https://wa.me/3417485610?text=" + encodeURIComponent("Hola! Quiero reservar una mesa en Casablanca.");
+const DEFAULT_MESSAGE = "Hola! Quiero reservar una mesa en Casablanca.";
 
-export default function WhatsAppButton({ small = false }: { small?: boolean }) {
+export default function WhatsAppButton({
+  small = false,
+  message = DEFAULT_MESSAGE,
+  label = "Reservar por WhatsApp",
+}: {
+  small?: boolean;
+  message?: string;
+  label?: string;
+}) {
+  const href = "https://wa.me/3417485610?text=" + encodeURIComponent(message);
+
   return (
     <a
-      href={WHATSAPP_URL}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className={`${styles.button} ${small ? styles.small : ""}`}
-      aria-label="Reservar por WhatsApp"
+      aria-label={label}
     >
       <WhatsappLogo weight="fill" size={small ? 18 : 20} />
-      <span className={styles.label}>Reservar por WhatsApp</span>
+      <span className={styles.label}>{label}</span>
     </a>
   );
 }
