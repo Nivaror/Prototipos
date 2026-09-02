@@ -1,5 +1,5 @@
 const TIMEZONE = "America/Argentina/Buenos_Aires";
-const OPEN_MIN = 9 * 60;
+const OPEN_MIN = 8 * 60;
 const CLOSE_MIN = 1 * 60;
 
 function minutesOf(date: Date): number {
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV !== "production") {
       `hours.ts self-check failed: UTC ${h}:${m} (ARG hour ${localHour}) expected open=${expected} got=${got}`,
     );
   };
-  check(12, 0, true); // 12:00 UTC = 09:00 ARG, opening edge
+  check(11, 0, true); // 11:00 UTC = 08:00 ARG, opening edge
   check(6, 0, false); // 06:00 UTC = 03:00 ARG, closed
   check(1, 0, true); // 01:00 UTC = 22:00 ARG, open
   check(4, 30, false); // 04:30 UTC = 01:30 ARG, past close

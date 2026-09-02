@@ -1,13 +1,18 @@
 import Image from "next/image";
-import { Bicycle, CalendarCheck, Umbrella } from "@phosphor-icons/react/dist/ssr";
+import { Bicycle, CalendarCheck, PawPrint, Umbrella } from "@phosphor-icons/react/dist/ssr";
 import Reveal from "./Reveal";
 import styles from "./Atmosphere.module.css";
 
 const offers = [
   {
     icon: Umbrella,
-    title: "Terraza",
-    desc: "Mesas al aire libre para comer o tomar algo con mejor clima.",
+    title: "Terraza sobre el río",
+    desc: "Mesas al aire libre a metros del Paraná, para comer o tomar algo con mejor clima.",
+  },
+  {
+    icon: PawPrint,
+    title: "Pet friendly",
+    desc: "Tu perro es bienvenido en la terraza.",
   },
   {
     icon: Bicycle,
@@ -26,9 +31,10 @@ export default function Atmosphere() {
     <section id="propuesta" className={styles.section}>
       <div className={`wrap ${styles.grid}`}>
         <Reveal className={`reveal ${styles.text}`}>
-          <h2 className={styles.heading}>Bar, terraza y buena mesa</h2>
+          <h2 className={styles.heading}>Bar, terraza sobre el río y buena mesa</h2>
           <p className={styles.body}>
-            Comida de bar y tragos en un ambiente relajado, pensado para pasar un
+            Comida de bar y tragos frente al Paraná, a metros del Puente
+            Rosario-Victoria, en un ambiente relajado pensado para pasar un
             rato con amigos o resolver una comida rápida sin ceremonias.
           </p>
           <div className={styles.offerList}>

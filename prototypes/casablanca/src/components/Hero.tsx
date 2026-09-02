@@ -8,10 +8,11 @@ export default function Hero() {
       <div className={`wrap ${styles.inner}`}>
         <div className={styles.blockRow}>
           <div className={styles.panel}>
-            <span className={styles.tag}>Pub restaurante · La Florida</span>
+            <span className={styles.tag}>Pub restaurante · Frente al río</span>
             <h1 className={styles.headline}>Casablanca</h1>
             <p className={styles.sub}>
-              Terraza, delivery y reservas en Rosario, todos los días del año.
+              En La Florida, a metros del Paraná y del Puente Rosario-Victoria.
+              Terraza pet friendly, delivery y reservas, todos los días del año.
             </p>
             <div className={styles.ctaRow}>
               <WhatsAppButton />

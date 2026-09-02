@@ -17,7 +17,7 @@ const workSans = Work_Sans({
 const baseMetadata: Metadata = {
   title: "Casablanca — Pub Restaurante en La Florida, Rosario",
   description:
-    "Muestra digital de Casablanca: horarios, terraza, delivery y reservas por WhatsApp. Creada por Nivaror, no es el sitio oficial del negocio.",
+    "Muestra digital de Casablanca: horarios, terraza pet friendly frente al río, delivery y reservas por WhatsApp. Creada por Nivaror, no es el sitio oficial del negocio.",
   robots: { index: false, follow: false },
 };
 

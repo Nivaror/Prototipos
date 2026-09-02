@@ -13,7 +13,7 @@ export default function QuickFacts() {
               <span className={styles.cellLabel}>Horario</span>
               <OpenStatus />
             </div>
-            <span className={styles.cellValue}>09:00 a 01:00 hs (aprox.)</span>
+            <span className={styles.cellValue}>08:00 a 01:00 hs (aprox.)</span>
             <p className={styles.cellNote}>Abre los siete días de la semana.</p>
           </Reveal>
 
@@ -21,7 +21,7 @@ export default function QuickFacts() {
             <MapPin size={26} weight="fill" className={styles.cellIcon} />
             <span className={styles.cellLabel}>Ubicación</span>
             <span className={styles.cellValue}>Av. Eudoro Carrasco 4174</span>
-            <p className={styles.cellNote}>La Florida, Rosario, Santa Fe.</p>
+            <p className={styles.cellNote}>La Florida, Rosario — a metros del río y del Puente Rosario-Victoria.</p>
             <a
               className={styles.mapLink}
               href="https://www.google.com/maps/search/?api=1&query=Av.+Eudoro+Carrasco+4174+Rosario"

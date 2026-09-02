@@ -8,9 +8,10 @@ export default function Footer() {
           <div>
             <div className={styles.brand}>Casablanca</div>
             <p className={styles.info}>
-              Av. Eudoro Carrasco 4174, La Florida, Rosario, Santa Fe.
+              Av. Eudoro Carrasco 4174, La Florida, Rosario, Santa Fe — a
+              metros del río y del Puente Rosario-Victoria.
               <br />
-              Abierto todos los días, 09:00 a 01:00 hs (aprox.).
+              Abierto todos los días, 08:00 a 01:00 hs (aprox.).
               <br />
               <a
                 href="https://www.google.com/maps/search/?api=1&query=Av.+Eudoro+Carrasco+4174+Rosario"
