@@ -5,6 +5,7 @@ import HoursSection from "./HoursSection";
 import Gallery from "./Gallery";
 import Contact from "./Contact";
 import Footer from "./Footer";
+import MembershipSection from "./MembershipSection";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <Reputation />
         <HoursSection />
         <Gallery />
+        <MembershipSection />
         <Contact />
       </main>
       <Footer />

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ScheduleReconciler from "./ScheduleReconciler";
 import StartForm from "./StartForm";
+import MembershipSection from "./MembershipSection";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -63,6 +64,8 @@ export default function Home() {
           </div>
           <a className={styles.outlineButton} href="https://www.instagram.com/brunoalancorrea.team" target="_blank" rel="noreferrer">Ver Instagram</a>
         </section>
+
+        <MembershipSection />
 
         <section className={styles.contactSection} id="contacto">
           <div className={styles.contactCopy}>

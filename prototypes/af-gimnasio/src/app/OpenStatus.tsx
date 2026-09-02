@@ -5,15 +5,12 @@ import { getLiveStatus, type LiveStatus } from "./hours";
 import styles from "./OpenStatus.module.css";
 
 export default function OpenStatus() {
-  const [status, setStatus] = useState<LiveStatus | null>(null);
+  const [status, setStatus] = useState<LiveStatus>(() => getLiveStatus());
 
   useEffect(() => {
-    setStatus(getLiveStatus());
     const id = setInterval(() => setStatus(getLiveStatus()), 60_000);
     return () => clearInterval(id);
   }, []);
-
-  if (!status) return null;
 
   return (
     <div className={styles.badge} data-open={status.isOpen}>

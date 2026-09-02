@@ -1,0 +1,17 @@
+.section { display: grid; grid-template-columns: minmax(220px, .8fr) minmax(320px, 1fr); gap: clamp(28px, 7vw, 96px); align-items: start; padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 56px); background: var(--surface-raised); border-top: 1px solid var(--line); }
+.intro { max-width: 440px; }
+.label { margin-bottom: 14px; color: var(--accent); font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+.intro h2 { margin-bottom: 16px; font-family: var(--font-hanken); font-size: clamp(32px, 5vw, 62px); line-height: .94; }
+.intro > p:last-child { color: var(--ink-dim); font-size: 15px; line-height: 1.6; }
+.form, .success { display: grid; gap: 8px; max-width: 470px; padding: clamp(24px, 4vw, 36px); background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-md); }
+.form label { margin-top: 10px; color: var(--ink-dim); font-size: 13px; font-weight: 600; }
+.form input, .form select { min-height: 48px; padding: 0 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 15px; }
+.form input:focus, .form select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.submit { min-height: 48px; margin-top: 14px; border: 0; border-radius: var(--radius-pill); color: var(--accent-ink); background: var(--accent); cursor: pointer; font-weight: 700; }
+.form small { color: var(--ink-dim); font-size: 12px; line-height: 1.5; }
+.error { margin-top: 6px; color: #ff8ba8; font-size: 12px; }
+.success { gap: 14px; }
+.success strong { color: var(--accent); font-family: var(--font-hanken); font-size: 26px; }
+.success p { color: var(--ink-dim); line-height: 1.5; }
+.success button { justify-self: start; padding: 0; border: 0; color: var(--accent); background: transparent; cursor: pointer; font-weight: 700; }
+@media (max-width: 860px) { .section { grid-template-columns: 1fr; } .form, .success { max-width: none; } }

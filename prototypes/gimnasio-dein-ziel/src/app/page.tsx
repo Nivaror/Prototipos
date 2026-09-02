@@ -4,6 +4,7 @@ import { AccessibilitySection } from "./AccessibilitySection";
 import { ClassesSection } from "./ClassesSection";
 import { TrialSection } from "./TrialSection";
 import { SiteFooter } from "./SiteFooter";
+import MembershipSection from "./MembershipSection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <AccessibilitySection />
         <ClassesSection />
         <TrialSection />
+        <MembershipSection />
       </main>
       <SiteFooter />
     </>

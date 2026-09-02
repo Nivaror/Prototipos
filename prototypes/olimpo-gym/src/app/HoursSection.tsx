@@ -5,10 +5,9 @@ import { WEEK, fmt, nowInArgentina, currentStatus } from "./hours";
 import styles from "./HoursSection.module.css";
 
 export default function Hours() {
-  const [now, setNow] = useState<{ weekday: number; minutes: number } | null>(null);
+  const [now, setNow] = useState(() => nowInArgentina());
 
   useEffect(() => {
-    setNow(nowInArgentina());
     const id = setInterval(() => setNow(nowInArgentina()), 60_000);
     return () => clearInterval(id);
   }, []);
