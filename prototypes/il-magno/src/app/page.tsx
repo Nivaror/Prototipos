@@ -1,0 +1,25 @@
+"use client";
+import Image from "next/image";
+import { FormEvent, useState } from "react";
+import styles from "./page.module.css";
+
+const categories = ["Antipasti", "Pasta", "Secondi", "Dolci", "Bebidas"];
+
+export default function Home() {
+  const [category, setCategory] = useState("Antipasti");
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [error, setError] = useState("");
+  function requestTable(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!event.currentTarget.checkValidity()) { setError("Completá tu nombre, email y preferencia de fecha."); return; }
+    setError(""); setStatus("loading"); window.setTimeout(() => setStatus("success"), 900);
+  }
+  return <main className={styles.page}>
+    <nav className={styles.nav}><a className={styles.wordmark} href="#inicio"><span>Il</span> Magno</a><div className={styles.navLinks}><a href="#carta">La carta</a><a href="#visitanos">Visitanos</a><a className={styles.navAction} href="#mesa">Solicitar mesa <span>↗</span></a></div></nav>
+    <section className={styles.hero} id="inicio"><div className={styles.heroCopy}><p className={styles.kicker}>Cocina italiana · Rosario</p><h1>Un lugar para volver a la mesa.</h1><p className={styles.heroText}>Descubrí Il Magno, una pausa italiana en Juan Pablo II 1810 bis.</p><div className={styles.heroActions}><a className={styles.primaryButton} href="#mesa">Solicitar mesa <span>↗</span></a><a className={styles.textLink} href="#carta">Explorar la carta <span>↓</span></a></div><div className={styles.heroFacts}><div><strong>4,5</strong><span>★ · 92 reseñas</span></div><div><strong>Todos los días</strong><span>10:00 — 23:00 / 00:00 aprox.</span></div></div></div><div className={styles.heroImageWrap}><Image src="/images/hero-plated-dish.jpg" alt="Plato servido en una mesa de restaurante" fill priority className={styles.heroImage} sizes="(max-width: 800px) 100vw, 50vw" /><span className={styles.imageNote}>una mesa, sin apuro</span></div></section>
+    <section className={styles.menuSection} id="carta"><div className={styles.sectionIntro}><p className={styles.kicker}>La carta</p><h2>Elegí por dónde empezar.</h2><p>Explorá las categorías de nuestra propuesta italiana y encontrá el ritmo de tu próxima visita.</p></div><div className={styles.categoryArea}><div className={styles.categoryTabs} role="tablist" aria-label="Categorías de la carta">{categories.map((item, i) => <button key={item} className={category === item ? styles.activeTab : ""} onClick={() => setCategory(item)} role="tab" aria-selected={category === item}><span>0{i + 1}</span>{item}<b>↗</b></button>)}</div><div className={styles.menuHint} role="status"><span className={styles.oliveDot} /><p><strong>{category}</strong><br />Consultá la propuesta disponible al visitar Il Magno.</p></div></div></section>
+    <section className={styles.visitSection} id="visitanos"><div className={styles.visitImage}><Image src="/images/ambiance-dining-room.jpg" alt="Ambiente de comedor" fill className={styles.coverImage} sizes="(max-width: 800px) 100vw, 42vw" /></div><div className={styles.visitCopy}><p className={styles.kicker}>Encontranos</p><h2>Tu próxima mesa está en Rosario.</h2><p>Estamos en Juan Pablo II 1810 bis. Abrimos todos los días, aproximadamente de 10:00 a 23:00–00:00.</p><a className={styles.textLink} href="#mesa">Quiero pedir una mesa <span>↗</span></a></div></section>
+    <section className={styles.formSection} id="mesa"><div className={styles.formIntro}><p className={styles.kicker}>Tu próxima visita</p><h2>Hablemos de una mesa.</h2><p>Dejanos tus datos y una preferencia. Es una solicitud de interés; te confirmaremos la disponibilidad.</p></div>{status === "success" ? <div className={styles.success} role="status"><span>✓</span><h3>Recibimos tu solicitud.</h3><p>Gracias. Te contactaremos para confirmar disponibilidad.</p><button onClick={() => setStatus("idle")}>Enviar otra solicitud</button></div> : <form className={styles.form} onSubmit={requestTable} noValidate><label>Tu nombre<input name="name" required minLength={2} placeholder="Nombre y apellido" /></label><label>Email<input name="email" type="email" required placeholder="tu@email.com" /></label><label>Preferencia de fecha<input name="date" type="date" required /></label><label>Personas<select name="guests" defaultValue="2"><option value="2">2 personas</option><option value="3">3 personas</option><option value="4">4 personas</option><option value="5">5 o más personas</option></select></label>{error && <p className={styles.error} role="alert">{error}</p>}<button className={styles.submit} type="submit" disabled={status === "loading"}>{status === "loading" ? "Enviando…" : "Solicitar mesa ↗"}</button><small>No compartimos tus datos. Esta demo no envía información a un servidor.</small></form>}</section>
+    <footer className={styles.footer}><a className={styles.wordmark} href="#inicio"><span>Il</span> Magno</a><p>Restaurante italiano · Rosario</p><a href="https://www.facebook.com/illMagno" target="_blank" rel="noreferrer">Facebook ↗</a></footer>
+  </main>;
+}

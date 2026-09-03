@@ -1,0 +1,2 @@
+:root { --ink:#22302d; --paper:#f1f0ea; --sage:#bac9bd; --orange:#dd7651; --muted:#68736c; }
+* { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; background:var(--paper); color:var(--ink); font-family:'DM Sans',sans-serif; } a { color:inherit; text-decoration:none; } button,input,select { font:inherit; }
