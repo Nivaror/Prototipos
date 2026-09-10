@@ -32,6 +32,13 @@ export default function Home() {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<FormStatus>("idle");
+  const [reservationDate, setReservationDate] = useState("");
+  const [reservationTime, setReservationTime] = useState("");
+  const [reservationGuests, setReservationGuests] = useState("2");
+  const [reservationName, setReservationName] = useState("");
+  const [reservationContact, setReservationContact] = useState("");
+  const [reservationError, setReservationError] = useState("");
+  const [reservationStatus, setReservationStatus] = useState<FormStatus>("idle");
 
   function validate() {
     const nextErrors: Record<string, string> = {};
@@ -61,6 +68,35 @@ export default function Home() {
     window.setTimeout(() => setStatus("success"), 650);
   }
 
+  function handleReservationSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (reservationStatus === "loading") return;
+
+    const cleanName = reservationName.trim();
+    const cleanContact = reservationContact.trim();
+    const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanContact);
+    const looksLikeInstagram = /^@?[a-zA-Z0-9._-]{3,}$/.test(cleanContact);
+
+    if (!reservationDate || !reservationTime || cleanName.length < 2 || (!looksLikeEmail && !looksLikeInstagram)) {
+      setReservationError("Completá fecha, horario, nombre y un email o Instagram.");
+      return;
+    }
+
+    setReservationError("");
+    setReservationStatus("loading");
+    window.setTimeout(() => setReservationStatus("success"), 650);
+  }
+
+  function resetReservation() {
+    setReservationDate("");
+    setReservationTime("");
+    setReservationGuests("2");
+    setReservationName("");
+    setReservationContact("");
+    setReservationError("");
+    setReservationStatus("idle");
+  }
+
   function resetForm() {
     setQuestion("");
     setName("");
@@ -85,6 +121,7 @@ export default function Home() {
           <nav className={styles.nav} aria-label="Navegación principal">
             <a href="#identidad">La idea</a>
             <a href="#respuestas">Qué se confirma</a>
+            <a href="#reservas">Reservar</a>
             <a className={styles.navAction} href="#consulta">
               Consultar
             </a>
@@ -131,6 +168,140 @@ export default function Home() {
           <div>
             <span className={styles.factValue}>Alberdi</span>
             <span className={styles.factLabel}>Rosario</span>
+          </div>
+        </section>
+
+        <section className={styles.reservationSection} id="reservas" aria-labelledby="reservation-title">
+          <div className={styles.reservationHeading}>
+            <h2 id="reservation-title">Guardá tu mesa antes de venir.</h2>
+            <p>
+              Elegí una fecha y un horario preferido. En una versión conectada, el equipo confirmaría la disponibilidad por tu canal.
+            </p>
+          </div>
+
+          <div className={styles.reservationDesk}>
+            <div className={styles.reservationFormShell}>
+              {reservationStatus === "success" ? (
+                <div className={styles.reservationSuccess} role="status" aria-live="polite">
+                  <span className={styles.successMark} aria-hidden="true">✓</span>
+                  <h3>Solicitud recibida.</h3>
+                  <p>
+                    Dejaste una preferencia para el {reservationDate.split("-").reverse().join("/")} a las {reservationTime}, para {reservationGuests === "5" ? "5 o más personas" : `${reservationGuests} personas`}.
+                  </p>
+                  <button className={styles.secondaryButton} type="button" onClick={resetReservation}>
+                    Hacer otra solicitud
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleReservationSubmit} noValidate>
+                  <fieldset className={styles.reservationFieldset}>
+                    <legend>Elegí cuándo venir</legend>
+                    <p className={styles.reservationLegendNote}>Horarios orientativos para mostrar el flujo.</p>
+                    <div className={styles.reservationFields}>
+                      <label className={styles.reservationInputGroup}>
+                        <span>Fecha</span>
+                        <input
+                          name="reservation-date"
+                          type="date"
+                          value={reservationDate}
+                          onChange={(event) => setReservationDate(event.target.value)}
+                          required
+                        />
+                      </label>
+
+                      <label className={styles.reservationInputGroup}>
+                        <span>Horario preferido</span>
+                        <select
+                          name="reservation-time"
+                          value={reservationTime}
+                          onChange={(event) => setReservationTime(event.target.value)}
+                          required
+                        >
+                          <option value="" disabled>Elegí un horario</option>
+                          <option value="19:00">19:00 hs</option>
+                          <option value="20:30">20:30 hs</option>
+                          <option value="22:00">22:00 hs</option>
+                        </select>
+                      </label>
+
+                      <label className={styles.reservationInputGroup}>
+                        <span>Personas</span>
+                        <select
+                          name="reservation-guests"
+                          value={reservationGuests}
+                          onChange={(event) => setReservationGuests(event.target.value)}
+                        >
+                          <option value="2">2 personas</option>
+                          <option value="3">3 personas</option>
+                          <option value="4">4 personas</option>
+                          <option value="5">5 o más personas</option>
+                        </select>
+                      </label>
+                    </div>
+                  </fieldset>
+
+                  <fieldset className={styles.reservationFieldset}>
+                    <legend>¿A nombre de quién?</legend>
+                    <div className={styles.reservationPersonalFields}>
+                      <label className={styles.reservationInputGroup}>
+                        <span>Nombre</span>
+                        <input
+                          name="reservation-name"
+                          type="text"
+                          autoComplete="name"
+                          value={reservationName}
+                          onChange={(event) => setReservationName(event.target.value)}
+                          placeholder="Nombre y apellido"
+                          required
+                        />
+                      </label>
+
+                      <label className={styles.reservationInputGroup}>
+                        <span>Email o Instagram</span>
+                        <input
+                          name="reservation-contact"
+                          type="text"
+                          autoComplete="email"
+                          value={reservationContact}
+                          onChange={(event) => setReservationContact(event.target.value)}
+                          placeholder="nombre@correo.com o @usuario"
+                          required
+                        />
+                      </label>
+                    </div>
+                  </fieldset>
+
+                  {reservationError && <p className={styles.reservationError} role="alert">{reservationError}</p>}
+
+                  <div className={styles.reservationFooter}>
+                    <p>Esta demostración no confirma disponibilidad ni envía datos reales.</p>
+                    <button className={styles.submitButton} type="submit" disabled={reservationStatus === "loading"}>
+                      {reservationStatus === "loading" ? <span className={styles.loadingLabel}>Guardando solicitud</span> : "Solicitar mesa"}
+                      <span aria-hidden="true">↗</span>
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+
+            <aside className={styles.reservationNote}>
+              <span className={styles.reservationNoteLabel}>Así funcionaría</span>
+              <h3>Una solicitud clara para cada visita.</h3>
+              <div className={styles.reservationSteps}>
+                <div className={styles.reservationStep}>
+                  <span>1</span>
+                  <p>Elegís fecha, horario y cantidad de personas.</p>
+                </div>
+                <div className={styles.reservationStep}>
+                  <span>2</span>
+                  <p>Dejás un nombre y un canal de respuesta.</p>
+                </div>
+                <div className={styles.reservationStep}>
+                  <span>3</span>
+                  <p>El equipo confirma la mesa por ese canal.</p>
+                </div>
+              </div>
+            </aside>
           </div>
         </section>
 
