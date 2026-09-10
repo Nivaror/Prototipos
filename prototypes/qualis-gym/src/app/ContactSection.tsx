@@ -8,9 +8,9 @@ export function ContactSection() {
       <div className={styles.wrap}>
         <Reveal className={styles.contactBand}>
           <div className={styles.contactHead}>
-            <h2 className={styles.contactTitle}>Consultá tu plan</h2>
+            <h2 className={styles.contactTitle}>Quiero hacerme socio</h2>
             <p className={styles.contactBody}>
-              Dejanos tu nombre y te contamos disponibilidad, precios y cómo arrancar. Sin compromiso.
+              Elegí tu objetivo y dejanos un contacto. Te contamos cómo sumarte, sin compromiso.
             </p>
           </div>
           <div className={styles.contactCard}>

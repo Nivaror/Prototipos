@@ -5,7 +5,6 @@ import { ReputationSection } from "./ReputationSection";
 import { InstagramSection } from "./InstagramSection";
 import { ContactSection } from "./ContactSection";
 import { SiteFooter } from "./SiteFooter";
-import MembershipSection from "./MembershipSection";
 
 export default function Home() {
   return (
@@ -16,7 +15,6 @@ export default function Home() {
         <HoursSection />
         <ReputationSection />
         <InstagramSection />
-        <MembershipSection />
         <ContactSection />
       </main>
       <SiteFooter />

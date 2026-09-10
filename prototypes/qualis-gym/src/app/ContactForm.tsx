@@ -5,10 +5,11 @@ import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
 import styles from "./page.module.css";
 
 type Status = "idle" | "loading" | "success";
-type Errors = { name?: string; message?: string };
+type Errors = { name?: string; contact?: string; message?: string };
 
 export function ContactForm() {
   const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
   const [day, setDay] = useState("Cualquiera");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Errors>({});
@@ -17,7 +18,8 @@ export function ContactForm() {
   function validate(): Errors {
     const next: Errors = {};
     if (name.trim().length < 2) next.name = "Contanos tu nombre.";
-    if (message.trim().length > 0 && message.trim().length < 3) next.message = "Un poco más de detalle, por favor.";
+    if (contact.trim().length < 3) next.contact = "Dejanos un WhatsApp o email.";
+    if (message.trim().length < 3) next.message = "Contanos qué buscás.";
     return next;
   }
 
@@ -47,6 +49,17 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate>
       <div className={styles.formGroup}>
+        <label htmlFor="contact">WhatsApp o email</label>
+        <input
+          id="contact"
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
+          placeholder="Cómo te contactamos"
+          autoComplete="email"
+        />
+        {errors.contact && <span className={styles.fieldError}>{errors.contact}</span>}
+      </div>
+      <div className={styles.formGroup}>
         <label htmlFor="name">Nombre</label>
         <input
           id="name"
@@ -70,7 +83,7 @@ export function ContactForm() {
         <span className={styles.formHelp}>Recordá: cerrado sábado y domingo.</span>
       </div>
       <div className={styles.formGroup}>
-        <label htmlFor="message">Contanos qué buscás (opcional)</label>
+        <label htmlFor="message">¿Qué buscás?</label>
         <textarea
           id="message"
           value={message}
@@ -80,7 +93,7 @@ export function ContactForm() {
         {errors.message && <span className={styles.fieldError}>{errors.message}</span>}
       </div>
       <button type="submit" className={`${styles.btn} ${styles.btnPrimary} ${styles.formSubmit}`} disabled={status === "loading"}>
-        {status === "loading" ? "Enviando..." : "Consultá tu plan"}
+          {status === "loading" ? "Enviando..." : "Quiero hacerme socio"}
       </button>
     </form>
   );
