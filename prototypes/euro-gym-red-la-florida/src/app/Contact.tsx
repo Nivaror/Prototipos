@@ -7,18 +7,20 @@ import styles from "./Contact.module.css";
 
 export default function Contact() {
   const [name, setName] = useState("");
+  const [interest, setInterest] = useState("");
   const [day, setDay] = useState("");
+  const [contact, setContact] = useState("");
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!name.trim()) {
-      setError("Contanos tu nombre para poder reservarte el lugar.");
+    if (!name.trim() || !contact.trim()) {
+      setError("Completá tu nombre y un canal de contacto.");
       return;
     }
-    if (!day) {
-      setError("Elegí un día para tu clase de prueba.");
+    if (!interest || !day) {
+      setError("Elegí qué te interesa y un día de preferencia.");
       return;
     }
     setError("");
@@ -42,12 +44,12 @@ export default function Contact() {
       </div>
 
       <div className={styles.formCard}>
-        <h3 className={styles.formTitle}>Reservar prueba</h3>
+        <h3 className={styles.formTitle}>Empezá tu entrenamiento</h3>
 
         {sent ? (
           <p className={styles.success}>
-            Listo, anotamos tu interés. El gimnasio te va a contactar por
-            Instagram para confirmar el día.
+            Listo, anotamos tu interés. El gimnasio te va a contactar por el
+            canal indicado para confirmar el próximo paso.
           </p>
         ) : (
           <form onSubmit={handleSubmit} noValidate>
@@ -63,6 +65,15 @@ export default function Contact() {
             </div>
 
             <div className={styles.field} style={{ marginTop: 14 }}>
+              <label htmlFor="interest">¿Qué te interesa?</label>
+              <select id="interest" value={interest} onChange={(e) => setInterest(e.target.value)}>
+                <option value="">Elegí una opción</option>
+                <option value="membresia">Conocer las membresías</option>
+                <option value="prueba">Clase de prueba</option>
+              </select>
+            </div>
+
+            <div className={styles.field} style={{ marginTop: 14 }}>
               <label htmlFor="day">Día preferido</label>
               <select id="day" value={day} onChange={(e) => setDay(e.target.value)}>
                 <option value="">Elegí un día</option>
@@ -74,10 +85,15 @@ export default function Contact() {
               </select>
             </div>
 
+            <div className={styles.field} style={{ marginTop: 14 }}>
+              <label htmlFor="contact">WhatsApp o email</label>
+              <input id="contact" value={contact} onChange={(e) => setContact(e.target.value)} placeholder="Cómo te contactamos" autoComplete="email" />
+            </div>
+
             {error && <p className={styles.error} style={{ marginTop: 10 }}>{error}</p>}
 
             <button type="submit" className={styles.submit} style={{ marginTop: 18 }}>
-              Reservar mi clase
+              Quiero empezar
             </button>
           </form>
         )}
