@@ -10,13 +10,15 @@ const MAPS_URL =
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
+  const [interest, setInterest] = useState("");
   const [day, setDay] = useState("");
+  const [contact, setContact] = useState("");
   const [error, setError] = useState("");
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!name.trim() || !day.trim()) {
-      setError("Completá tu nombre y un día de preferencia.");
+    if (!name.trim() || !interest || !day.trim() || !contact.trim()) {
+      setError("Completá tu nombre, objetivo, día y un canal de contacto.");
       return;
     }
     setError("");
@@ -41,10 +43,10 @@ export default function Contact() {
         </div>
 
         <div className={styles.card}>
-          <h2 className={styles.heading}>Consultá tu horario</h2>
+          <h2 className={styles.heading}>Quiero hacerme socio</h2>
           <p className={styles.subtext}>
-            Dejanos tu nombre y el día que te queda mejor. Te contestamos por
-            el mismo medio que prefieras.
+            Elegí tu objetivo y el día que te queda mejor. Te contamos cómo
+            sumarte por el medio que prefieras.
           </p>
 
           {submitted ? (
@@ -68,6 +70,15 @@ export default function Contact() {
                 />
               </div>
               <div className={styles.field}>
+                <label htmlFor="interest">Objetivo</label>
+                <select id="interest" value={interest} onChange={(e) => setInterest(e.target.value)}>
+                  <option value="">Elegí una opción</option>
+                  <option value="musculacion">Musculación</option>
+                  <option value="funcional">Funcional</option>
+                  <option value="opciones">Conocer las opciones</option>
+                </select>
+              </div>
+              <div className={styles.field}>
                 <label htmlFor="day">Día que te queda mejor</label>
                 <input
                   id="day"
@@ -78,9 +89,13 @@ export default function Contact() {
                   placeholder="Ej: martes por la tarde"
                 />
               </div>
+              <div className={styles.field}>
+                <label htmlFor="contact">WhatsApp o email</label>
+                <input id="contact" value={contact} onChange={(e) => setContact(e.target.value)} placeholder="Cómo te contactamos" autoComplete="email" />
+              </div>
               {error && <p className={styles.error}>{error}</p>}
               <button type="submit" className={styles.submit}>
-                Enviar consulta
+                Quiero hacerme socio
               </button>
             </form>
           )}

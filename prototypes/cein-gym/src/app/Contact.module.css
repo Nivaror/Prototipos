@@ -83,7 +83,8 @@
   color: var(--text-primary);
 }
 
-.field input {
+.field input,
+.field select {
   height: 46px;
   padding: 0 0.9rem;
   background: var(--bg);
@@ -97,7 +98,8 @@
   color: var(--text-faint);
 }
 
-.field input:focus {
+.field input:focus,
+.field select:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
 }
