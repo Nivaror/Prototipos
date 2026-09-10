@@ -1,0 +1,115 @@
+.wizard { display: grid; gap: 1.5rem; }
+
+.pasos { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.paso {
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .4rem .8rem .4rem .45rem; border-radius: var(--r-pill);
+  font-size: .82rem; color: var(--muted);
+  border: 1px solid transparent; background: transparent;
+  transition: color .2s var(--ease), background .2s var(--ease);
+}
+.paso b {
+  width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--bg-2); color: var(--muted); font-size: .72rem; font-weight: 600;
+  border: 1px solid var(--line);
+}
+.pasoHecho { color: var(--ink-2); cursor: pointer; }
+.pasoHecho b { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+.pasoHecho:hover { background: var(--bg-2); }
+.pasoActual { color: var(--ink); background: var(--surface); border-color: var(--line); font-weight: 500; }
+.pasoActual b { background: var(--accent); color: #fff; border-color: transparent; }
+
+.panel { display: grid; gap: 1rem; }
+.tituloPaso { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+/* paso 1: servicios */
+.cats { display: flex; gap: .4rem; flex-wrap: wrap; }
+.cat {
+  padding: .4rem .85rem; border-radius: var(--r-pill); font-size: .85rem;
+  border: 1px solid var(--line-2); color: var(--ink-2); background: var(--surface);
+  transition: all .18s var(--ease);
+}
+.cat:hover { border-color: var(--accent); }
+.catOn { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.servicios { display: grid; gap: .55rem; grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 700px) { .servicios { grid-template-columns: 1fr; } }
+
+.servicio {
+  display: flex; align-items: flex-start; gap: .75rem; text-align: left;
+  padding: .85rem .95rem; border-radius: var(--r-sm);
+  border: 1px solid var(--line); background: var(--surface);
+  transition: border-color .18s var(--ease), background .18s var(--ease);
+}
+.servicio:hover { border-color: var(--line-2); background: var(--bg-2); }
+.servicioOn { border-color: var(--accent); background: var(--accent-soft); }
+.servicioOn:hover { background: var(--accent-soft); }
+.tick {
+  flex: none; width: 20px; height: 20px; border-radius: 6px; margin-top: 2px;
+  border: 1.5px solid var(--line-2); display: grid; place-items: center;
+  color: transparent; font-size: .7rem; background: var(--surface);
+}
+.servicioOn .tick { background: var(--accent); border-color: var(--accent); color: #fff; }
+.servicioTxt { flex: 1; min-width: 0; }
+.servicioTop { display: flex; justify-content: space-between; gap: .6rem; align-items: baseline; }
+
+/* paso 2: profesionales */
+.profes { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+.profe {
+  display: flex; gap: .8rem; align-items: center; text-align: left;
+  padding: .8rem; border-radius: var(--r-sm);
+  border: 1px solid var(--line); background: var(--surface);
+  transition: border-color .18s var(--ease), transform .18s var(--ease);
+}
+.profe:hover { border-color: var(--line-2); transform: translateY(-1px); }
+.profeOn { border-color: var(--accent); background: var(--accent-soft); }
+.profeSin { justify-content: flex-start; }
+.sinFoto {
+  width: 52px; height: 52px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent-ink); font-size: 1.1rem;
+}
+
+/* paso 3: dias */
+.dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: .4rem; }
+@media (max-width: 560px) { .dias { grid-template-columns: repeat(4, 1fr); } }
+.dia {
+  display: grid; gap: .1rem; padding: .55rem .2rem; border-radius: var(--r-sm);
+  border: 1px solid var(--line); background: var(--surface); text-align: center;
+  transition: border-color .16s var(--ease);
+}
+.dia:hover:not(:disabled) { border-color: var(--accent); }
+.diaOn { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.diaOn .diaMes { color: var(--bg); opacity: .7; }
+.dia:disabled { opacity: .34; cursor: not-allowed; background: var(--bg-2); }
+.diaNom { font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.diaOn .diaNom { color: var(--bg); opacity: .8; }
+.diaNum { font-size: 1.05rem; font-weight: 500; line-height: 1.1; }
+.diaMes { font-size: .66rem; color: var(--muted); }
+
+/* paso 4: horas */
+.franja { display: grid; gap: .5rem; margin-bottom: 1rem; }
+.franjaTit { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.horas { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: .45rem; }
+.hora {
+  padding: .55rem .4rem; border-radius: var(--r-sm); text-align: center;
+  border: 1px solid var(--line); background: var(--surface); font-size: .92rem;
+  transition: all .16s var(--ease);
+}
+.hora:hover { border-color: var(--accent); }
+.horaOn { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* paso 5-6 */
+.form { display: grid; gap: .9rem; max-width: 460px; }
+.resumen { display: grid; gap: .55rem; padding: 1rem; border-radius: var(--r-sm); background: var(--bg-2); }
+.fila { display: flex; justify-content: space-between; gap: 1rem; font-size: .9rem; }
+.total { border-top: 1px solid var(--line-2); padding-top: .55rem; font-weight: 600; }
+
+.exito { display: grid; gap: 1.1rem; justify-items: start; padding: 1.5rem; }
+.exitoIcon {
+  width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ok-soft); color: var(--ok); font-size: 1.5rem;
+}
+
+.barra { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+.vacio { padding: 1.5rem; border-radius: var(--r-sm); background: var(--bg-2); color: var(--muted); font-size: .9rem; }
+.aviso { font-size: .78rem; color: var(--muted); }

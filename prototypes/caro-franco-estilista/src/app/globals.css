@@ -1,49 +1,169 @@
+/* Paleta tomada del logo real: dorado champagne sobre blanco calido, negro
+   suave. El salon fisico acompana (blanco, cromados, luz calida). */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #faf8f5;
+  --bg-2: #f2ede6;
+  --surface: #ffffff;
+  --ink: #1c1a17;
+  --ink-2: #4a443d;
+  --muted: #726a61;
+  --line: #e6dfd4;
+  --line-2: #d6cbba;
+  --accent: #9d7f47;
+  --accent-ink: #7c6335;
+  --accent-soft: #f4ecdc;
+  --accent-btn: #7c6335;
+  --accent-btn-ink: #ffffff;
+  --ok: #2f6f4f;
+  --ok-soft: #e6f2ea;
+  --warn: #8a6320;
+  --warn-soft: #fbf0da;
+  --bad: #97392f;
+  --bad-soft: #fbe9e6;
+  --shadow: 0 1px 2px rgba(60, 48, 30, .05), 0 12px 32px -12px rgba(60, 48, 30, .16);
+  --shadow-sm: 0 1px 2px rgba(60, 48, 30, .06);
+  --r: 14px;
+  --r-sm: 10px;
+  --r-pill: 999px;
+  --maxw: 1180px;
+  --ease: cubic-bezier(.16, 1, .3, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #14120f;
+    --bg-2: #1b1814;
+    --surface: #1f1b17;
+    --ink: #f3ede4;
+    --ink-2: #ccc3b7;
+    --muted: #9d9387;
+    --line: #322c25;
+    --line-2: #433b31;
+    --accent: #cfae72;
+    --accent-ink: #e0c692;
+    --accent-soft: #2b2418;
+    --accent-btn: #cfae72;
+    --accent-btn-ink: #191510;
+    --ok: #7fc7a2;
+    --ok-soft: #1c2b23;
+    --warn: #d9ae62;
+    --warn-soft: #2d2517;
+    --bad: #e09085;
+    --bad-soft: #2f1e1b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 32px -12px rgba(0, 0, 0, .6);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .35);
   }
 }
 
-html {
-  height: 100%;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+html { height: 100%; scroll-behavior: smooth; }
+html, body { max-width: 100vw; overflow-x: hidden; }
 
 body {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: none; cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
   }
+}
+
+/* ---------- primitivas ---------- */
+
+.wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+.h1 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 1.05; letter-spacing: -.03em; font-weight: 500; }
+.h2 { font-size: clamp(1.6rem, 3.4vw, 2.35rem); line-height: 1.12; letter-spacing: -.025em; font-weight: 500; }
+.h3 { font-size: 1.12rem; line-height: 1.3; letter-spacing: -.01em; font-weight: 600; }
+.lead { font-size: clamp(1rem, 1.6vw, 1.1rem); color: var(--ink-2); max-width: 46ch; }
+.muted { color: var(--muted); }
+.small { font-size: .84rem; }
+.tiny { font-size: .76rem; }
+.tnum { font-variant-numeric: tabular-nums; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  padding: .78rem 1.4rem; border-radius: var(--r-pill);
+  background: var(--ink); color: var(--bg);
+  font-weight: 500; font-size: .95rem; white-space: nowrap;
+  transition: transform .18s var(--ease), opacity .18s var(--ease), background .18s var(--ease);
+}
+.btn:hover { opacity: .88; }
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn[disabled] { opacity: .38; cursor: not-allowed; transform: none; }
+
+.btn-accent { background: var(--accent-btn); color: var(--accent-btn-ink); }
+
+.btn-ghost {
+  background: transparent; color: var(--ink);
+  border: 1px solid var(--line-2);
+}
+.btn-ghost:hover { background: var(--bg-2); opacity: 1; }
+
+.btn-sm { padding: .48rem .9rem; font-size: .85rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+}
+
+.chip {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .28rem .7rem; border-radius: var(--r-pill);
+  font-size: .78rem; font-weight: 500;
+  background: var(--bg-2); color: var(--ink-2);
+  border: 1px solid var(--line);
+}
+.chip-accent { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; }
+.chip-ok { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+.chip-warn { background: var(--warn-soft); color: var(--warn); border-color: transparent; }
+.chip-bad { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+
+.campo { display: flex; flex-direction: column; gap: .4rem; }
+.campo > label { font-size: .84rem; font-weight: 500; color: var(--ink-2); }
+.campo input, .campo select, .campo textarea {
+  padding: .68rem .85rem;
+  background: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  transition: border-color .16s var(--ease);
+}
+.campo input::placeholder, .campo textarea::placeholder { color: var(--muted); opacity: 1; }
+.campo input:focus, .campo select:focus, .campo textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.campo .error { font-size: .78rem; color: var(--bad); }
+
+.avatar { border-radius: 50%; object-fit: cover; background: var(--bg-2); }
+
+.seccion { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+
+.sr {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
