@@ -1,0 +1,170 @@
+.shell {
+  min-height: 100dvh; display: grid; background: var(--bg);
+  grid-template-rows: auto 1fr;
+  /* minmax(0,1fr) en vez de 1fr: sin esto los hijos se estiran al ancho del
+     contenido (agenda 660px, tabla 820px) en vez de dejar scrollear al hijo. */
+  grid-template-columns: minmax(0, 1fr);
+}
+.shell > * { min-width: 0; }
+
+.top { border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 25; }
+.topIn { height: 64px; display: flex; align-items: center; gap: 1.2rem; }
+.topMarca { display: flex; align-items: center; gap: .6rem; margin-right: auto; }
+.topMarca b { font-size: .95rem; }
+.tabs { display: flex; gap: .25rem; }
+.tab {
+  padding: .45rem .85rem; border-radius: var(--r-pill); font-size: .9rem; color: var(--muted);
+  transition: background .16s var(--ease), color .16s var(--ease);
+}
+.tab:hover { background: var(--bg-2); color: var(--ink); }
+.tabOn { background: var(--ink); color: var(--bg); }
+.tabOn:hover { background: var(--ink); color: var(--bg); }
+@media (max-width: 760px) {
+  .topIn { height: auto; padding-block: .6rem; flex-wrap: wrap; gap: .5rem; }
+  .topMarca { gap: .5rem; }
+  .topMarca b { font-size: .85rem; }
+  .topMarca img { width: 30px; height: 30px; }
+  /* Solo las pestanas del header pasan a una fila propia: antes quedaban
+     empujadas fuera de pantalla y solo se veia "Agenda", cortado. Scopeado a
+     .topIn para no reordenar tambien Dia/Semana ni los periodos de estadisticas. */
+  .topIn .tabs { order: 5; width: 100%; overflow-x: auto; padding-bottom: 2px; }
+  .topIn .tab { flex: none; }
+}
+/* "demo" se cae del boton en pantallas chicas para que marca + los dos botones
+   entren en una sola fila. */
+.soloAncho { display: none; }
+@media (min-width: 761px) { .soloAncho { display: inline; } }
+
+.gate { min-height: 100dvh; display: grid; place-items: center; padding: 1.5rem; }
+.gateCard { width: 100%; max-width: 370px; padding: 1.8rem; display: grid; gap: 1.1rem; }
+
+.barra { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+@media (max-width: 620px) {
+  .barra { gap: .45rem; }
+  .barra .sep { display: none; }
+  .fechaTit { min-width: 0; flex: 1; font-size: .98rem; }
+}
+.barra .sep { flex: 1; }
+
+.navDia { display: flex; align-items: center; gap: .3rem; }
+.navBtn {
+  width: 34px; height: 34px; border-radius: var(--r-sm); border: 1px solid var(--line-2);
+  display: grid; place-items: center; background: var(--surface);
+}
+.navBtn:hover { border-color: var(--accent); }
+.fechaTit { min-width: 190px; font-weight: 500; }
+.fechaTit::first-letter { text-transform: uppercase; }
+
+/* agenda multi columna */
+.agenda {
+  display: grid; grid-template-columns: 58px repeat(var(--cols), minmax(150px, 1fr));
+  border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface);
+}
+
+/* En pantallas chicas las columnas pasan a ancho fijo y la grilla a max-content.
+   Con `1fr` la caja de la grilla se quedaba del ancho del contenedor (348px)
+   aunque sus tracks sumaran 658, asi que el contenedor de scroll no veia nada
+   que scrollear y la agenda quedaba recortada sin poder moverse. */
+@media (max-width: 900px) {
+  .agenda { width: max-content; grid-template-columns: 52px repeat(var(--cols), 150px); }
+}
+.agendaScroll { overflow-x: auto; min-width: 0; overscroll-behavior-x: contain; }
+
+/* En celular entran ~2 columnas de 4: sin este aviso no se descubre que la
+   agenda se desliza. */
+.pista { display: none; }
+@media (max-width: 900px) {
+  .pista {
+    display: block; font-size: .78rem; color: var(--muted);
+    margin-bottom: .5rem;
+  }
+}
+.cabecera {
+  display: contents;
+}
+.cabCelda {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line); border-left: 1px solid var(--line);
+  padding: .7rem .8rem; display: flex; align-items: center; gap: .5rem;
+}
+.cabCelda:first-child { border-left: none; }
+.cabNom { display: grid; line-height: 1.15; min-width: 0; }
+.cabNom b { font-size: .88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cabNom span { font-size: .7rem; color: var(--muted); }
+
+.ejeCelda { border-right: 1px solid var(--line); position: relative; }
+.ejeHora {
+  position: absolute; right: .5rem; font-size: .7rem; color: var(--muted);
+  transform: translateY(-50%); font-variant-numeric: tabular-nums;
+}
+.col { position: relative; border-left: 1px solid var(--line); }
+.lineaHora { position: absolute; left: 0; right: 0; border-top: 1px solid var(--line); }
+.colCerrada { background: repeating-linear-gradient(45deg, var(--bg-2), var(--bg-2) 6px, transparent 6px, transparent 12px); }
+
+.turno {
+  position: absolute; left: 3px; right: 3px; border-radius: 8px; overflow: hidden;
+  padding: .3rem .45rem; text-align: left; font-size: .74rem; line-height: 1.25;
+  border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--accent-ink);
+  transition: filter .15s var(--ease);
+}
+.turno:hover { filter: brightness(.97); }
+.turno b { display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.turno small { opacity: .8; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tPendiente { border-left-color: var(--warn); background: var(--warn-soft); color: var(--warn); }
+.tCompletado { border-left-color: var(--ok); background: var(--ok-soft); color: var(--ok); }
+.tCancelado { border-left-color: var(--line-2); background: var(--bg-2); color: var(--muted); text-decoration: line-through; }
+.tNoAsistio { border-left-color: var(--bad); background: var(--bad-soft); color: var(--bad); }
+.bloqueo {
+  position: absolute; left: 3px; right: 3px; border-radius: 8px; padding: .3rem .45rem;
+  font-size: .72rem; background: var(--bg-2); color: var(--muted);
+  border: 1px dashed var(--line-2);
+}
+
+/* semana */
+.semana { width: 100%; border-collapse: collapse; }
+.semana th, .semana td { padding: .6rem .5rem; border-bottom: 1px solid var(--line); text-align: left; font-size: .85rem; }
+.semana th { font-weight: 500; color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; }
+.semana td:first-child, .semana th:first-child { position: sticky; left: 0; background: var(--surface); }
+.carga { display: grid; gap: .2rem; }
+.cargaBar { height: 6px; border-radius: 3px; background: var(--bg-2); overflow: hidden; }
+.cargaBar i { display: block; height: 100%; background: var(--accent); }
+
+/* tablas */
+.tablaWrap { overflow-x: auto; min-width: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.tabla { width: 100%; border-collapse: collapse; min-width: 820px; }
+.tabla th, .tabla td { padding: .7rem .8rem; text-align: left; font-size: .87rem; vertical-align: middle; }
+.tabla thead th {
+  font-size: .74rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted);
+  font-weight: 500; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: var(--surface);
+}
+.tabla tbody tr + tr td { border-top: 1px solid var(--line); }
+.tabla tbody tr:hover { background: var(--bg-2); }
+.acciones { display: flex; gap: .3rem; flex-wrap: wrap; justify-content: flex-end; }
+.accion {
+  padding: .28rem .6rem; border-radius: var(--r-pill); font-size: .76rem;
+  border: 1px solid var(--line-2); color: var(--ink-2); background: var(--surface); white-space: nowrap;
+}
+.accion:hover { border-color: var(--accent); color: var(--accent-ink); }
+.accionMal:hover { border-color: var(--bad); color: var(--bad); }
+
+.filtros { display: flex; gap: .7rem; flex-wrap: wrap; align-items: flex-end; margin-bottom: 1.2rem; }
+.filtros .campo { min-width: 140px; }
+
+/* kpis */
+.kpis { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-bottom: 1.6rem; }
+.kpi { padding: 1.1rem 1.2rem; display: grid; gap: .2rem; }
+.kpi b { font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 500; }
+.kpiNum { font-size: 1.85rem; line-height: 1.1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.kpiPie { font-size: .78rem; color: var(--muted); }
+
+.grid2 { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.panelG { padding: 1.2rem; display: grid; gap: 1rem; align-content: start; }
+.panelG h3 { font-size: .95rem; font-weight: 600; }
+
+.barras { display: grid; gap: .7rem; }
+.barraFila { display: grid; gap: .3rem; }
+.barraTop { display: flex; justify-content: space-between; font-size: .85rem; gap: 1rem; }
+.barraPista { height: 8px; border-radius: 4px; background: var(--bg-2); overflow: hidden; }
+.barraPista i { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+
+.vacio { padding: 2rem; text-align: center; color: var(--muted); font-size: .9rem; }

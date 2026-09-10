@@ -1,0 +1,122 @@
+.demoBar {
+  background: var(--ink); color: var(--bg);
+  font-size: .78rem; text-align: center; padding: .5rem 1rem;
+}
+.demoBar b { font-weight: 600; }
+
+.nav {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.navIn {
+  height: 68px; display: flex; align-items: center; gap: 1.5rem;
+}
+.marca { display: flex; align-items: center; gap: .6rem; margin-right: auto; }
+.marcaTxt { display: grid; line-height: 1.1; }
+.marcaTxt b { font-size: .98rem; font-weight: 600; letter-spacing: -.01em; }
+.marcaTxt span { font-size: .68rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+.navLinks { display: flex; gap: 1.4rem; font-size: .92rem; color: var(--ink-2); }
+.navLinks a:hover { color: var(--accent-ink); }
+@media (max-width: 860px) { .navLinks { display: none; } }
+.navPanel { font-size: .85rem; color: var(--muted); }
+.navPanel:hover { color: var(--accent-ink); }
+@media (max-width: 620px) { .navPanel { display: none; } }
+
+/* hero: tira de tres fotos a sangre + tarjeta que la monta desde abajo a la
+   izquierda. Van tres y no una porque las fotos reales del salon son de 495px
+   de ancho: en tercios se ven nitidas, a pantalla completa se ven blandas. */
+.heroFoto {
+  position: relative; width: 100%;
+  height: clamp(250px, 40vh, 380px);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  overflow: hidden; background: var(--line);
+}
+.heroFoto figure { position: relative; overflow: hidden; }
+.heroFoto img { width: 100%; height: 100%; object-fit: cover; }
+/* Las bandas ya vienen recortadas al aspecto del slot (495x230), asi el
+   navegador no vuelve a recortar y no se pierde el encuadre. */
+.heroFoto::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(20,16,10,.16), rgba(20,16,10,0) 40%);
+}
+@media (max-width: 620px) {
+  .heroFoto { grid-template-columns: 1fr; }
+  .heroFoto figure:last-child { display: none; }
+}
+
+.heroCard {
+  position: relative; z-index: 2;
+  margin-top: clamp(-150px, -13vw, -90px);
+  max-width: 640px;
+  padding: clamp(1.4rem, 3.5vw, 2.2rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  animation: subir .7s var(--ease) both;
+}
+@keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .heroCard { animation: none; } }
+
+.heroMarca { display: flex; align-items: center; gap: .65rem; margin-bottom: 1.1rem; }
+.heroMarca span { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-ink); }
+.heroCta { display: flex; gap: .7rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+/* reserva */
+.reservaSec { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.reservaTit { max-width: 620px; margin-bottom: 1.8rem; }
+
+/* servicios agrupados por categoria */
+.catGrid { display: grid; gap: 2rem 3rem; grid-template-columns: repeat(2, 1fr); margin-top: 2rem; }
+@media (max-width: 780px) { .catGrid { grid-template-columns: 1fr; } }
+.catTit {
+  font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent-ink); padding-bottom: .6rem; border-bottom: 1px solid var(--line-2);
+}
+.svcLista { display: grid; }
+.svcFila { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; padding: .7rem 0; }
+.svcFila + .svcFila { border-top: 1px solid var(--line); }
+.svcNom { font-weight: 500; }
+.svcMeta { text-align: right; white-space: nowrap; }
+
+/* equipo: riel con scroll-snap */
+.riel {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 260px);
+  gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 1.8rem 20px .8rem; margin: 0 -20px;
+  scrollbar-width: thin;
+}
+.rielCard { scroll-snap-align: start; }
+.rielCard img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--r) var(--r) 0 0; }
+.rielTxt { padding: .9rem 1rem 1.1rem; }
+.rielDias { display: flex; gap: .25rem; margin-top: .7rem; }
+.rielDia {
+  width: 25px; height: 25px; border-radius: 7px; display: grid; place-items: center;
+  font-size: .66rem; text-transform: uppercase; background: var(--bg-2); color: var(--muted);
+  border: 1px solid var(--line);
+}
+.rielDiaOn { background: var(--accent-soft); color: var(--accent-ink); border-color: transparent; font-weight: 600; }
+
+/* el salon: bento */
+.bento { display: grid; gap: 1rem; grid-template-columns: 1.35fr 1fr; margin-top: 2rem; }
+.bentoFoto { border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); }
+.bentoFoto img { width: 100%; height: 100%; object-fit: cover; }
+.bentoCol { display: grid; gap: 1rem; grid-template-rows: 1fr auto; }
+.bentoInfo { padding: 1.3rem; display: grid; gap: 1rem; align-content: start; }
+.infoFila { display: grid; gap: .15rem; }
+.infoFila b { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+@media (max-width: 780px) {
+  .bento { grid-template-columns: 1fr; }
+  .bentoFoto { aspect-ratio: 4/3; }
+}
+
+.horarios { display: grid; gap: .3rem; }
+.horFila { display: flex; justify-content: space-between; font-size: .88rem; gap: 1rem; }
+.horFila span:first-child { color: var(--ink-2); }
+
+.pie { border-top: 1px solid var(--line); padding: 2.5rem 0; background: var(--bg-2); }
+.pieIn { display: flex; gap: 2rem; justify-content: space-between; flex-wrap: wrap; }
+.pieLinks { display: flex; gap: 1rem; flex-wrap: wrap; }
+.pieNota { margin-top: 1.8rem; font-size: .76rem; color: var(--muted); max-width: 62ch; }
