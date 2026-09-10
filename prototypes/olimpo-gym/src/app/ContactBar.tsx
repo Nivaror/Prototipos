@@ -7,13 +7,14 @@ import styles from "./ContactBar.module.css";
 export default function ContactBar() {
   const [name, setName] = useState("");
   const [interest, setInterest] = useState("musculacion");
+  const [contact, setContact] = useState("");
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!name.trim()) {
-      setError("Contanos tu nombre para poder responderte.");
+    if (!name.trim() || !contact.trim()) {
+      setError("Completá tu nombre y un canal de contacto.");
       return;
     }
     setError("");
@@ -23,7 +24,7 @@ export default function ContactBar() {
   return (
     <section id="contacto" className={styles.section}>
       <div className="container">
-        <h2 className={styles.heading}>Consultá disponibilidad</h2>
+        <h2 className={styles.heading}>Quiero hacerme socio</h2>
 
         {sent ? (
           <div className={styles.success}>
@@ -44,6 +45,17 @@ export default function ContactBar() {
             </div>
 
             <div className={styles.field}>
+              <label htmlFor="contact">WhatsApp o email</label>
+              <input
+                id="contact"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                placeholder="Cómo te contactamos"
+                autoComplete="email"
+              />
+            </div>
+
+            <div className={styles.field}>
               <label htmlFor="interest">Te interesa</label>
               <select
                 id="interest"
@@ -57,7 +69,7 @@ export default function ContactBar() {
             </div>
 
             <button type="submit" className={styles.submit}>
-              Enviar consulta
+              Quiero hacerme socio
               <PaperPlaneRight size={16} weight="bold" />
             </button>
           </form>

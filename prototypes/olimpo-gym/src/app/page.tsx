@@ -5,7 +5,6 @@ import HoursSection from "./HoursSection";
 import Reputation from "./Reputation";
 import ContactBar from "./ContactBar";
 import Footer from "./Footer";
-import MembershipSection from "./MembershipSection";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       <Services />
       <HoursSection />
       <Reputation />
-      <MembershipSection />
       <ContactBar />
       <Footer />
     </>
