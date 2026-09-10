@@ -1,7 +1,6 @@
 import Image from "next/image";
 import ScheduleReconciler from "./ScheduleReconciler";
 import StartForm from "./StartForm";
-import MembershipSection from "./MembershipSection";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -12,7 +11,7 @@ export default function Home() {
         <nav aria-label="Navegación principal">
           <a href="#horarios">Horarios</a>
           <a href="#entrenamiento">Entrenamiento</a>
-          <a href="#contacto" className={styles.navCta}>Quiero arrancar</a>
+          <a href="#contacto" className={styles.navCta}>Quiero hacerme socio</a>
         </nav>
       </header>
 
@@ -65,12 +64,10 @@ export default function Home() {
           <a className={styles.outlineButton} href="https://www.instagram.com/brunoalancorrea.team" target="_blank" rel="noreferrer">Ver Instagram</a>
         </section>
 
-        <MembershipSection />
-
         <section className={styles.contactSection} id="contacto">
           <div className={styles.contactCopy}>
-            <h2>Contanos qué querés entrenar.</h2>
-            <p>En la versión final, esta consulta llega al canal que el equipo confirme.</p>
+            <h2>Quiero hacerme socio.</h2>
+            <p>Contanos tu objetivo y un canal de contacto. En la versión final, el equipo te explica cómo sumarte.</p>
           </div>
           <StartForm />
         </section>
