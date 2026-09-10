@@ -59,7 +59,7 @@ export default function Home() {
             <figure className={styles.heroDining}>
               <Image
                 src="/images/posta-dining-room.jpg"
-                alt="Salón cálido con mesas de madera y lámparas colgantes"
+                alt="Dos sándwiches artesanales cortados al medio sobre una tabla de madera"
                 fill
                 priority
                 sizes="(max-width: 767px) 100vw, 67vw"
@@ -68,7 +68,7 @@ export default function Home() {
             <figure className={styles.heroDish}>
               <Image
                 src="/images/posta-plated-dish.jpg"
-                alt="Plato servido sobre una mesa"
+                alt="Sándwich de focaccia tostada con pollo, queso, rúcula y morrones asados"
                 fill
                 sizes="(max-width: 767px) 100vw, 33vw"
               />
@@ -89,7 +89,7 @@ export default function Home() {
             <div className={styles.menuImage}>
               <Image
                 src="/images/posta-chef-cooking.jpg"
-                alt="Persona terminando un plato en cocina"
+                alt="Dos sándwiches tostados cortados al medio sobre papel madera"
                 fill
                 sizes="(max-width: 767px) 100vw, 38vw"
               />
