@@ -4,7 +4,6 @@ import { Reconciliation } from "./Reconciliation";
 import { Reputation } from "./Reputation";
 import { Contact } from "./Contact";
 import { Footer } from "./Footer";
-import MembershipSection from "./MembershipSection";
 
 export default function Home() {
   return (
@@ -14,7 +13,6 @@ export default function Home() {
         <Hero />
         <Reconciliation />
         <Reputation />
-        <MembershipSection />
         <Contact />
       </main>
       <Footer />

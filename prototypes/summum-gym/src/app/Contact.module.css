@@ -71,6 +71,7 @@
 }
 
 .field input,
+.field select,
 .field textarea {
   font: inherit;
   padding: 0.7rem 0.85rem;
@@ -81,6 +82,7 @@
 }
 
 .field input:focus,
+.field select:focus,
 .field textarea:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
