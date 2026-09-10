@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Manrope } from "next/font/google";
+import { Barlow_Condensed, Manrope } from "next/font/google";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Barlow_Condensed({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700"],

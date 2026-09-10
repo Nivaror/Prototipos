@@ -24,12 +24,12 @@ export default function Nosotros() {
               Dr. Pedro José Agrelo 2409, Rosario
             </span>
             <a
-              href="https://instagram.com/lacabra.bar"
+              href="https://instagram.com/la.cabra.bar"
               target="_blank"
               rel="noopener noreferrer"
             >
               <InstagramLogo size={18} weight="regular" />
-              instagram.com/lacabra.bar
+              instagram.com/la.cabra.bar
             </a>
           </div>
         </div>
