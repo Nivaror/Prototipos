@@ -86,7 +86,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="btn btn-ghost btn-sm"
             onClick={() => { if (confirm('¿Volver la demo a los datos de ejemplo?')) repositorio.reiniciar() }}
           >
-            Reiniciar demo
+            Reiniciar<span className={s.soloAncho}>demo</span>
           </button>
           <Link href="/" className="btn btn-ghost btn-sm">Ver sitio</Link>
         </div>

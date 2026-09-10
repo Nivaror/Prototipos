@@ -99,6 +99,10 @@ export default function Agenda() {
       )}
 
       {vista === 'dia' ? (
+        <>
+        {visibles.length > 2 && (
+          <p className={s.pista}>Deslizá la agenda para ver a las demás.</p>
+        )}
         <div className={s.agendaScroll}>
           <div className={s.agenda} style={{ ['--cols' as string]: visibles.length }}>
             <div className={s.cabCelda} />
@@ -167,6 +171,7 @@ export default function Agenda() {
             })}
           </div>
         </div>
+        </>
       ) : (
         <VistaSemana fecha={fecha} turnos={turnos} onDia={(d) => { setFecha(d); setVista('dia') }} />
       )}

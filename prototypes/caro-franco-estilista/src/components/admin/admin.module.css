@@ -1,4 +1,11 @@
-.shell { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr; background: var(--bg); }
+.shell {
+  min-height: 100dvh; display: grid; background: var(--bg);
+  grid-template-rows: auto 1fr;
+  /* minmax(0,1fr) en vez de 1fr: sin esto los hijos se estiran al ancho del
+     contenido (agenda 660px, tabla 820px) en vez de dejar scrollear al hijo. */
+  grid-template-columns: minmax(0, 1fr);
+}
+.shell > * { min-width: 0; }
 
 .top { border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 25; }
 .topIn { height: 64px; display: flex; align-items: center; gap: 1.2rem; }
@@ -12,12 +19,31 @@
 .tab:hover { background: var(--bg-2); color: var(--ink); }
 .tabOn { background: var(--ink); color: var(--bg); }
 .tabOn:hover { background: var(--ink); color: var(--bg); }
-@media (max-width: 720px) { .topIn { height: auto; padding-block: .7rem; flex-wrap: wrap; } }
+@media (max-width: 760px) {
+  .topIn { height: auto; padding-block: .6rem; flex-wrap: wrap; gap: .5rem; }
+  .topMarca { gap: .5rem; }
+  .topMarca b { font-size: .85rem; }
+  .topMarca img { width: 30px; height: 30px; }
+  /* Solo las pestanas del header pasan a una fila propia: antes quedaban
+     empujadas fuera de pantalla y solo se veia "Agenda", cortado. Scopeado a
+     .topIn para no reordenar tambien Dia/Semana ni los periodos de estadisticas. */
+  .topIn .tabs { order: 5; width: 100%; overflow-x: auto; padding-bottom: 2px; }
+  .topIn .tab { flex: none; }
+}
+/* "demo" se cae del boton en pantallas chicas para que marca + los dos botones
+   entren en una sola fila. */
+.soloAncho { display: none; }
+@media (min-width: 761px) { .soloAncho { display: inline; } }
 
 .gate { min-height: 100dvh; display: grid; place-items: center; padding: 1.5rem; }
 .gateCard { width: 100%; max-width: 370px; padding: 1.8rem; display: grid; gap: 1.1rem; }
 
 .barra { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+@media (max-width: 620px) {
+  .barra { gap: .45rem; }
+  .barra .sep { display: none; }
+  .fechaTit { min-width: 0; flex: 1; font-size: .98rem; }
+}
 .barra .sep { flex: 1; }
 
 .navDia { display: flex; align-items: center; gap: .3rem; }
@@ -26,7 +52,7 @@
   display: grid; place-items: center; background: var(--surface);
 }
 .navBtn:hover { border-color: var(--accent); }
-.fechaTit { min-width: 210px; font-weight: 500; }
+.fechaTit { min-width: 190px; font-weight: 500; }
 .fechaTit::first-letter { text-transform: uppercase; }
 
 /* agenda multi columna */
@@ -34,7 +60,25 @@
   display: grid; grid-template-columns: 58px repeat(var(--cols), minmax(150px, 1fr));
   border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; background: var(--surface);
 }
-.agendaScroll { overflow-x: auto; }
+
+/* En pantallas chicas las columnas pasan a ancho fijo y la grilla a max-content.
+   Con `1fr` la caja de la grilla se quedaba del ancho del contenedor (348px)
+   aunque sus tracks sumaran 658, asi que el contenedor de scroll no veia nada
+   que scrollear y la agenda quedaba recortada sin poder moverse. */
+@media (max-width: 900px) {
+  .agenda { width: max-content; grid-template-columns: 52px repeat(var(--cols), 150px); }
+}
+.agendaScroll { overflow-x: auto; min-width: 0; overscroll-behavior-x: contain; }
+
+/* En celular entran ~2 columnas de 4: sin este aviso no se descubre que la
+   agenda se desliza. */
+.pista { display: none; }
+@media (max-width: 900px) {
+  .pista {
+    display: block; font-size: .78rem; color: var(--muted);
+    margin-bottom: .5rem;
+  }
+}
 .cabecera {
   display: contents;
 }
@@ -86,7 +130,7 @@
 .cargaBar i { display: block; height: 100%; background: var(--accent); }
 
 /* tablas */
-.tablaWrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.tablaWrap { overflow-x: auto; min-width: 0; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
 .tabla { width: 100%; border-collapse: collapse; min-width: 820px; }
 .tabla th, .tabla td { padding: .7rem .8rem; text-align: left; font-size: .87rem; vertical-align: middle; }
 .tabla thead th {

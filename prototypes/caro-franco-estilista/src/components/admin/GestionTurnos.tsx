@@ -73,6 +73,8 @@ export default function GestionTurnos() {
           No hay turnos con esos filtros. Probá ampliando el rango de fechas.
         </div>
       ) : (
+        <>
+        <p className={s.pista}>Deslizá la tabla para ver el estado y las acciones.</p>
         <div className={s.tablaWrap}>
           <table className={s.tabla}>
             <thead>
@@ -125,6 +127,7 @@ export default function GestionTurnos() {
             </tbody>
           </table>
         </div>
+        </>
       )}
 
       {reprogramar && (
