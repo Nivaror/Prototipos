@@ -8,9 +8,10 @@ type FormState = {
   nombre: string;
   interes: string;
   horario: string;
+  contacto: string;
 };
 
-const EMPTY: FormState = { nombre: "", interes: "", horario: "" };
+const EMPTY: FormState = { nombre: "", interes: "", horario: "", contacto: "" };
 
 export function TrialForm() {
   const [form, setForm] = useState<FormState>(EMPTY);
@@ -25,7 +26,8 @@ export function TrialForm() {
     e.preventDefault();
     const next: Partial<FormState> = {};
     if (!form.nombre.trim()) next.nombre = "Falta el nombre.";
-    if (!form.interes) next.interes = "Elegí qué te interesa probar.";
+    if (!form.interes) next.interes = "Elegí qué te interesa.";
+    if (!form.contacto.trim()) next.contacto = "Dejanos un WhatsApp o email.";
     setErrors(next);
     if (Object.keys(next).length === 0) setSent(true);
   }
@@ -38,9 +40,9 @@ export function TrialForm() {
             <CheckCircle size={22} weight="fill" />
           </span>
           <div>
-            <p className={styles.successTitle}>Clase de prueba solicitada</p>
+            <p className={styles.successTitle}>Interés registrado</p>
             <p className={styles.successText}>
-              Te contactamos para coordinar el día y el horario de tu primera clase, sin costo.
+              Te contactamos para coordinar el próximo paso según tu objetivo.
             </p>
           </div>
         </div>
@@ -62,7 +64,7 @@ export function TrialForm() {
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="interes">Qué te interesa probar</label>
+        <label className={styles.label} htmlFor="interes">¿Qué te interesa?</label>
         <select
           id="interes"
           className={styles.select}
@@ -74,8 +76,22 @@ export function TrialForm() {
           <option value="funcional">Entrenamiento funcional</option>
           <option value="grupales">Clases grupales</option>
           <option value="personalizado">Entrenamiento personalizado</option>
+          <option value="membresia">Conocer las membresías</option>
         </select>
         {errors.interes && <span className={styles.error}>{errors.interes}</span>}
+      </div>
+
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor="contacto">WhatsApp o email</label>
+        <input
+          id="contacto"
+          className={styles.input}
+          placeholder="Cómo te contactamos"
+          value={form.contacto}
+          onChange={(e) => update("contacto", e.target.value)}
+          autoComplete="email"
+        />
+        {errors.contacto && <span className={styles.error}>{errors.contacto}</span>}
       </div>
 
       <div className={styles.field}>
@@ -92,9 +108,9 @@ export function TrialForm() {
 
       <div className={styles.submitRow}>
         <button type="submit" className={`${styles.btn} ${styles.btnPrimary}`}>
-          Pedir clase de prueba
+          Quiero hacerme socio
         </button>
-        <span className={styles.submitNote}>Sin costo, sin compromiso.</span>
+        <span className={styles.submitNote}>Sin compromiso.</span>
       </div>
     </form>
   );

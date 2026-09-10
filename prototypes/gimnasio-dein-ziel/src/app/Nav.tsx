@@ -10,7 +10,7 @@ export function Nav() {
       <div className={styles.navRight}>
         <OpenStatus />
         <a className={`${styles.btn} ${styles.btnPrimary} ${styles.navCta}`} href="#proba">
-          Pedí tu clase de prueba
+          Quiero hacerme socio
         </a>
       </div>
     </header>

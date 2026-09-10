@@ -9,10 +9,10 @@ export function TrialSection() {
     <section id="proba" className={styles.trialSection}>
       <Reveal className={styles.trialGrid}>
         <div className={styles.trialTextCell}>
-          <h2 className={styles.h2}>Probá gratis, sin vueltas</h2>
+          <h2 className={styles.h2}>Empezá sin vueltas</h2>
           <p className={styles.body}>
-            Dejanos tus datos y coordinamos tu primera clase sin costo, en el horario que
-            mejor te quede.
+            Contanos qué te interesa y coordinamos el próximo paso, en el horario que mejor
+            te quede.
           </p>
           <TrialForm />
         </div>
