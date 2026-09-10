@@ -7,6 +7,7 @@ export default function Nav() {
         <span className="nav__mark">Fulano Cervecería</span>
         <nav className="nav__links">
           <Link href="#agenda">Agenda</Link>
+          <Link href="#delivery">Delivery</Link>
           <Link href="#reservas">Reservas</Link>
         </nav>
         <Link href="#reservas" className="btn btn-primary nav__cta">

@@ -31,6 +31,9 @@ export default function Hero() {
             <Link href="#agenda" className="btn btn-primary">
               Ver la agenda
             </Link>
+            <Link href="#delivery" className="btn btn-secondary">
+              Pedí delivery
+            </Link>
             <Link href="#reservas" className="btn btn-secondary">
               Reservar mesa
             </Link>
