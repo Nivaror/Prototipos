@@ -13,11 +13,20 @@ const schedule = [
   { day: "Dom", fullDay: "Domingo", time: "Cerrado", tone: "closed" },
 ];
 
+const availableSlots = [
+  { id: "lunes-0800", dayId: "lunes", day: "Lunes", time: "08:00 a 09:30", available: true },
+  { id: "lunes-1800", dayId: "lunes", day: "Lunes", time: "18:00 a 19:30", available: false },
+  { id: "martes-1600", dayId: "martes", day: "Martes", time: "16:00 a 17:30", available: true },
+  { id: "martes-1800", dayId: "martes", day: "Martes", time: "18:00 a 19:30", available: true },
+  { id: "jueves-0900", dayId: "jueves", day: "Jueves", time: "09:00 a 10:30", available: true },
+  { id: "viernes-1700", dayId: "viernes", day: "Viernes", time: "17:00 a 18:30", available: false },
+] as const;
+
 type FormData = {
   name: string;
-  interest: string;
+  plan: string;
   day: string;
-  moment: string;
+  time: string;
   contact: string;
 };
 
@@ -25,9 +34,9 @@ type FormErrors = Partial<Record<keyof FormData, string>>;
 
 const initialForm: FormData = {
   name: "",
-  interest: "",
+  plan: "",
   day: "",
-  moment: "",
+  time: "",
   contact: "",
 };
 
@@ -36,17 +45,31 @@ export default function Home() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
 
+  const timesForDay = availableSlots.filter((slot) => slot.dayId === form.day);
+  const selectedSlot = availableSlots.find((slot) => slot.id === form.time);
+  const reservationSummary = selectedSlot
+    ? `Todos los ${selectedSlot.day.toLowerCase()}, de ${selectedSlot.time}, durante 1 mes.`
+    : "Elegí un día y un horario disponible.";
+
   function updateField(field: keyof FormData, value: string) {
-    setForm((current) => ({ ...current, [field]: value }));
-    setErrors((current) => ({ ...current, [field]: undefined }));
+    setForm((current) => ({
+      ...current,
+      [field]: value,
+      ...(field === "day" ? { time: "" } : {}),
+    }));
+    setErrors((current) => ({
+      ...current,
+      [field]: undefined,
+      ...(field === "day" ? { time: undefined } : {}),
+    }));
   }
 
   function validate() {
     const nextErrors: FormErrors = {};
     if (!form.name.trim()) nextErrors.name = "Escribí tu nombre.";
-    if (!form.interest) nextErrors.interest = "Elegí una opción.";
+    if (!form.plan) nextErrors.plan = "Elegí un plan.";
     if (!form.day) nextErrors.day = "Elegí un día.";
-    if (!form.moment) nextErrors.moment = "Elegí un momento.";
+    if (!form.time || !selectedSlot || selectedSlot.dayId !== form.day || !selectedSlot.available) nextErrors.time = "Elegí un horario disponible.";
     if (!form.contact.trim()) nextErrors.contact = "Dejanos un email o tu usuario de Instagram.";
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -80,7 +103,7 @@ export default function Home() {
         <nav className={styles.navLinks} aria-label="Navegación principal">
           <a href="#encaja">Cómo es</a>
           <a href="#horarios">Horarios</a>
-          <a className={styles.navCta} href="#consulta">Consultar disponibilidad <span aria-hidden="true">↗</span></a>
+          <a className={styles.navCta} href="#reserva">Reservar plan mensual <span aria-hidden="true">↗</span></a>
         </nav>
       </header>
 
@@ -91,7 +114,7 @@ export default function Home() {
             <h1 id="hero-title">Un primer paso claro para volver a moverte.</h1>
             <p className={styles.heroIntro}>Conocé el estudio, revisá los horarios y contá qué estás buscando.</p>
             <div className={styles.heroActions}>
-              <a className={styles.primaryButton} href="#consulta">Consultar disponibilidad <span aria-hidden="true">↗</span></a>
+              <a className={styles.primaryButton} href="#reserva">Reservar plan mensual <span aria-hidden="true">↗</span></a>
               <a className={styles.textLink} href="#encaja">Ver cómo es <span aria-hidden="true">↓</span></a>
             </div>
           </div>
@@ -109,7 +132,7 @@ export default function Home() {
               </div>
               <div className={styles.previewFooter}><span>Domingo</span><span>Cerrado</span></div>
             </div>
-            <span className={styles.visualCaption}>La disponibilidad de una clase se confirma por consulta.</span>
+            <span className={styles.visualCaption}>La disponibilidad se consulta en el selector de reserva.</span>
           </div>
         </section>
 
@@ -123,14 +146,14 @@ export default function Home() {
             <article className={`${styles.fitCard} ${styles.fitCardLight}`}>
               <span className={styles.cardIndex}>01</span>
               <h3>Querés empezar</h3>
-              <p>Contá que estás buscando y consultá qué horario podría acomodarse a tu semana.</p>
-              <a href="#consulta">Contar lo que buscás <span aria-hidden="true">↗</span></a>
+              <p>Elegí un plan mensual y encontrá un horario fijo que se acomode a tu semana.</p>
+              <a href="#reserva">Elegir un horario <span aria-hidden="true">↗</span></a>
             </article>
             <article className={`${styles.fitCard} ${styles.fitCardAccent}`}>
               <span className={styles.cardIndex}>02</span>
               <h3>Ya practicás Pilates</h3>
-              <p>Indicá tu experiencia y el momento del día que preferís para orientar la conversación.</p>
-              <a href="#consulta">Consultar un horario <span aria-hidden="true">↗</span></a>
+              <p>Reservá el mismo día y horario todas las semanas durante un mes.</p>
+              <a href="#reserva">Reservar tu lugar <span aria-hidden="true">↗</span></a>
             </article>
           </div>
         </section>
@@ -138,7 +161,7 @@ export default function Home() {
         <section className={styles.scheduleSection} id="horarios" aria-labelledby="hours-title">
           <div className={styles.scheduleHeading}>
             <div><p className={styles.kicker}>La semana a la vista</p><h2 id="hours-title">Encontrá tu momento.</h2></div>
-            <p>Estos son los horarios publicados del estudio. La clase y el lugar se confirman después de tu consulta.</p>
+            <p>Estos son los horarios publicados del estudio. El selector de reserva muestra los turnos con cupo.</p>
           </div>
           <div className={styles.scheduleList}>
             {schedule.map((item) => (
@@ -152,15 +175,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.consultationSection} id="consulta" aria-labelledby="consult-title">
+        <section className={styles.consultationSection} id="reserva" aria-labelledby="consult-title">
           <div className={styles.consultationIntro}>
-            <p className={styles.kicker}>Tu primer paso</p>
-            <h2 id="consult-title">Una consulta breve alcanza para empezar.</h2>
-            <p>Dejanos tus datos y una preferencia. La idea es que Melisa pueda orientarte sin hacerte buscar la información en varios mensajes.</p>
+            <p className={styles.kicker}>Reservá tu lugar</p>
+            <h2 id="consult-title">Tu horario fijo, resuelto en un momento.</h2>
+            <p>Elegí un plan mensual, un día y un horario disponible. Todas las semanas se repite esa misma clase.</p>
             <div className={styles.firstStepNotes}>
-              <div><span>01</span><strong>Contá</strong><p>qué te gustaría consultar.</p></div>
-              <div><span>02</span><strong>Elegí</strong><p>un día y un momento.</p></div>
-              <div><span>03</span><strong>Confirmá</strong><p>tu canal de respuesta.</p></div>
+              <div><span>01</span><strong>Elegí</strong><p>tu plan mensual.</p></div>
+              <div><span>02</span><strong>Buscá</strong><p>un día y horario libre.</p></div>
+              <div><span>03</span><strong>Confirmá</strong><p>tu reserva recurrente.</p></div>
             </div>
           </div>
 
@@ -168,14 +191,14 @@ export default function Home() {
             {status === "success" ? (
               <div className={styles.successState} role="status" aria-live="polite">
                 <span className={styles.successMark} aria-hidden="true">✓</span>
-                <p className={styles.kicker}>Consulta recibida</p>
-                <h3>Listo, ya tenemos tu primer paso.</h3>
-                <p>Esta confirmación es parte de la demo. En una versión real, Melisa recibiría la consulta para responderte.</p>
-                <button className={styles.secondaryButton} type="button" onClick={resetForm}>Hacer otra consulta</button>
+                <p className={styles.kicker}>Horario reservado</p>
+                <h3>Listo, tu semana ya tiene un espacio.</h3>
+                <p>Te anotaste al Plan mensual: {reservationSummary} Esta confirmación es parte de la demo. En una versión real, el estudio validaría el cupo y te enviaría el detalle.</p>
+                <button className={styles.secondaryButton} type="button" onClick={resetForm}>Elegir otro horario</button>
               </div>
             ) : (
               <form className={styles.form} onSubmit={handleSubmit} noValidate>
-                <div className={styles.formTopline}><span>Consultá sin compromiso</span><span aria-hidden="true">05 min</span></div>
+                <div className={styles.formTopline}><span>Reserva online</span><span aria-hidden="true">1 mes</span></div>
 
                 <div className={styles.fieldGroup}>
                   <label htmlFor="name">Tu nombre</label>
@@ -183,33 +206,41 @@ export default function Home() {
                   {errors.name && <span className={styles.error} id="name-error">{errors.name}</span>}
                 </div>
 
-                <div className={styles.fieldGroup}>
-                  <label htmlFor="interest">¿Qué querés consultar?</label>
-                  <select id="interest" name="interest" value={form.interest} onChange={(event) => updateField("interest", event.target.value)} aria-invalid={Boolean(errors.interest)} aria-describedby={errors.interest ? "interest-error" : undefined}>
-                    <option value="">Elegí una opción</option>
-                    <option value="empezar">Quiero empezar Pilates</option>
-                    <option value="continuar">Ya practico Pilates</option>
-                    <option value="orientacion">Necesito orientación</option>
-                  </select>
-                  {errors.interest && <span className={styles.error} id="interest-error">{errors.interest}</span>}
-                </div>
+                <fieldset className={styles.planFieldset} aria-describedby={errors.plan ? "plan-error" : undefined}>
+                  <legend className={styles.fieldLabel}>Elegí tu plan</legend>
+                  <label className={`${styles.planChoice} ${form.plan ? styles.planChoiceSelected : ""}`}>
+                    <input type="radio" name="plan" value="mensual" checked={form.plan === "mensual"} onChange={(event) => updateField("plan", event.target.value)} />
+                    <span className={styles.planChoiceCopy}><strong>Plan mensual</strong><small>4 clases, 1 horario fijo por semana</small></span>
+                    <span className={styles.planChoiceMeta}>1 mes</span>
+                  </label>
+                  {errors.plan && <span className={styles.error} id="plan-error">{errors.plan}</span>}
+                </fieldset>
 
                 <div className={styles.formRow}>
                   <div className={styles.fieldGroup}>
                     <label htmlFor="day">Día que te sirve</label>
                     <select id="day" name="day" value={form.day} onChange={(event) => updateField("day", event.target.value)} aria-invalid={Boolean(errors.day)} aria-describedby={errors.day ? "day-error" : undefined}>
                       <option value="">Elegí un día</option>
-                      <option value="lunes">Lunes</option><option value="martes">Martes</option><option value="miercoles">Miércoles</option><option value="jueves">Jueves</option><option value="viernes">Viernes</option><option value="sabado">Sábado</option>
+                      {Array.from(new Set(availableSlots.filter((slot) => slot.available).map((slot) => `${slot.dayId}|${slot.day}`))).map((day) => {
+                        const [dayId, dayName] = day.split("|");
+                        return <option value={dayId} key={dayId}>{dayName}</option>;
+                      })}
                     </select>
                     {errors.day && <span className={styles.error} id="day-error">{errors.day}</span>}
                   </div>
                   <div className={styles.fieldGroup}>
-                    <label htmlFor="moment">Momento preferido</label>
-                    <select id="moment" name="moment" value={form.moment} onChange={(event) => updateField("moment", event.target.value)} aria-invalid={Boolean(errors.moment)} aria-describedby={errors.moment ? "moment-error" : undefined}>
-                      <option value="">Elegí un momento</option><option value="manana">Mañana</option><option value="tarde">Tarde</option><option value="noche">Noche</option><option value="flexible">Me adapto</option>
+                    <label htmlFor="time">Horario disponible</label>
+                    <select id="time" name="time" value={form.time} onChange={(event) => updateField("time", event.target.value)} disabled={!form.day} aria-invalid={Boolean(errors.time)} aria-describedby={errors.time ? "time-error" : undefined}>
+                      <option value="">{form.day ? "Elegí un horario" : "Elegí primero un día"}</option>
+                      {timesForDay.map((slot) => <option value={slot.id} key={slot.id} disabled={!slot.available}>{slot.time} {slot.available ? "· Disponible" : "· Sin cupos"}</option>)}
                     </select>
-                    {errors.moment && <span className={styles.error} id="moment-error">{errors.moment}</span>}
+                    {errors.time && <span className={styles.error} id="time-error">{errors.time}</span>}
                   </div>
+                </div>
+
+                <div className={styles.reservationPreview} aria-live="polite">
+                  <span>Tu reserva</span>
+                  <strong>{reservationSummary}</strong>
                 </div>
 
                 <div className={styles.fieldGroup}>
@@ -219,7 +250,7 @@ export default function Home() {
                 </div>
 
                 <button className={styles.submitButton} type="submit" disabled={status === "submitting"}>
-                  {status === "submitting" ? <span className={styles.loadingLabel} aria-live="polite"><span className={styles.loadingBar} aria-hidden="true" />Enviando consulta</span> : <>Consultar disponibilidad <span aria-hidden="true">↗</span></>}
+                  {status === "submitting" ? <span className={styles.loadingLabel} aria-live="polite"><span className={styles.loadingBar} aria-hidden="true" />Guardando reserva</span> : <>Reservar este horario <span aria-hidden="true">↗</span></>}
                 </button>
               </form>
             )}
