@@ -11,12 +11,14 @@ import styles from "./Contact.module.css";
 export default function Contact() {
   const [sent, setSent] = useState(false);
   const [name, setName] = useState("");
+  const [interest, setInterest] = useState("");
+  const [contact, setContact] = useState("");
   const [error, setError] = useState("");
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!name.trim()) {
-      setError("Contanos tu nombre para poder escribirte.");
+    if (!name.trim() || !interest || !contact.trim()) {
+      setError("Completá tu nombre, objetivo y un canal de contacto.");
       return;
     }
     setError("");
@@ -27,10 +29,10 @@ export default function Contact() {
     <section id="contacto" className={styles.section}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h2 className={styles.headline}>Probá una clase</h2>
+          <h2 className={styles.headline}>Quiero hacerme socio</h2>
           <p className={styles.subtext}>
-            Dejanos tu nombre y cuándo te gustaría entrenar. Te contactamos
-            nosotros.
+            Elegí tu objetivo y cuándo te gustaría entrenar. Te contamos cómo
+            sumarte por el canal que indiques.
           </p>
         </div>
 
@@ -79,6 +81,15 @@ export default function Contact() {
             </div>
 
             <div className={styles.field}>
+              <label htmlFor="interest">Objetivo</label>
+              <select id="interest" value={interest} onChange={(e) => setInterest(e.target.value)}>
+                <option value="">Elegí una opción</option>
+                <option value="musculacion">Musculación</option>
+                <option value="funcional">Funcional</option>
+                <option value="opciones">Conocer las opciones</option>
+              </select>
+            </div>
+            <div className={styles.field}>
               <label htmlFor="when">¿Cuándo te gustaría entrenar?</label>
               <select id="when" name="when" defaultValue="temprano">
                 <option value="temprano">Bien temprano (6 a 9 hs)</option>
@@ -87,9 +98,13 @@ export default function Contact() {
                 <option value="sabado">Sábado</option>
               </select>
             </div>
+            <div className={styles.field}>
+              <label htmlFor="contact">WhatsApp o email</label>
+              <input id="contact" value={contact} onChange={(e) => setContact(e.target.value)} placeholder="Cómo te contactamos" autoComplete="email" />
+            </div>
 
             <button type="submit" className={styles.submit}>
-              Enviar consulta
+              Quiero hacerme socio
               <PaperPlaneTilt size={16} weight="fill" />
             </button>
           </form>
